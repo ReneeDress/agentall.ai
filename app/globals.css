@@ -29,19 +29,131 @@ body {
   font-family: var(--font-dm-sans), Arial, Helvetica, sans-serif;
 }
 
+/* Dynamic radial gradient animations - Bottom area only */
+@keyframes radial-flow-1 {
+  0% {
+    transform: translate(0%, 50%) scale(1);
+    opacity: 0.8;
+  }
+  25% {
+    transform: translate(60%, 30%) scale(1.5);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(-30%, 60%) scale(0.8);
+    opacity: 0.9;
+  }
+  75% {
+    transform: translate(40%, 40%) scale(1.2);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(0%, 50%) scale(1);
+    opacity: 0.8;
+  }
+}
+
+@keyframes radial-flow-2 {
+  0% {
+    transform: translate(0%, 60%) scale(1);
+    opacity: 0.7;
+  }
+  25% {
+    transform: translate(-40%, 40%) scale(0.8);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(50%, 70%) scale(1.8);
+    opacity: 0.6;
+  }
+  75% {
+    transform: translate(-50%, 50%) scale(0.6);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(0%, 60%) scale(1);
+    opacity: 0.7;
+  }
+}
+
+@keyframes radial-flow-3 {
+  0% {
+    transform: translate(0%, 70%) scale(1);
+    opacity: 0.6;
+  }
+  25% {
+    transform: translate(50%, 50%) scale(1.6);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translate(-30%, 80%) scale(0.5);
+    opacity: 0.9;
+  }
+  75% {
+    transform: translate(30%, 60%) scale(1.1);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(0%, 70%) scale(1);
+    opacity: 0.6;
+  }
+}
+
 /* Custom gradient backgrounds */
 .gradient-hero {
   background: radial-gradient(
-      ellipse at 81% 29%,
+      ellipse 400px 300px at 30% 90%,
       rgba(255, 182, 233, 0.8) 0%,
-      rgba(255, 182, 233, 0) 100%
+      rgba(255, 182, 233, 0) 70%
     ),
     radial-gradient(
-      circle at 29% 53%,
-      rgba(135, 118, 255, 0.5) 0%,
-      rgba(135, 118, 255, 0) 100%
+      circle 300px at 70% 95%,
+      rgba(135, 118, 255, 0.7) 0%,
+      rgba(135, 118, 255, 0) 70%
     ),
-    #f9f8ff;
+    radial-gradient(
+      ellipse 250px 200px at 80% 85%,
+      rgba(246, 132, 84, 0.6) 0%,
+      rgba(246, 132, 84, 0) 70%
+    ),
+    #ffffff;
+  background-size: 100% 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.gradient-hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    ellipse 400px 300px at 30% 90%,
+    rgba(255, 182, 233, 0.9) 0%,
+    rgba(255, 182, 233, 0) 70%
+  );
+  animation: radial-flow-1 15s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -2;
+}
+
+.gradient-hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle 300px at 70% 95%,
+    rgba(135, 118, 255, 0.8) 0%,
+    rgba(135, 118, 255, 0) 70%
+  );
+  animation: radial-flow-2 18s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
 }
 
 /* Dynamic gradient text animation */
@@ -74,65 +186,124 @@ body {
 }
 
 .gradient-section-1 {
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.gradient-section-1::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: radial-gradient(
-      ellipse at 78% 43%,
-      rgba(135, 118, 255, 0.8) 0%,
-      rgba(135, 118, 255, 0) 100%
-    ),
-    radial-gradient(
-      ellipse at 35% 66%,
-      rgba(246, 132, 84, 0.8) 0%,
-      rgba(246, 132, 84, 0) 100%
-    ),
-    radial-gradient(
-      circle at 34% 62%,
-      rgba(135, 118, 255, 0.5) 0%,
-      rgba(135, 118, 255, 0) 100%
-    ),
-    #f9f8ff;
+    ellipse 350px 250px at 78% 43%,
+    rgba(135, 118, 255, 0.7) 0%,
+    rgba(135, 118, 255, 0) 70%
+  );
+  animation: radial-flow-1 12s ease-in-out infinite reverse;
+  pointer-events: none;
+  z-index: -2;
+}
+
+.gradient-section-1::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    ellipse 280px 200px at 35% 66%,
+    rgba(246, 132, 84, 0.6) 0%,
+    rgba(246, 132, 84, 0) 70%
+  );
+  animation: radial-flow-2 16s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -2;
+  z-index: -1;
 }
 
 .gradient-section-2 {
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.gradient-section-2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: radial-gradient(
-      ellipse at 78% 43%,
-      rgba(135, 118, 255, 0.8) 0%,
-      rgba(135, 118, 255, 0) 100%
-    ),
-    radial-gradient(
-      ellipse at 35% 66%,
-      rgba(246, 132, 84, 0.8) 0%,
-      rgba(246, 132, 84, 0) 100%
-    ),
-    radial-gradient(
-      circle at 33% 52%,
-      rgba(190, 234, 193, 0.5) 0%,
-      rgba(190, 234, 193, 0) 100%
-    ),
-    radial-gradient(
-      circle at 34% 62%,
-      rgba(135, 118, 255, 0.5) 0%,
-      rgba(135, 118, 255, 0) 100%
-    ),
-    #f9f8ff;
+    ellipse 320px 220px at 78% 43%,
+    rgba(135, 118, 255, 0.3) 0%,
+    rgba(135, 118, 255, 0) 70%
+  );
+  animation: radial-flow-2 14s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -2;
+}
+
+.gradient-section-2::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle 250px at 33% 52%,
+    rgba(190, 234, 193, 0.25) 0%,
+    rgba(190, 234, 193, 0) 70%
+  );
+  animation: radial-flow-3 20s ease-in-out infinite reverse;
+  pointer-events: none;
+  z-index: -2;
 }
 
 .gradient-section-3 {
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.gradient-section-3::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: radial-gradient(
-      ellipse at 12% 83%,
-      rgba(246, 132, 84, 0.3) 0%,
-      rgba(246, 132, 84, 0) 100%
-    ),
-    radial-gradient(
-      ellipse at 72% 55%,
-      rgba(255, 182, 233, 0.6) 0%,
-      rgba(255, 182, 233, 0) 100%
-    ),
-    radial-gradient(
-      circle at 34% 62%,
-      rgba(135, 118, 255, 0.5) 0%,
-      rgba(135, 118, 255, 0) 100%
-    ),
-    #f9f8ff, #786dc6;
+    ellipse 300px 180px at 12% 83%,
+    rgba(246, 132, 84, 0.2) 0%,
+    rgba(246, 132, 84, 0) 70%
+  );
+  animation: radial-flow-1 18s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -2;
+}
+
+.gradient-section-3::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    ellipse 280px 160px at 72% 55%,
+    rgba(255, 182, 233, 0.25) 0%,
+    rgba(255, 182, 233, 0) 70%
+  );
+  animation: radial-flow-3 22s ease-in-out infinite reverse;
+  pointer-events: none;
+  z-index: -2;
 }
 
 .gradient-section-4 {
