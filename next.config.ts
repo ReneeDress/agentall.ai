@@ -2,21 +2,24 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   // GitHub Pages base path
-  basePath: "/agentall.ai",
+  basePath: process.env.GITHUB_PAGES === "true" ? "/agentall.ai" : "",
 
   // Output configuration for static export
-  output: "export",
+  output: process.env.GITHUB_PAGES === "true" ? "export" : undefined,
 
   // Disable image optimization for static export
-  images: {
-    unoptimized: true,
-  },
+  images:
+    process.env.GITHUB_PAGES === "true"
+      ? {
+          unoptimized: true,
+        }
+      : undefined,
 
   // Trailing slash for GitHub Pages compatibility
-  trailingSlash: true,
+  trailingSlash: process.env.GITHUB_PAGES === "true" ? true : undefined,
 
   // Asset prefix for GitHub Pages
-  assetPrefix: "/agentall.ai",
+  assetPrefix: process.env.GITHUB_PAGES === "true" ? "/agentall.ai" : "",
 };
 
 export default nextConfig;
