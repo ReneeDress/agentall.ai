@@ -475,3 +475,150 @@ footer {
 .animate-gradient {
   animation: gradient ease infinite;
 }
+
+/* 粉色高亮效果 */
+.group:hover .group-hover\:before\:animate-highlight-pink-1::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 80%;
+  background-color: rgba(236, 72, 153, 0.25);
+  animation: highlight-1 0.3s ease-out forwards;
+  z-index: -1;
+  max-width: 100%;
+}
+
+.group:hover .group-hover\:before\:animate-highlight-pink-2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 80%;
+  background-color: rgba(236, 72, 153, 0.25);
+  animation: highlight-2 0.3s ease-out 0.1s forwards;
+  z-index: -1;
+  max-width: 100%;
+}
+
+/* 橙色高亮效果 */
+.group:hover .group-hover\:before\:animate-highlight-orange-1::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 80%;
+  background-color: rgba(249, 115, 22, 0.25);
+  animation: highlight-1 0.3s ease-out forwards;
+  z-index: -1;
+  max-width: 100%;
+}
+
+.group:hover .group-hover\:before\:animate-highlight-orange-2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 80%;
+  background-color: rgba(249, 115, 22, 0.25);
+  animation: highlight-2 0.3s ease-out 0.1s forwards;
+  z-index: -1;
+  max-width: 100%;
+}
+
+/* Pricing页面弥散背景动画 */
+@keyframes drift-left {
+  0% {
+    background: radial-gradient(
+        ellipse 800px 600px at 20% 30%,
+        rgba(236, 72, 153, 0.15) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse 600px 400px at 80% 70%,
+        rgba(236, 72, 153, 0.1) 0%,
+        transparent 50%
+      ),
+      linear-gradient(to right, rgba(236, 72, 153, 0.05), transparent);
+  }
+  50% {
+    background: radial-gradient(
+        ellipse 900px 700px at 30% 40%,
+        rgba(236, 72, 153, 0.2) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse 500px 300px at 70% 60%,
+        rgba(236, 72, 153, 0.15) 0%,
+        transparent 50%
+      ),
+      linear-gradient(to right, rgba(236, 72, 153, 0.08), transparent);
+  }
+  100% {
+    background: radial-gradient(
+        ellipse 800px 600px at 20% 30%,
+        rgba(236, 72, 153, 0.15) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse 600px 400px at 80% 70%,
+        rgba(236, 72, 153, 0.1) 0%,
+        transparent 50%
+      ),
+      linear-gradient(to right, rgba(236, 72, 153, 0.05), transparent);
+  }
+}
+
+@keyframes drift-right {
+  0% {
+    background: radial-gradient(
+        ellipse 800px 600px at 80% 30%,
+        rgba(249, 115, 22, 0.15) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse 600px 400px at 20% 70%,
+        rgba(249, 115, 22, 0.1) 0%,
+        transparent 50%
+      ),
+      linear-gradient(to left, rgba(249, 115, 22, 0.05), transparent);
+  }
+  50% {
+    background: radial-gradient(
+        ellipse 900px 700px at 70% 40%,
+        rgba(249, 115, 22, 0.2) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse 500px 300px at 30% 60%,
+        rgba(249, 115, 22, 0.15) 0%,
+        transparent 50%
+      ),
+      linear-gradient(to left, rgba(249, 115, 22, 0.08), transparent);
+  }
+  100% {
+    background: radial-gradient(
+        ellipse 800px 600px at 80% 30%,
+        rgba(249, 115, 22, 0.15) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        ellipse 600px 400px at 20% 70%,
+        rgba(249, 115, 22, 0.1) 0%,
+        transparent 50%
+      ),
+      linear-gradient(to left, rgba(249, 115, 22, 0.05), transparent);
+  }
+}
+
+.drift-left {
+  animation: drift-left 20s ease-in-out infinite;
+}
+
+.drift-right {
+  animation: drift-right 25s ease-in-out infinite;
+}
