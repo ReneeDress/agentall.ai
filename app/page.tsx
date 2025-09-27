@@ -1,16 +1,61 @@
 import Image from "next/image";
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
+import Carousel from './components/Carousel';
+import HeroCarouselItem from './components/HeroCarouselItem';
 
 export default function Home() {
+  // Carousel data for Hero section
+  const heroCarouselItems = [
+    {
+      id: 'hero-1',
+      content: (
+        <HeroCarouselItem
+          image="/images/heros/olena-bohovyk-XttWKETqCCQ-unsplash.png"
+          title="Harness Power of AI for SAP Business One with the Agentic Layer"
+          fullWidth={false}
+          isActive={true}
+          animationDelay={0}
+          cardPosition={{ x: -150, y: 100, anchor: 'center' }}
+        />
+      )
+    },
+    {
+      id: 'hero-2',
+      content: (
+        <HeroCarouselItem
+          image="/images/heros/ivana-cajina-dnL6ZIpht2s-unsplash.png"
+          title="Digital Workers Revolutionize Your Workflow"
+          fullWidth={false}
+          isActive={false}
+          animationDelay={200}
+          cardPosition={{ x: 150, y: 100, anchor: 'center' }}
+        />
+      )
+    },
+    {
+      id: 'hero-3',
+      content: (
+        <HeroCarouselItem
+          image="/images/heros/ivana-cajina-_7LbC5J-jw4-unsplash.png"
+          title="Advanced Analytics Drive Smart Decisions"
+          fullWidth={false}
+          isActive={false}
+          animationDelay={400}
+          cardPosition={{ x: -200, y: 100, anchor: 'center' }}
+        />
+      )
+    }
+  ];
+
   return (
     <div className="min-h-screen">
       <Navigation />
 
       {/* Hero Section */}
       <section className="gradient-hero min-h-screen flex items-center justify-center pt-20">
-        <div className="max-w-7xl mx-auto px-8 py-24">
-          <div className="text-center space-y-6">
+        <div className="w-full mx-auto pt-16">
+          <div className="max-w-7xl mx-auto px-8 text-center space-y-6">
             {/* Decorative dot */}
             <div className="flex justify-center">
               <div className="w-3 h-3 bg-primary rounded-full"></div>
@@ -23,12 +68,11 @@ export default function Home() {
             </h1>
 
             <p className="text-lg text-black max-w-3xl mx-auto leading-relaxed">
-              Purpose-built agentic AI for SAP Business One,<br />
-              empowering your enterprise with digital workers<br />
-              to maximize efficiency and optimize performance
+              Purpose-built agentic AI for SAP Business One, empowering your enterprise<br />
+              with digital workers to maximize efficiency and optimize performance
             </p>
 
-            <div className="flex justify-center space-x-4 pt-6">
+            <div className="flex justify-center space-x-4 pt-2">
               <button className="border border-black px-6 py-4 rounded-lg hover:bg-black hover:text-white transition-colors">
                 Start Free Trial
               </button>
@@ -39,27 +83,16 @@ export default function Home() {
           </div>
 
           {/* Bottom Carousel */}
-          <div className="flex justify-center items-end pt-16 relative">
-            <div className="relative">
-              <Image
-                src="/images/hero-image-232e22.png"
-                alt="SAP Business One AI Integration"
-                width={400}
-                height={411}
-                className="rounded-lg"
-              />
-              <div className="absolute bottom-6 left-6 bg-white/50 backdrop-blur-sm rounded-lg p-4 dashed-border">
-                <div className="flex items-center space-x-2 mb-2">
-                  <div className="w-3 h-3 bg-primary rounded-full"></div>
-                </div>
-                <h3 className="text-xl font-serif-display text-black">
-                  Harness Power of AI<br />
-                  for SAP Business One<br />
-                  with the Agentic Layer
-                </h3>
-              </div>
-            </div>
-          </div>
+          <Carousel
+            items={heroCarouselItems}
+            fullWidth={true}
+            autoPlay={true}
+            autoPlayInterval={5000}
+            showNavigation={false}
+            showDots={false}
+            showProgressBar={false}
+            infiniteScroll={true}
+          />
         </div>
       </section>
 

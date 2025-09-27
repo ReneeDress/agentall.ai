@@ -11,6 +11,7 @@
   --accent-green: rgba(190, 234, 193, 0.5);
 
   --font-dm-serif-display: "DM Serif Display", serif;
+  --font-dm-sans: "DM Sans", sans-serif;
 }
 
 @theme inline {
