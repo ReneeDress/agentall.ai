@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import '@fontsource/dm-serif-display';
 import '@fontsource-variable/dm-sans';
+import '@fontsource/poiret-one';
 import "./globals.css";
 
 

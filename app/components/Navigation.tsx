@@ -30,7 +30,7 @@ export default function Navigation({ currentPage }: NavigationProps) {
                 <div className="grid grid-cols-3 items-center">
                     {/* 左侧 - Logo */}
                     <div className="flex items-center justify-start">
-                        <Link href="/" className="flex items-center">
+                        <Link href="/" className="flex items-center cursor-pointer">
                             <Logo size={32} showText={true} />
                         </Link>
                     </div>
@@ -39,28 +39,28 @@ export default function Navigation({ currentPage }: NavigationProps) {
                     <div className="hidden md:flex items-center justify-center space-x-8">
                         <Link
                             href="/"
-                            className={`hover:text-primary transition-colors ${currentPage === 'products' ? 'text-primary font-semibold' : 'text-black'
+                            className={`relative inline-block hover:before:animate-highlight-nav cursor-pointer px-2 ${currentPage === 'products' ? 'text-primary font-semibold' : 'text-black'
                                 }`}
                         >
                             Products
                         </Link>
                         <Link
                             href="/"
-                            className={`hover:text-primary transition-colors ${currentPage === 'resources' ? 'text-primary font-semibold' : 'text-black'
+                            className={`relative inline-block hover:before:animate-highlight-nav cursor-pointer px-2 ${currentPage === 'resources' ? 'text-primary font-semibold' : 'text-black'
                                 }`}
                         >
                             Resources
                         </Link>
                         <Link
                             href="/"
-                            className={`hover:text-primary transition-colors ${currentPage === 'company' ? 'text-primary font-semibold' : 'text-black'
+                            className={`relative inline-block hover:before:animate-highlight-nav cursor-pointer px-2 ${currentPage === 'company' ? 'text-primary font-semibold' : 'text-black'
                                 }`}
                         >
                             Company
                         </Link>
                         <Link
                             href="/pricing"
-                            className={`hover:text-primary transition-colors ${currentPage === 'pricing' ? 'text-primary font-semibold' : 'text-black'
+                            className={`relative inline-block hover:before:animate-highlight-nav cursor-pointer px-2 ${currentPage === 'pricing' ? 'text-primary font-semibold' : 'text-black'
                                 }`}
                         >
                             Pricing
@@ -69,9 +69,9 @@ export default function Navigation({ currentPage }: NavigationProps) {
 
                     {/* 右侧 - 登录和按钮 */}
                     <div className="flex items-center justify-end space-x-4">
-                        <Link href="/" className="text-black hover:text-primary transition-colors">Login</Link>
-                        <Link href="/" className="text-black hover:text-primary transition-colors">Free Trial</Link>
-                        <button className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors">
+                        {/* <Link href="/" className="text-black relative inline-block hover:before:animate-highlight-nav cursor-pointer px-2">Login</Link> */}
+                        <Link href="/" className="text-black relative inline-block hover:before:animate-highlight-nav cursor-pointer px-2">Free Trial</Link>
+                        <button className="bg-primary text-white px-4 py-2 hover:bg-primary/90 transition-colors cursor-pointer">
                             Get A Demo
                         </button>
                     </div>

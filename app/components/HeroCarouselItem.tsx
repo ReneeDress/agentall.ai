@@ -57,7 +57,7 @@ export default function HeroCarouselItem({
                     : 'opacity-0 translate-x-8'
                     }`}
             />
-            <div className={`absolute bg-white/50 backdrop-blur-sm rounded-lg p-4 dashed-border max-w-xs transition-all duration-1000 ease-out ${isVisible
+            <div className={`absolute bg-white/50 backdrop-blur-sm rounded-lg p-4 dashed-border max-w-md w-sm transition-all duration-1000 ease-out ${isVisible
                 ? 'opacity-100 translate-x-0'
                 : 'opacity-0 translate-x-12'
                 }`}
@@ -94,7 +94,7 @@ export default function HeroCarouselItem({
                 </div>
 
                 {/* 标题 - 静态显示，跟随卡片一起动画 */}
-                <h3 className="text-xl font-serif-display text-black whitespace-pre-line">
+                <h3 className="text-2xl font-serif-display text-black whitespace-pre-line">
                     {title}
                 </h3>
 

@@ -13,13 +13,13 @@ export default function Footer() {
                             Purpose-built agentic AI for SAP Business One. Empowering SMBs with intelligent digital workers to maximize competency and value in the AI era.
                         </p>
                         <div className="flex space-x-4">
-                            <button className="px-4 py-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors text-sm">
+                            <button className="px-4 py-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors text-sm cursor-pointer">
                                 LinkedIn
                             </button>
-                            <button className="px-4 py-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors text-sm">
+                            <button className="px-4 py-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors text-sm cursor-pointer">
                                 Twitter
                             </button>
-                            <button className="px-4 py-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors text-sm">
+                            <button className="px-4 py-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors text-sm cursor-pointer">
                                 GitHub
                             </button>
                         </div>
@@ -29,8 +29,8 @@ export default function Footer() {
                     <div className="space-y-4">
                         <h4 className="text-lg font-semibold">Product</h4>
                         <ul className="space-y-2 text-sm text-gray-300">
-                            <li><button className="hover:text-white transition-colors text-left">Agentic AI for SAP Business One</button></li>
-                            <li><button className="hover:text-white transition-colors text-left">Enterprise AI Agent Build Platform</button></li>
+                            <li><button className="relative inline-block hover:before:animate-highlight-footer cursor-pointer text-left">Agentic AI for SAP Business One</button></li>
+                            <li><button className="relative inline-block hover:before:animate-highlight-footer cursor-pointer text-left">Enterprise AI Agent Build Platform</button></li>
                         </ul>
                     </div>
 
@@ -38,8 +38,8 @@ export default function Footer() {
                     <div className="space-y-4">
                         <h4 className="text-lg font-semibold">Resources</h4>
                         <ul className="space-y-2 text-sm text-gray-300">
-                            <li><button className="hover:text-white transition-colors text-left">Product Documentation</button></li>
-                            <li><button className="hover:text-white transition-colors text-left">User Manual</button></li>
+                            <li><button className="relative inline-block hover:before:animate-highlight-footer cursor-pointer text-left">Product Documentation</button></li>
+                            <li><button className="relative inline-block hover:before:animate-highlight-footer cursor-pointer text-left">User Manual</button></li>
                         </ul>
                     </div>
 
@@ -47,10 +47,10 @@ export default function Footer() {
                     <div className="space-y-4">
                         <h4 className="text-lg font-semibold">Company</h4>
                         <ul className="space-y-2 text-sm text-gray-300">
-                            <li><button className="hover:text-white transition-colors text-left">About Us</button></li>
-                            <li><button className="hover:text-white transition-colors text-left">Our Mission</button></li>
-                            <li><button className="hover:text-white transition-colors text-left">Our Team</button></li>
-                            <li><button className="hover:text-white transition-colors text-left">The LinkedWorld</button></li>
+                            <li><button className="relative inline-block hover:before:animate-highlight-footer cursor-pointer text-left">About Us</button></li>
+                            <li><button className="relative inline-block hover:before:animate-highlight-footer cursor-pointer text-left">Our Mission</button></li>
+                            <li><button className="relative inline-block hover:before:animate-highlight-footer cursor-pointer text-left">Our Team</button></li>
+                            <li><button className="relative inline-block hover:before:animate-highlight-footer cursor-pointer text-left">The LinkedWorld</button></li>
                         </ul>
                     </div>
                 </div>
@@ -64,9 +64,9 @@ export default function Footer() {
                             © 2025 AgentAll.ai. All rights reserved.
                         </div>
                         <div className="flex space-x-6 text-sm text-gray-400">
-                            <button className="hover:text-white transition-colors">Privacy Policy</button>
-                            <button className="hover:text-white transition-colors">Terms of Service</button>
-                            <button className="hover:text-white transition-colors">Cookies</button>
+                            <button className="relative inline-block hover:before:animate-highlight-footer cursor-pointer">Privacy Policy</button>
+                            <button className="relative inline-block hover:before:animate-highlight-footer cursor-pointer">Terms of Service</button>
+                            <button className="relative inline-block hover:before:animate-highlight-footer cursor-pointer">Cookies</button>
                         </div>
                     </div>
                 </div>

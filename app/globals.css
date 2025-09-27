@@ -27,14 +27,19 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-dm-sans), Arial, Helvetica, sans-serif;
+  position: relative;
   overflow-x: hidden;
   min-height: 100vh;
+}
+
+html {
+  height: 100%;
 }
 
 /* 整体页面背景弥散效果 */
 body::before {
   content: "";
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -79,7 +84,7 @@ body::before {
 
 body::after {
   content: "";
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -195,6 +200,8 @@ body::after {
     #1a1a2e,
     #2d1b69,
     #4c1d95,
+    #f472b6,
+    #4c1d95,
     #2d1b69,
     #1a1a2e
   );
@@ -202,7 +209,7 @@ body::after {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: gradient-shift 6s ease-in-out infinite;
+  animation: gradient-shift 15s ease-in-out infinite;
 }
 
 /* 确保导航栏在背景之上 */
@@ -250,4 +257,221 @@ footer {
 
 .dashed-border {
   border: 1px dashed #6b5be1;
+}
+
+/* 文字选中状态样式 */
+::selection {
+  background-color: var(--primary);
+  color: white;
+}
+
+::-moz-selection {
+  background-color: var(--primary);
+  color: white;
+}
+
+/* 划线高亮动画 */
+@keyframes highlight-1 {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes highlight-2 {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes highlight-3 {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes highlight-4 {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes highlight-5 {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* 划线高亮样式 - 使用inline-block限制宽度 */
+.group:hover .group-hover\:before\:animate-highlight-1::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 80%;
+  background-color: rgba(221, 214, 254, 0.9);
+  animation: highlight-1 0.6s ease-out forwards;
+  z-index: -1;
+  max-width: 100%;
+}
+
+.group:hover .group-hover\:before\:animate-highlight-2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 80%;
+  background-color: rgba(221, 214, 254, 0.9);
+  animation: highlight-2 0.6s ease-out 0.1s forwards;
+  z-index: -1;
+  max-width: 100%;
+}
+
+.group:hover .group-hover\:before\:animate-highlight-3::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 80%;
+  background-color: rgba(221, 214, 254, 0.9);
+  animation: highlight-3 0.6s ease-out 0.2s forwards;
+  z-index: -1;
+  max-width: 100%;
+}
+
+.group:hover .group-hover\:before\:animate-highlight-4::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 80%;
+  background-color: rgba(221, 214, 254, 0.9);
+  animation: highlight-4 0.6s ease-out 0.3s forwards;
+  z-index: -1;
+  max-width: 100%;
+}
+
+.group:hover .group-hover\:before\:animate-highlight-5::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 80%;
+  background-color: rgba(221, 214, 254, 0.9);
+  animation: highlight-5 0.6s ease-out 0.4s forwards;
+  z-index: -1;
+  max-width: 100%;
+}
+
+/* 单行hover划线效果 */
+.hover\:before\:animate-highlight-1:hover::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 80%;
+  background-color: rgba(221, 214, 254, 0.9);
+  animation: highlight-1 0.6s ease-out forwards;
+  z-index: -1;
+  max-width: 100%;
+}
+
+/* Footer专用highlight效果 - 使用primary颜色，更快动画 */
+.hover\:before\:animate-highlight-footer:hover::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 80%;
+  background-color: var(--primary);
+  animation: highlight-footer 0.3s ease-out forwards;
+  z-index: -1;
+  max-width: 100%;
+}
+
+/* Navigation专用highlight效果 - 更快动画 */
+.hover\:before\:animate-highlight-nav:hover::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 80%;
+  background-color: rgba(221, 214, 254, 0.9);
+  animation: highlight-nav 0.3s ease-out forwards;
+  z-index: -1;
+  max-width: 100%;
+}
+
+@keyframes highlight-footer {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes highlight-nav {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* 无限滚动文字动画 */
+@keyframes scroll-text {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.scrolling-text {
+  animation: scroll-text linear infinite;
+  white-space: nowrap;
+  display: inline-block;
+  width: 200%;
+}
+
+/* 渐变动画 */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  animation: gradient ease infinite;
 }

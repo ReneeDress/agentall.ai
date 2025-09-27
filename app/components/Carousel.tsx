@@ -17,6 +17,8 @@ interface CarouselProps {
     fullWidth?: boolean;
     infiniteScroll?: boolean;
     className?: string;
+    height?: string;
+    onIndexChange?: (index: number) => void;
 }
 
 export default function Carousel({
@@ -28,10 +30,19 @@ export default function Carousel({
     showProgressBar = false,
     fullWidth = false,
     infiniteScroll = false,
-    className = ""
+    className = "",
+    height = "h-[600px]",
+    onIndexChange
 }: CarouselProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isTransitioning, setIsTransitioning] = useState(true);
+
+    // Notify parent component when index changes
+    useEffect(() => {
+        if (onIndexChange) {
+            onIndexChange(currentIndex);
+        }
+    }, [currentIndex, onIndexChange]);
 
     // Auto-rotate carousel
     useEffect(() => {
@@ -101,10 +112,10 @@ export default function Carousel({
         `translateX(-${currentIndex * 100}%)`;
 
     return (
-        <div className={`flex justify-center items-end pt-8 relative ${className}`}>
+        <div className={`${fullWidth ? 'w-full' : 'flex justify-center'} items-end pt-8 relative ${className}`}>
             <div className={`relative ${containerClass}`}>
                 {/* Carousel Container */}
-                <div className={`relative overflow-hidden ${fullWidth ? '' : 'rounded-lg'}`}>
+                <div className={`relative overflow-hidden ${height}`}>
                     <div
                         className={`flex ${isTransitioning ? 'transition-transform duration-500 ease-in-out' : ''}`}
                         style={{ transform: transformValue }}
@@ -126,7 +137,7 @@ export default function Carousel({
                                 item.content;
 
                             return (
-                                <div key={item.id} className="w-full flex-shrink-0">
+                                <div key={item.id} className={`w-full flex-shrink-0 ${height} flex items-center justify-center`}>
                                     {enhancedContent}
                                 </div>
                             );
@@ -178,11 +189,15 @@ export default function Carousel({
 
                 {/* Progress Bar */}
                 {showProgressBar && (
-                    <div className="w-full bg-gray-200 rounded-full h-1 mt-2">
-                        <div
-                            className="bg-primary h-1 rounded-full transition-all duration-100 ease-linear"
-                            style={{ width: `${((currentIndex + 1) / items.length) * 100}%` }}
-                        />
+                    <div className="w-64 mx-auto bg-gray-200 rounded-full h-1 mt-4 flex">
+                        {items.map((_, index) => (
+                            <div key={index} className="flex-1 relative mx-0.5">
+                                <div className="w-full bg-gray-300 rounded-full h-1"></div>
+                                {index <= currentIndex && (
+                                    <div className="absolute top-0 left-0 bg-primary h-1 rounded-full w-full" />
+                                )}
+                            </div>
+                        ))}
                     </div>
                 )}
             </div>
