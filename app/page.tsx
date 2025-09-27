@@ -49,13 +49,13 @@ export default function Home() {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen h-screen">
       <Navigation />
 
       {/* Hero Section */}
-      <section className="min-h-screen flex items-start justify-center pt-16">
-        <div className="w-full mx-auto pt-16">
-          <div className="max-w-7xl mx-auto px-8 text-center space-y-6">
+      <section className="min-h-screen flex flex-col justify-between">
+        <div className="w-full mx-auto pt-20 flex-1 flex flex-col justify-between">
+          <div className="max-w-7xl mx-auto px-8 pt-16 text-center space-y-6">
             {/* Decorative dot */}
             <div className="flex justify-center">
               <div className="w-3 h-3 bg-primary rounded-full"></div>

@@ -22,9 +22,9 @@ export default function Navigation({ currentPage }: NavigationProps) {
     }, []);
 
     return (
-        <nav className={`fixed top-0 left-0 right-0 transition-all duration-300 w-full ${isScrolled
-            ? 'bg-white/80 backdrop-blur-sm border-b border-gray-200'
-            : 'bg-transparent'
+        <nav className={`fixed top-0 left-0 right-0 transition-all duration-300 w-full border-b ${isScrolled
+            ? 'bg-white/80 backdrop-blur-sm border-gray-200'
+            : 'bg-transparent border-transparent'
             }`} style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 9999 }}>
             <div className="mx-auto px-8 py-4">
                 <div className="grid grid-cols-3 items-center">
