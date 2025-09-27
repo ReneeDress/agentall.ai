@@ -94,7 +94,7 @@ export default function HeroCarouselItem({
                 </div>
 
                 {/* 标题 - 静态显示，跟随卡片一起动画 */}
-                <h3 className="text-2xl font-serif-display text-black whitespace-pre-line">
+                <h3 className="text-3xl font-serif-display text-black whitespace-pre-line">
                     {title}
                 </h3>
 
