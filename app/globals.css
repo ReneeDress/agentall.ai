@@ -1,26 +1,166 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f9f8ff;
+  --foreground: #262052;
+  --primary: #6b5be1;
+  --secondary: #000000;
+  --accent-purple: rgba(135, 118, 255, 0.5);
+  --accent-pink: rgba(255, 182, 233, 0.8);
+  --accent-orange: rgba(246, 132, 84, 0.8);
+  --accent-green: rgba(190, 234, 193, 0.5);
+
+  --font-dm-serif-display: "DM Serif Display", serif;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --font-sans: var(--font-dm-sans);
+  --font-serif-display: var(--font-dm-serif-display);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-dm-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Custom gradient backgrounds */
+.gradient-hero {
+  background: radial-gradient(
+      ellipse at 81% 29%,
+      rgba(255, 182, 233, 0.8) 0%,
+      rgba(255, 182, 233, 0) 100%
+    ),
+    radial-gradient(
+      circle at 29% 53%,
+      rgba(135, 118, 255, 0.5) 0%,
+      rgba(135, 118, 255, 0) 100%
+    ),
+    #f9f8ff;
+}
+
+.gradient-section-1 {
+  background: radial-gradient(
+      ellipse at 78% 43%,
+      rgba(135, 118, 255, 0.8) 0%,
+      rgba(135, 118, 255, 0) 100%
+    ),
+    radial-gradient(
+      ellipse at 35% 66%,
+      rgba(246, 132, 84, 0.8) 0%,
+      rgba(246, 132, 84, 0) 100%
+    ),
+    radial-gradient(
+      circle at 34% 62%,
+      rgba(135, 118, 255, 0.5) 0%,
+      rgba(135, 118, 255, 0) 100%
+    ),
+    #f9f8ff;
+}
+
+.gradient-section-2 {
+  background: radial-gradient(
+      ellipse at 78% 43%,
+      rgba(135, 118, 255, 0.8) 0%,
+      rgba(135, 118, 255, 0) 100%
+    ),
+    radial-gradient(
+      ellipse at 35% 66%,
+      rgba(246, 132, 84, 0.8) 0%,
+      rgba(246, 132, 84, 0) 100%
+    ),
+    radial-gradient(
+      circle at 33% 52%,
+      rgba(190, 234, 193, 0.5) 0%,
+      rgba(190, 234, 193, 0) 100%
+    ),
+    radial-gradient(
+      circle at 34% 62%,
+      rgba(135, 118, 255, 0.5) 0%,
+      rgba(135, 118, 255, 0) 100%
+    ),
+    #f9f8ff;
+}
+
+.gradient-section-3 {
+  background: radial-gradient(
+      ellipse at 12% 83%,
+      rgba(246, 132, 84, 0.3) 0%,
+      rgba(246, 132, 84, 0) 100%
+    ),
+    radial-gradient(
+      ellipse at 72% 55%,
+      rgba(255, 182, 233, 0.6) 0%,
+      rgba(255, 182, 233, 0) 100%
+    ),
+    radial-gradient(
+      circle at 34% 62%,
+      rgba(135, 118, 255, 0.5) 0%,
+      rgba(135, 118, 255, 0) 100%
+    ),
+    #f9f8ff, #786dc6;
+}
+
+.gradient-section-4 {
+  background: radial-gradient(
+      circle at 92% 34%,
+      rgba(190, 234, 193, 0.5) 0%,
+      rgba(190, 234, 193, 0) 100%
+    ),
+    radial-gradient(
+      ellipse at 78% 43%,
+      rgba(135, 118, 255, 0.8) 0%,
+      rgba(135, 118, 255, 0) 100%
+    ),
+    radial-gradient(
+      ellipse at 35% 66%,
+      rgba(246, 132, 84, 0.8) 0%,
+      rgba(246, 132, 84, 0) 100%
+    ),
+    radial-gradient(
+      circle at 34% 62%,
+      rgba(135, 118, 255, 0.5) 0%,
+      rgba(135, 118, 255, 0) 100%
+    ),
+    #f9f8ff, #786dc6;
+}
+
+/* Custom components */
+.hero-title {
+  font-family: var(--font-dm-serif-display);
+  font-weight: 400;
+  font-size: 4rem;
+  line-height: 1em;
+  text-align: center;
+}
+
+.section-title {
+  font-family: var(--font-dm-serif-display);
+  font-weight: 400;
+  font-size: 3rem;
+  line-height: 1.125em;
+}
+
+.card-shadow {
+  box-shadow: 0px 0px 12px 0px rgba(135, 118, 255, 0.5);
+}
+
+.card-shadow-small {
+  box-shadow: 0px 0px 4px 0px rgba(135, 118, 255, 0.3);
+}
+
+.card-shadow-white {
+  box-shadow: 0px 0px 2px 0px rgba(233, 233, 233, 1);
+}
+
+.backdrop-blur {
+  backdrop-filter: blur(4px);
+}
+
+.dashed-border {
+  border: 1px dashed #6b5be1;
 }
