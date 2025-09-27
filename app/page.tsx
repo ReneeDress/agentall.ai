@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import Carousel from './components/Carousel';
 import HeroCarouselItem from './components/HeroCarouselItem';
 import GradientDivider from './components/GradientDivider';
+import { IMAGES } from './utils/images';
 
 export default function Home() {
   const [uxActiveIndex, setUxActiveIndex] = useState(0);
@@ -16,7 +17,7 @@ export default function Home() {
       id: 'hero-1',
       content: (
         <HeroCarouselItem
-          image="/images/heros/olena-bohovyk-XttWKETqCCQ-unsplash.png"
+          image={IMAGES.HERO_1}
           title="Harness Power of AI for SAP Business One with the Agentic Layer"
           fullWidth={false}
           isActive={true}
@@ -29,7 +30,7 @@ export default function Home() {
       id: 'hero-2',
       content: (
         <HeroCarouselItem
-          image="/images/heros/ivana-cajina-dnL6ZIpht2s-unsplash.png"
+          image={IMAGES.HERO_2}
           title="Digital Workers Revolutionize Your Workflow"
           fullWidth={false}
           isActive={false}
@@ -42,7 +43,7 @@ export default function Home() {
       id: 'hero-3',
       content: (
         <HeroCarouselItem
-          image="/images/heros/ivana-cajina-_7LbC5J-jw4-unsplash.png"
+          image={IMAGES.HERO_3}
           title="Advanced Analytics Drive Smart Decisions"
           fullWidth={false}
           isActive={false}
@@ -138,7 +139,7 @@ export default function Home() {
                     content: (
                       <div className="relative w-full h-full flex items-center justify-center">
                         <Image
-                          src="/images/digital-workers-image-1.png"
+                          src={IMAGES.DIGITAL_WORKERS_1}
                           alt="Digital Workers Dashboard 1"
                           width={0}
                           height={0}
@@ -153,7 +154,7 @@ export default function Home() {
                     content: (
                       <div className="relative w-full h-full flex items-center justify-center">
                         <Image
-                          src="/images/digital-workers-image-2.png"
+                          src={IMAGES.DIGITAL_WORKERS_2}
                           alt="Digital Workers Dashboard 2"
                           width={0}
                           height={0}
@@ -168,7 +169,7 @@ export default function Home() {
                     content: (
                       <div className="relative w-full h-full flex items-center justify-center">
                         <Image
-                          src="/images/digital-workers-image-3.png"
+                          src={IMAGES.DIGITAL_WORKERS_3}
                           alt="Digital Workers Dashboard 3"
                           width={0}
                           height={0}
@@ -201,7 +202,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-8">
           <div className="flex items-center justify-center gap-16">
             <video
-              src="/images/Reinvent-Analytics.mov"
+              src={IMAGES.ANALYTICS_VIDEO}
               autoPlay
               loop
               muted
@@ -284,7 +285,7 @@ export default function Home() {
                       content: (
                         <div className="relative w-full h-full flex items-center justify-center">
                           <Image
-                            src="/images/ux-image-1.png"
+                            src={IMAGES.UX_IMAGE_1}
                             alt="User Experience Interface 1"
                             width={0}
                             height={0}
@@ -299,7 +300,7 @@ export default function Home() {
                       content: (
                         <div className="relative w-full h-full flex items-center justify-center">
                           <video
-                            src="/images/ux-video-2.mov"
+                            src={IMAGES.UX_VIDEO}
                             autoPlay
                             loop
                             muted
@@ -316,7 +317,7 @@ export default function Home() {
                       content: (
                         <div className="relative w-full h-full flex items-center justify-center">
                           <Image
-                            src="/images/ux-image-3.png"
+                            src={IMAGES.UX_IMAGE_3}
                             alt="User Experience Interface 3"
                             width={0}
                             height={0}
@@ -363,7 +364,7 @@ export default function Home() {
             <div className="flex justify-center px-0">
               <div className="flex-1 space-y-8">
                 <Image
-                  src="/images/transform-image.png"
+                  src={IMAGES.TRANSFORM_IMAGE}
                   alt="Transform SMBs Operations"
                   width={914}
                   height={456}
