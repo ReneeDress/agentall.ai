@@ -27,133 +27,138 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-dm-sans), Arial, Helvetica, sans-serif;
+  position: relative;
+  overflow-x: hidden;
 }
 
-/* Dynamic radial gradient animations - Bottom area only */
-@keyframes radial-flow-1 {
-  0% {
-    transform: translate(0%, 50%) scale(1);
-    opacity: 0.8;
-  }
-  25% {
-    transform: translate(60%, 30%) scale(1.5);
-    opacity: 0.4;
-  }
-  50% {
-    transform: translate(-30%, 60%) scale(0.8);
-    opacity: 0.9;
-  }
-  75% {
-    transform: translate(40%, 40%) scale(1.2);
-    opacity: 0.5;
-  }
-  100% {
-    transform: translate(0%, 50%) scale(1);
-    opacity: 0.8;
-  }
-}
-
-@keyframes radial-flow-2 {
-  0% {
-    transform: translate(0%, 60%) scale(1);
-    opacity: 0.7;
-  }
-  25% {
-    transform: translate(-40%, 40%) scale(0.8);
-    opacity: 0.3;
-  }
-  50% {
-    transform: translate(50%, 70%) scale(1.8);
-    opacity: 0.6;
-  }
-  75% {
-    transform: translate(-50%, 50%) scale(0.6);
-    opacity: 0.8;
-  }
-  100% {
-    transform: translate(0%, 60%) scale(1);
-    opacity: 0.7;
-  }
-}
-
-@keyframes radial-flow-3 {
-  0% {
-    transform: translate(0%, 70%) scale(1);
-    opacity: 0.6;
-  }
-  25% {
-    transform: translate(50%, 50%) scale(1.6);
-    opacity: 0.2;
-  }
-  50% {
-    transform: translate(-30%, 80%) scale(0.5);
-    opacity: 0.9;
-  }
-  75% {
-    transform: translate(30%, 60%) scale(1.1);
-    opacity: 0.4;
-  }
-  100% {
-    transform: translate(0%, 70%) scale(1);
-    opacity: 0.6;
-  }
-}
-
-/* Custom gradient backgrounds */
-.gradient-hero {
+/* 整体页面背景弥散效果 */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: radial-gradient(
-      ellipse 400px 300px at 30% 90%,
-      rgba(255, 182, 233, 0.8) 0%,
+      ellipse 800px 600px at 20% 30%,
+      rgba(255, 182, 233, 0.3) 0%,
       rgba(255, 182, 233, 0) 70%
     ),
     radial-gradient(
-      circle 300px at 70% 95%,
-      rgba(135, 118, 255, 0.7) 0%,
+      circle 600px at 80% 20%,
+      rgba(135, 118, 255, 0.25) 0%,
       rgba(135, 118, 255, 0) 70%
     ),
     radial-gradient(
-      ellipse 250px 200px at 80% 85%,
-      rgba(246, 132, 84, 0.6) 0%,
+      ellipse 700px 500px at 70% 80%,
+      rgba(246, 132, 84, 0.2) 0%,
       rgba(246, 132, 84, 0) 70%
     ),
-    #ffffff;
-  background-size: 100% 100%;
+    radial-gradient(
+      circle 500px at 30% 70%,
+      rgba(190, 234, 193, 0.15) 0%,
+      rgba(190, 234, 193, 0) 70%
+    );
+  background-size: 200% 200%;
+  pointer-events: none;
+  z-index: -10;
+  animation: global-diffusion-1 30s linear infinite;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+      ellipse 600px 400px at 60% 40%,
+      rgba(135, 118, 255, 0.2) 0%,
+      rgba(135, 118, 255, 0) 70%
+    ),
+    radial-gradient(
+      circle 800px at 40% 60%,
+      rgba(255, 182, 233, 0.2) 0%,
+      rgba(255, 182, 233, 0) 70%
+    ),
+    radial-gradient(
+      ellipse 500px 300px at 90% 30%,
+      rgba(246, 132, 84, 0.15) 0%,
+      rgba(246, 132, 84, 0) 70%
+    );
+  background-size: 180% 180%;
+  pointer-events: none;
+  z-index: -9;
+  animation: global-diffusion-2 35s linear infinite reverse;
+}
+
+/* 全局弥散动画 */
+@keyframes global-diffusion-1 {
+  0% {
+    background-position: 0% 0%;
+    opacity: 0.8;
+  }
+  25% {
+    background-position: 100% 25%;
+    opacity: 0.6;
+  }
+  50% {
+    background-position: 50% 100%;
+    opacity: 0.9;
+  }
+  75% {
+    background-position: 25% 75%;
+    opacity: 0.5;
+  }
+  100% {
+    background-position: 0% 0%;
+    opacity: 0.8;
+  }
+}
+
+@keyframes global-diffusion-2 {
+  0% {
+    background-position: 0% 100%;
+    opacity: 0.6;
+  }
+  25% {
+    background-position: 75% 0%;
+    opacity: 0.8;
+  }
+  50% {
+    background-position: 100% 50%;
+    opacity: 0.4;
+  }
+  75% {
+    background-position: 25% 25%;
+    opacity: 0.7;
+  }
+  100% {
+    background-position: 0% 100%;
+    opacity: 0.6;
+  }
+}
+
+/* 移除所有section的独立背景效果 */
+.gradient-hero,
+.gradient-section-1,
+.gradient-section-2,
+.gradient-section-3,
+.gradient-section-4 {
+  background: transparent;
   position: relative;
-  overflow: hidden;
 }
 
-.gradient-hero::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(
-    ellipse 400px 300px at 30% 90%,
-    rgba(255, 182, 233, 0.9) 0%,
-    rgba(255, 182, 233, 0) 70%
-  );
-  animation: radial-flow-1 15s ease-in-out infinite;
-  pointer-events: none;
-  z-index: -2;
-}
-
-.gradient-hero::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(
-    circle 300px at 70% 95%,
-    rgba(135, 118, 255, 0.8) 0%,
-    rgba(135, 118, 255, 0) 70%
-  );
-  animation: radial-flow-2 18s ease-in-out infinite;
-  pointer-events: none;
-  z-index: -1;
+.gradient-hero::before,
+.gradient-hero::after,
+.gradient-section-1::before,
+.gradient-section-1::after,
+.gradient-section-2::before,
+.gradient-section-2::after,
+.gradient-section-3::before,
+.gradient-section-3::after {
+  display: none;
 }
 
 /* Dynamic gradient text animation */
@@ -185,149 +190,16 @@ body {
   animation: gradient-shift 6s ease-in-out infinite;
 }
 
-.gradient-section-1 {
-  background: #ffffff;
+/* 确保导航栏在背景之上 */
+nav {
   position: relative;
-  overflow: hidden;
+  z-index: 50;
 }
 
-.gradient-section-1::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(
-    ellipse 350px 250px at 78% 43%,
-    rgba(135, 118, 255, 0.7) 0%,
-    rgba(135, 118, 255, 0) 70%
-  );
-  animation: radial-flow-1 12s ease-in-out infinite reverse;
-  pointer-events: none;
-  z-index: -2;
-}
-
-.gradient-section-1::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(
-    ellipse 280px 200px at 35% 66%,
-    rgba(246, 132, 84, 0.6) 0%,
-    rgba(246, 132, 84, 0) 70%
-  );
-  animation: radial-flow-2 16s ease-in-out infinite;
-  pointer-events: none;
-  z-index: -2;
-  z-index: -1;
-}
-
-.gradient-section-2 {
-  background: #ffffff;
+/* 确保页脚在背景之上 */
+footer {
   position: relative;
-  overflow: hidden;
-}
-
-.gradient-section-2::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(
-    ellipse 320px 220px at 78% 43%,
-    rgba(135, 118, 255, 0.3) 0%,
-    rgba(135, 118, 255, 0) 70%
-  );
-  animation: radial-flow-2 14s ease-in-out infinite;
-  pointer-events: none;
-  z-index: -2;
-}
-
-.gradient-section-2::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(
-    circle 250px at 33% 52%,
-    rgba(190, 234, 193, 0.25) 0%,
-    rgba(190, 234, 193, 0) 70%
-  );
-  animation: radial-flow-3 20s ease-in-out infinite reverse;
-  pointer-events: none;
-  z-index: -2;
-}
-
-.gradient-section-3 {
-  background: #ffffff;
-  position: relative;
-  overflow: hidden;
-}
-
-.gradient-section-3::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(
-    ellipse 300px 180px at 12% 83%,
-    rgba(246, 132, 84, 0.2) 0%,
-    rgba(246, 132, 84, 0) 70%
-  );
-  animation: radial-flow-1 18s ease-in-out infinite;
-  pointer-events: none;
-  z-index: -2;
-}
-
-.gradient-section-3::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(
-    ellipse 280px 160px at 72% 55%,
-    rgba(255, 182, 233, 0.25) 0%,
-    rgba(255, 182, 233, 0) 70%
-  );
-  animation: radial-flow-3 22s ease-in-out infinite reverse;
-  pointer-events: none;
-  z-index: -2;
-}
-
-.gradient-section-4 {
-  background: radial-gradient(
-      circle at 92% 34%,
-      rgba(190, 234, 193, 0.5) 0%,
-      rgba(190, 234, 193, 0) 100%
-    ),
-    radial-gradient(
-      ellipse at 78% 43%,
-      rgba(135, 118, 255, 0.8) 0%,
-      rgba(135, 118, 255, 0) 100%
-    ),
-    radial-gradient(
-      ellipse at 35% 66%,
-      rgba(246, 132, 84, 0.8) 0%,
-      rgba(246, 132, 84, 0) 100%
-    ),
-    radial-gradient(
-      circle at 34% 62%,
-      rgba(135, 118, 255, 0.5) 0%,
-      rgba(135, 118, 255, 0) 100%
-    ),
-    #f9f8ff, #786dc6;
+  z-index: 10;
 }
 
 /* Custom components */
@@ -364,4 +236,10 @@ body {
 
 .dashed-border {
   border: 1px dashed #6b5be1;
+}
+
+/* 确保内容在背景之上 */
+.min-h-screen > * {
+  position: relative;
+  z-index: 1;
 }

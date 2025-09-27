@@ -53,7 +53,7 @@ export default function Home() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="gradient-hero min-h-screen flex items-center justify-center pt-20">
+      <section className="min-h-screen flex items-center justify-center pt-20">
         <div className="w-full mx-auto pt-16">
           <div className="max-w-7xl mx-auto px-8 text-center space-y-6">
             {/* Decorative dot */}
@@ -97,7 +97,7 @@ export default function Home() {
       </section>
 
       {/* Digital Workers Section */}
-      <section className="gradient-section-1 py-24">
+      <section className="py-24">
         <div className="max-w-7xl mx-auto px-8">
           <div className="flex items-center justify-center gap-9">
             <div className="flex-1 max-w-lg space-y-9 py-8">
@@ -139,7 +139,7 @@ export default function Home() {
       </section>
 
       {/* Analytics Section */}
-      <section className="gradient-section-2 py-16">
+      <section className="py-16">
         <div className="max-w-7xl mx-auto px-8">
           <div className="flex items-center justify-center gap-16">
             <Image
@@ -167,7 +167,7 @@ export default function Home() {
       </section>
 
       {/* User Experience Section */}
-      <section className="gradient-section-3 py-24">
+      <section className="py-24">
         <div className="max-w-7xl mx-auto px-8">
           <div className="text-center space-y-9">
             <div className="flex justify-center">
@@ -209,7 +209,7 @@ export default function Home() {
       </section>
 
       {/* Transform SMBs Section */}
-      <section className="gradient-section-4 py-24">
+      <section className="py-24">
         <div className="max-w-7xl mx-auto px-8">
           <div className="text-center space-y-9 pb-32">
             <div className="flex justify-center">
