@@ -44,6 +44,35 @@ body {
     #f9f8ff;
 }
 
+/* Dynamic gradient text animation */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gradient-text {
+  background: linear-gradient(
+    45deg,
+    #1a1a2e,
+    #2d1b69,
+    #4c1d95,
+    #2d1b69,
+    #1a1a2e
+  );
+  background-size: 400% 400%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 6s ease-in-out infinite;
+}
+
 .gradient-section-1 {
   background: radial-gradient(
       ellipse at 78% 43%,

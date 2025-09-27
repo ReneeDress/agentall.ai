@@ -61,7 +61,7 @@ export default function Home() {
               <div className="w-3 h-3 bg-primary rounded-full"></div>
             </div>
 
-            <h1 className="hero-title text-foreground">
+            <h1 className="hero-title gradient-text">
               Future-Proof<br />
               SAP Business One Success<br />
               in the AI Era
