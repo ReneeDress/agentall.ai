@@ -53,7 +53,7 @@ export default function Home() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center justify-center pt-20">
+      <section className="min-h-screen flex items-start justify-center pt-16">
         <div className="w-full mx-auto pt-16">
           <div className="max-w-7xl mx-auto px-8 text-center space-y-6">
             {/* Decorative dot */}

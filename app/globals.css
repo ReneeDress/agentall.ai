@@ -11,7 +11,7 @@
   --accent-green: rgba(190, 234, 193, 0.5);
 
   --font-dm-serif-display: "DM Serif Display", serif;
-  --font-dm-sans: "DM Sans", sans-serif;
+  --font-dm-sans: "DM Sans Variable", sans-serif;
 }
 
 @theme inline {
@@ -27,120 +27,135 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-dm-sans), Arial, Helvetica, sans-serif;
-  position: relative;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
 /* 整体页面背景弥散效果 */
 body::before {
   content: "";
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(
-      ellipse 800px 600px at 20% 30%,
-      rgba(255, 182, 233, 0.3) 0%,
+  background: 
+    /* 顶部区域的橙色、粉色、紫色增强 */ radial-gradient(
+      ellipse 1200px 800px at 15% 15%,
+      rgba(255, 182, 233, 0.6) 0%,
       rgba(255, 182, 233, 0) 70%
     ),
     radial-gradient(
-      circle 600px at 80% 20%,
-      rgba(135, 118, 255, 0.25) 0%,
+      circle 1000px at 85% 10%,
+      rgba(135, 118, 255, 0.5) 0%,
       rgba(135, 118, 255, 0) 70%
     ),
     radial-gradient(
-      ellipse 700px 500px at 70% 80%,
-      rgba(246, 132, 84, 0.2) 0%,
+      ellipse 900px 700px at 70% 25%,
+      rgba(246, 132, 84, 0.5) 0%,
       rgba(246, 132, 84, 0) 70%
     ),
     radial-gradient(
+      circle 800px at 40% 20%,
+      rgba(255, 182, 233, 0.4) 0%,
+      rgba(255, 182, 233, 0) 70%
+    ),
+    /* 原有的渐变 */
+      radial-gradient(
+        ellipse 700px 500px at 70% 80%,
+        rgba(246, 132, 84, 0.35) 0%,
+        rgba(246, 132, 84, 0) 70%
+      ),
+    radial-gradient(
       circle 500px at 30% 70%,
-      rgba(190, 234, 193, 0.15) 0%,
+      rgba(190, 234, 193, 0.3) 0%,
       rgba(190, 234, 193, 0) 70%
     );
   background-size: 200% 200%;
   pointer-events: none;
   z-index: -10;
-  animation: global-diffusion-1 30s linear infinite;
+  animation: global-diffusion-1 60s linear infinite;
 }
 
 body::after {
   content: "";
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(
-      ellipse 600px 400px at 60% 40%,
-      rgba(135, 118, 255, 0.2) 0%,
-      rgba(135, 118, 255, 0) 70%
+  background: 
+    /* 顶部区域的橙色、粉色、紫色增强 */ radial-gradient(
+      ellipse 800px 600px at 25% 12%,
+      rgba(246, 132, 84, 0.4) 0%,
+      rgba(246, 132, 84, 0) 70%
     ),
     radial-gradient(
+      circle 900px at 75% 8%,
+      rgba(255, 182, 233, 0.35) 0%,
+      rgba(255, 182, 233, 0) 70%
+    ),
+    radial-gradient(
+      ellipse 700px 500px at 50% 18%,
+      rgba(135, 118, 255, 0.3) 0%,
+      rgba(135, 118, 255, 0) 70%
+    ),
+    /* 原有的渐变 */
+      radial-gradient(
+        ellipse 600px 400px at 60% 40%,
+        rgba(135, 118, 255, 0.35) 0%,
+        rgba(135, 118, 255, 0) 70%
+      ),
+    radial-gradient(
       circle 800px at 40% 60%,
-      rgba(255, 182, 233, 0.2) 0%,
+      rgba(255, 182, 233, 0.3) 0%,
       rgba(255, 182, 233, 0) 70%
     ),
     radial-gradient(
       ellipse 500px 300px at 90% 30%,
-      rgba(246, 132, 84, 0.15) 0%,
+      rgba(246, 132, 84, 0.25) 0%,
       rgba(246, 132, 84, 0) 70%
     );
   background-size: 180% 180%;
   pointer-events: none;
   z-index: -9;
-  animation: global-diffusion-2 35s linear infinite reverse;
+  animation: global-diffusion-2 70s linear infinite reverse;
 }
 
 /* 全局弥散动画 */
 @keyframes global-diffusion-1 {
   0% {
     background-position: 0% 0%;
-    opacity: 0.8;
-  }
-  25% {
-    background-position: 100% 25%;
-    opacity: 0.6;
+    opacity: 1;
   }
   50% {
     background-position: 50% 100%;
-    opacity: 0.9;
-  }
-  75% {
-    background-position: 25% 75%;
-    opacity: 0.5;
+    opacity: 0.6;
   }
   100% {
-    background-position: 0% 0%;
-    opacity: 0.8;
+    background-position: 100% 0%;
+    opacity: 0.9;
   }
 }
 
 @keyframes global-diffusion-2 {
   0% {
-    background-position: 0% 100%;
-    opacity: 0.6;
-  }
-  25% {
-    background-position: 75% 0%;
+    background-position: 100% 0%;
     opacity: 0.8;
   }
   50% {
-    background-position: 100% 50%;
-    opacity: 0.4;
-  }
-  75% {
-    background-position: 25% 25%;
-    opacity: 0.7;
+    background-position: 0% 50%;
+    opacity: 0.5;
   }
   100% {
-    background-position: 0% 100%;
-    opacity: 0.6;
+    background-position: 100% 100%;
+    opacity: 0.7;
   }
 }
 
-/* 移除所有section的独立背景效果 */
+/* 移除Hero专用背景，保持整体性 */
+
+/* 移除其他section的独立背景效果 */
 .gradient-hero,
 .gradient-section-1,
 .gradient-section-2,
@@ -192,8 +207,7 @@ body::after {
 
 /* 确保导航栏在背景之上 */
 nav {
-  position: relative;
-  z-index: 50;
+  z-index: 9999;
 }
 
 /* 确保页脚在背景之上 */
@@ -236,10 +250,4 @@ footer {
 
 .dashed-border {
   border: 1px dashed #6b5be1;
-}
-
-/* 确保内容在背景之上 */
-.min-h-screen > * {
-  position: relative;
-  z-index: 1;
 }
