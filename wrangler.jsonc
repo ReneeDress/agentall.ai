@@ -1,6 +1,6 @@
 {
   "main": ".open-next/worker.js",
-  "name": "agentall.ai",
+  "name": "agentall-ai",
   "compatibility_date": "2025-09-30",
   "compatibility_flags": [
     "nodejs_compat"
