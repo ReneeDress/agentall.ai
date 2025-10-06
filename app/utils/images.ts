@@ -1,7 +1,7 @@
 // 图片路径处理工具函数
 // 用于GitHub Pages部署时的路径修复
 
-const BASE_PATH = "/agentall.ai";
+const BASE_PATH = "/";
 
 export function getImagePath(path: string): string {
   // 如果路径已经包含basePath，直接返回
