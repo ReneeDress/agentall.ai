@@ -262,7 +262,7 @@ export default function Home() {
                   }`}>
                   <p className="text-xl text-black group-hover:text-purple-700 transition-colors duration-300">
                     <span className="font-serif-display text-3xl group-hover:text-purple-800 transition-colors duration-300">Let digital workers </span>
-                    plan and act for to optimize profits and performance
+                    plan and act to optimize profits and performance
                   </p>
                   <div className="w-0 group-hover:w-full h-0.5 bg-purple-600 transition-all duration-500 mt-4"></div>
                 </div>
