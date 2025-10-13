@@ -19,10 +19,12 @@ export default function Home() {
         <HeroCarouselItem
           image={IMAGES.HERO_1}
           title="Harness Power of AI for SAP Business One with the Agentic Layer"
+          subtitle="Efficiency Improvement"
           fullWidth={false}
           isActive={true}
           animationDelay={0}
           cardPosition={{ x: -150, y: 100, anchor: 'center' }}
+          subtitlePosition={{ x: 200, y: -50, anchor: 'center' }}
         />
       )
     },
@@ -31,11 +33,13 @@ export default function Home() {
       content: (
         <HeroCarouselItem
           image={IMAGES.HERO_2}
-          title="Digital Workers Revolutionize Your Workflow"
+          title="Empower SMBs with Digital Workers"
+          subtitle="Productivity Gain"
           fullWidth={false}
           isActive={false}
           animationDelay={200}
           cardPosition={{ x: 150, y: 100, anchor: 'center' }}
+          subtitlePosition={{ x: -300, y: -80, anchor: 'center' }}
         />
       )
     },
@@ -44,11 +48,13 @@ export default function Home() {
       content: (
         <HeroCarouselItem
           image={IMAGES.HERO_3}
-          title="Advanced Analytics Drive Smart Decisions"
+          title="Transform the way SMBs Operates"
+          subtitle="Profits Optimization"
           fullWidth={false}
           isActive={false}
           animationDelay={400}
           cardPosition={{ x: -200, y: 100, anchor: 'center' }}
+          subtitlePosition={{ x: 180, y: 50, anchor: 'center' }}
         />
       )
     }
@@ -79,9 +85,9 @@ export default function Home() {
             </p>
 
             <div className="flex justify-center space-x-4 pt-2">
-              <button className="border border-black px-6 py-4 hover:bg-black hover:text-white transition-colors cursor-pointer">
+              {/* <button className="border border-black px-6 py-4 hover:bg-black hover:text-white transition-colors cursor-pointer">
                 Start Free Trial
-              </button>
+              </button> */}
               <button className="bg-primary text-white px-6 py-4 hover:bg-primary/90 transition-colors cursor-pointer">
                 Get A Demo
               </button>
@@ -109,25 +115,37 @@ export default function Home() {
       {/* Digital Workers Section */}
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-8">
-          <div className="flex items-center justify-center gap-9">
-            <div className="flex-1 max-w-lg space-y-9 py-8">
-              <div className="group cursor-pointer space-y-9">
-                <div className="flex items-center space-x-2">
-                  <div className="w-3 h-3 bg-primary rounded-full group-hover:scale-125 transition-transform duration-300"></div>
-                </div>
-                <h2 className="section-title text-foreground">
-                  Empower SMBs<br />
-                  with Digital Workers
-                </h2>
-                <div className="w-30 h-px bg-primary group-hover:w-40 transition-all duration-500"></div>
+          {/* 顶部居中大标题 */}
+          <div className="text-center space-y-9 mb-16">
+            <div className="group cursor-pointer space-y-9">
+              <div className="flex justify-center">
+                <div className="w-3 h-3 bg-primary rounded-full group-hover:scale-125 transition-transform duration-300"></div>
               </div>
+              <h2 className="section-title text-foreground">
+                Harness Power of AI for SAP Business One with the Agentic Layer
+              </h2>
+              <p className="text-lg text-foreground/70">
+                best of breed, easily extensible, compliant and secure
+              </p>
+              <div className="flex justify-center">
+                <div className="w-30 h-px bg-primary group-hover:w-60 transition-all duration-500"></div>
+              </div>
+            </div>
+          </div>
+
+          {/* 内容区域 */}
+          <div className="flex items-center justify-center gap-9">
+            <div className="flex-1 max-w-lg space-y-6 py-8">
+              <h3 className="text-2xl font-serif-display text-foreground">
+                Empower SMBs with Digital Workers
+              </h3>
               <div className="group cursor-pointer">
-                <p className="text-lg text-black leading-relaxed">
-                  <span className="relative inline-block group-hover:before:animate-highlight-1">AI agents as Digital Workers</span><br />
-                  <span className="relative inline-block group-hover:before:animate-highlight-2">monitor business data and performance,</span><br />
-                  <span className="relative inline-block group-hover:before:animate-highlight-3">proactively plan and recommend actions,</span><br />
-                  <span className="relative inline-block group-hover:before:animate-highlight-4">engage with human workers,</span><br />
-                  <span className="relative inline-block group-hover:before:animate-highlight-5">and drive continuous, nonstop optimization</span>
+                <p className="text-base text-black leading-relaxed">
+                  <span className="relative inline-block whitespace-nowrap group-hover:before:animate-highlight-1">AI agents as Digital Workers</span><br />
+                  <span className="relative inline-block whitespace-nowrap group-hover:before:animate-highlight-2">monitor business data and performance,</span><br />
+                  <span className="relative inline-block whitespace-nowrap group-hover:before:animate-highlight-3">proactively plan and recommend actions, automate business</span><br />
+                  <span className="relative inline-block whitespace-nowrap group-hover:before:animate-highlight-4">processes, engage with human workers, and drive continuous,</span><br />
+                  <span className="relative inline-block whitespace-nowrap group-hover:before:animate-highlight-5">nonstop optimization</span>
                 </p>
               </div>
             </div>
@@ -189,9 +207,6 @@ export default function Home() {
                 infiniteScroll={false}
                 height="h-140"
               />
-              <p className="text-lg text-black text-right">
-                Harness Power of AI for SAP Business One with the Agentic Layer
-              </p>
             </div>
           </div>
         </div>

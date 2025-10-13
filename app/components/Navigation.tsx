@@ -70,7 +70,7 @@ export default function Navigation({ currentPage }: NavigationProps) {
                     {/* 右侧 - 登录和按钮 */}
                     <div className="flex items-center justify-end space-x-4">
                         {/* <Link href="/" className="text-black relative inline-block hover:before:animate-highlight-nav cursor-pointer px-2">Login</Link> */}
-                        <Link href="/" className="text-black relative inline-block hover:before:animate-highlight-nav cursor-pointer px-2">Free Trial</Link>
+                        {/* <Link href="/" className="text-black relative inline-block hover:before:animate-highlight-nav cursor-pointer px-2">Free Trial</Link> */}
                         <button className="bg-primary text-white px-4 py-2 hover:bg-primary/90 transition-colors cursor-pointer">
                             Get A Demo
                         </button>
