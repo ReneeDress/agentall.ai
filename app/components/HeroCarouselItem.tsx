@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 interface HeroCarouselItemProps {
     image: string;
     title: string;
+    subtitle?: string;
     description?: string;
     fullWidth?: boolean;
     isActive?: boolean;
@@ -15,33 +16,52 @@ interface HeroCarouselItemProps {
         y?: number; // 垂直偏移，正数向下，负数向上
         anchor?: 'center' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
     };
+    subtitlePosition?: {
+        x?: number; // subtitle 水平偏移
+        y?: number; // subtitle 垂直偏移
+        anchor?: 'center' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+    };
 }
 
 export default function HeroCarouselItem({
     image,
     title,
+    subtitle,
     description,
     fullWidth = false,
     isActive = false,
     animationDelay = 0,
-    cardPosition = { x: 0, y: 0, anchor: 'center' }
+    cardPosition = { x: 0, y: 0, anchor: 'center' },
+    subtitlePosition = { x: 0, y: 0, anchor: 'top-right' }
 }: HeroCarouselItemProps) {
     const [isVisible, setIsVisible] = useState(false);
+    const [shouldAnimateTitle, setShouldAnimateTitle] = useState(false);
     const imageClass = fullWidth ? "w-full h-auto object-cover" : "rounded-lg w-auto h-106 mx-auto object-cover";
 
     useEffect(() => {
         if (isActive) {
             // 重置状态
             setIsVisible(false);
+            setShouldAnimateTitle(false);
 
             // 延迟显示，创建分阶段动画效果
             const timer = setTimeout(() => {
                 setIsVisible(true);
             }, animationDelay);
 
-            return () => clearTimeout(timer);
+            // 在卡片完全显示后触发 title 动画
+            // 总延迟 = animationDelay + cardTransitionDelay(300ms) + transitionDuration(1000ms)
+            const titleAnimationTimer = setTimeout(() => {
+                setShouldAnimateTitle(true);
+            }, animationDelay + 1300);
+
+            return () => {
+                clearTimeout(timer);
+                clearTimeout(titleAnimationTimer);
+            };
         } else {
             setIsVisible(false);
+            setShouldAnimateTitle(false);
         }
     }, [isActive, animationDelay]);
 
@@ -93,8 +113,8 @@ export default function HeroCarouselItem({
                     <div className="w-3 h-3 bg-primary rounded-full"></div>
                 </div>
 
-                {/* 标题 - 静态显示，跟随卡片一起动画 */}
-                <h3 className="text-3xl font-serif-display text-black whitespace-pre-line">
+                {/* 标题 - 带放大缩小动画 */}
+                <h3 className={`text-3xl font-serif-display text-black whitespace-pre-line ${shouldAnimateTitle ? 'animate-pulse-once' : ''}`}>
                     {title}
                 </h3>
 
@@ -105,6 +125,49 @@ export default function HeroCarouselItem({
                     </p>
                 )}
             </div>
+
+            {/* 副标题 - 相对于外部容器独立定位，作为次级信息展示 */}
+            {subtitle && (
+                <div className={`absolute transition-all duration-1000 ease-out ${isVisible
+                    ? 'opacity-100 translate-x-0'
+                    : 'opacity-0 translate-x-12'
+                    }`}
+                    style={{
+                        transitionDelay: `${animationDelay + 500}ms`,
+                        left: '50%',
+                        top: '50%',
+                        transform: `translate(calc(-50% + ${subtitlePosition.x || 0}px), calc(-50% + ${subtitlePosition.y || 0}px))`,
+                        ...(subtitlePosition.anchor === 'top-left' && {
+                            left: '0',
+                            top: '0',
+                            transform: `translate(${subtitlePosition.x || 0}px, ${subtitlePosition.y || 0}px)`
+                        }),
+                        ...(subtitlePosition.anchor === 'top-right' && {
+                            right: '0',
+                            top: '0',
+                            left: 'auto',
+                            transform: `translate(${subtitlePosition.x || 0}px, ${subtitlePosition.y || 0}px)`
+                        }),
+                        ...(subtitlePosition.anchor === 'bottom-left' && {
+                            left: '0',
+                            bottom: '0',
+                            top: 'auto',
+                            transform: `translate(${subtitlePosition.x || 0}px, ${subtitlePosition.y || 0}px)`
+                        }),
+                        ...(subtitlePosition.anchor === 'bottom-right' && {
+                            right: '0',
+                            bottom: '0',
+                            top: 'auto',
+                            left: 'auto',
+                            transform: `translate(${subtitlePosition.x || 0}px, ${subtitlePosition.y || 0}px)`
+                        })
+                    }}
+                >
+                    <h4 className="text-xl font-medium text-foreground/80 whitespace-nowrap">
+                        {subtitle}
+                    </h4>
+                </div>
+            )}
         </div>
     );
 }
