@@ -65,7 +65,7 @@ export default function Home() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="min-h-screen flex flex-col justify-between">
+      <section className="min-h-screen lg:min-h-0 lg:h-auto lg:max-h-5xl flex flex-col justify-between">
         <div className="w-full mx-auto pt-20 flex-1 flex flex-col justify-between">
           <div className="max-w-7xl mx-auto px-8 pt-16 text-center space-y-6">
             {/* Decorative dot */}

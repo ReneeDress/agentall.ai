@@ -10,6 +10,23 @@ interface NavigationProps {
 
 export default function Navigation({ currentPage }: NavigationProps) {
     const [isScrolled, setIsScrolled] = useState(false);
+    const [showProductsPanel, setShowProductsPanel] = useState(false);
+    const [hideTimeout, setHideTimeout] = useState<NodeJS.Timeout | null>(null);
+
+    const handleMouseEnter = () => {
+        if (hideTimeout) {
+            clearTimeout(hideTimeout);
+            setHideTimeout(null);
+        }
+        setShowProductsPanel(true);
+    };
+
+    const handleMouseLeave = () => {
+        const timeout = setTimeout(() => {
+            setShowProductsPanel(false);
+        }, 200); // 200ms延迟
+        setHideTimeout(timeout);
+    };
 
     useEffect(() => {
         const handleScroll = () => {
@@ -18,8 +35,13 @@ export default function Navigation({ currentPage }: NavigationProps) {
         };
 
         window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            if (hideTimeout) {
+                clearTimeout(hideTimeout);
+            }
+        };
+    }, [hideTimeout]);
 
     return (
         <nav className={`fixed top-0 left-0 right-0 transition-all duration-300 w-full border-b ${isScrolled
@@ -37,13 +59,38 @@ export default function Navigation({ currentPage }: NavigationProps) {
 
                     {/* 中间 - 导航链接 */}
                     <div className="hidden md:flex items-center justify-center space-x-8">
-                        <Link
-                            href="/"
-                            className={`relative inline-block hover:before:animate-highlight-nav cursor-pointer px-2 ${currentPage === 'products' ? 'text-primary font-semibold' : 'text-black'
-                                }`}
+                        {/* Products dropdown */}
+                        <div
+                            className="relative"
+                            onMouseEnter={handleMouseEnter}
+                            onMouseLeave={handleMouseLeave}
                         >
-                            Products
-                        </Link>
+                            <div className={`relative inline-block hover:before:animate-highlight-nav cursor-pointer px-2 ${currentPage === 'products' ? 'text-primary font-semibold' : 'text-black'}`}>
+                                Products
+                            </div>
+
+                            {/* Dropdown Panel */}
+                            {showProductsPanel && (
+                                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-white/60 backdrop-blur-sm rounded-lg shadow-xl border border-gray-200 py-4 min-w-[600px] animate-in fade-in slide-in-from-top-2 duration-200">
+                                    <div className="grid grid-cols-2 gap-4 px-4">
+                                        <Link
+                                            href="/products/agentic-ai"
+                                            className="block px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors duration-200 rounded-md"
+                                        >
+                                            <div className="font-medium">Agentic AI for SAP Business One</div>
+                                            <div className="text-sm text-gray-500 mt-1">Purpose-built AI automation</div>
+                                        </Link>
+                                        <Link
+                                            href="/products/platform"
+                                            className="block px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors duration-200 rounded-md"
+                                        >
+                                            <div className="font-medium">AI Agent Build Platform</div>
+                                            <div className="text-sm text-gray-500 mt-1">Enterprise platform solution</div>
+                                        </Link>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
                         <Link
                             href="/"
                             className={`relative inline-block hover:before:animate-highlight-nav cursor-pointer px-2 ${currentPage === 'resources' ? 'text-primary font-semibold' : 'text-black'
