@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 
 interface TransformAnimationProps {
@@ -9,18 +9,39 @@ interface TransformAnimationProps {
 
 export default function TransformAnimation({ className = "" }: TransformAnimationProps) {
     const [isVisible, setIsVisible] = useState(false);
+    const containerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        // 延迟显示，让组件先渲染
-        const timer = setTimeout(() => {
-            setIsVisible(true);
-        }, 100);
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setIsVisible(true);
+                        // 一旦触发就停止观察，避免重复触发
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            {
+                threshold: 0.3, // 当30%的元素进入视口时触发
+                rootMargin: '0px 0px -50px 0px' // 提前50px触发
+            }
+        );
 
-        return () => clearTimeout(timer);
+        const currentRef = containerRef.current;
+        if (currentRef) {
+            observer.observe(currentRef);
+        }
+
+        return () => {
+            if (currentRef) {
+                observer.unobserve(currentRef);
+            }
+        };
     }, []);
 
     return (
-        <div className={`relative overflow-hidden mx-auto ${className}`} style={{ width: '1051px', height: '520px' }}>
+        <div ref={containerRef} className={`relative overflow-hidden mx-auto ${className}`} style={{ width: '1051px', height: '520px' }}>
             {/* 背景层 - 最底层 */}
             <div
                 className={`absolute bottom-0 left-0 right-0`}
@@ -49,7 +70,7 @@ export default function TransformAnimation({ className = "" }: TransformAnimatio
                     width: '896px',
                     height: '446px',
                     transform: 'translateX(-50%)',
-                    animationDelay: '0.2s'
+                    animationDelay: '0.5s'
                 }}
             >
                 <Image
@@ -73,7 +94,7 @@ export default function TransformAnimation({ className = "" }: TransformAnimatio
                     width: '804px',
                     height: '402px',
                     transform: 'translateX(-50%)',
-                    animationDelay: '0.3s'
+                    animationDelay: '0.7s'
                 }}
             >
                 <Image
@@ -97,7 +118,7 @@ export default function TransformAnimation({ className = "" }: TransformAnimatio
                     width: '716px',
                     height: '357px',
                     transform: 'translateX(-50%)',
-                    animationDelay: '0.4s'
+                    animationDelay: '0.9s'
                 }}
             >
                 <Image
@@ -121,7 +142,7 @@ export default function TransformAnimation({ className = "" }: TransformAnimatio
                     width: '623px',
                     height: '311px',
                     transform: 'translateX(-50%)',
-                    animationDelay: '0.5s'
+                    animationDelay: '1.1s'
                 }}
             >
                 <Image
@@ -145,7 +166,7 @@ export default function TransformAnimation({ className = "" }: TransformAnimatio
                     width: '210px',
                     height: '101px',
                     transform: 'translateX(-50%)',
-                    animationDelay: '0.6s'
+                    animationDelay: '1.3s'
                 }}
             >
                 <Image
