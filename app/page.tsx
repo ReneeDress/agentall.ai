@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import Carousel from './components/Carousel';
 import HeroCarouselItem from './components/HeroCarouselItem';
 import GradientDivider from './components/GradientDivider';
+import TransformAnimation from './components/TransformAnimation';
 import { IMAGES } from './utils/images';
 
 export default function Home() {
@@ -116,7 +117,7 @@ export default function Home() {
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-8">
           {/* 顶部居中大标题 */}
-          <div className="text-center space-y-9 mb-16">
+          <div className="text-center space-y-9 mb-4">
             <div className="group cursor-pointer space-y-9">
               <div className="flex justify-center">
                 <div className="w-3 h-3 bg-primary rounded-full group-hover:scale-125 transition-transform duration-300"></div>
@@ -378,13 +379,7 @@ export default function Home() {
 
             <div className="flex justify-center px-0">
               <div className="flex-1 space-y-8">
-                <Image
-                  src={IMAGES.TRANSFORM_IMAGE}
-                  alt="Transform SMBs Operations"
-                  width={914}
-                  height={456}
-                  className="w-full card-shadow"
-                />
+                <TransformAnimation className="w-full" />
                 <div className="grid grid-cols-3 gap-12 text-left">
                   <div className="bg-pink-200/30 p-8 space-y-4 transition-all duration-500 hover:bg-pink-300/40 hover:scale-105 hover:shadow-2xl hover:shadow-pink-500/20 cursor-pointer group">
                     <h3 className="text-3xl font-serif-display text-black group-hover:text-pink-800 transition-colors duration-300">
