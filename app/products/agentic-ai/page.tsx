@@ -495,43 +495,48 @@ export default function AgenticAIProduct() {
                                 {activeTabData.kpis.map((kpi, idx) => (
                                     <div
                                         key={idx}
-                                        className="bg-white py-4 px-6 rounded-lg shadow-md border border-gray-200"
+                                        style={{ height: '200px' }}
                                     >
                                         {kpi.value ? (
-                                            // Has data metric - show both metric and description
-                                            <div className="flex items-center justify-between h-full">
-                                                {/* Left side: Big data metric */}
-                                                <div className="flex-shrink-0">
-                                                    <div
-                                                        className="text-4xl lg:text-5xl font-serif-display text-center"
-                                                        style={{ color: kpi.color || '#6b5be1' }}
-                                                    >
-                                                        {Array.isArray(kpi.value) ? (
-                                                            <div className="space-y-1">
-                                                                {kpi.value.map((item, idx) => (
-                                                                    <div key={idx} className="text-3xl lg:text-4xl">
-                                                                        {item}
+                                            // Has value - Flip card
+                                            <div className="group perspective-1000 h-full">
+                                                <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+                                                    {/* Front side - Data metric */}
+                                                    <div className="absolute inset-0 w-full h-full backface-hidden bg-white rounded-lg shadow-md border border-gray-200 flex items-center justify-center">
+                                                        <div className="text-center">
+                                                            <div
+                                                                className="text-4xl lg:text-5xl font-serif-display"
+                                                                style={{ color: kpi.color || '#6b5be1' }}
+                                                            >
+                                                                {Array.isArray(kpi.value) ? (
+                                                                    <div className="space-y-2">
+                                                                        {kpi.value.map((item, itemIdx) => (
+                                                                            <div key={itemIdx} className="text-3xl lg:text-4xl">
+                                                                                {item}
+                                                                            </div>
+                                                                        ))}
                                                                     </div>
-                                                                ))}
+                                                                ) : (
+                                                                    kpi.value
+                                                                )}
                                                             </div>
-                                                        ) : (
-                                                            kpi.value
-                                                        )}
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                {/* Right side: Description */}
-                                                <div className="flex-1 ml-6">
-                                                    <div
-                                                        className="text-default text-gray-600 leading-relaxed"
-                                                        dangerouslySetInnerHTML={{ __html: kpi.label }}
-                                                    />
+
+                                                    {/* Back side - Description */}
+                                                    <div className="absolute inset-0 w-full h-full backface-hidden bg-white rounded-lg shadow-md border border-gray-200 rotate-y-180 flex items-center justify-center p-6">
+                                                        <div
+                                                            className="text-default text-gray-600 leading-relaxed text-center"
+                                                            dangerouslySetInnerHTML={{ __html: kpi.label }}
+                                                        />
+                                                    </div>
                                                 </div>
                                             </div>
                                         ) : (
-                                            // No data metric - show only description
-                                            <div className="flex items-center h-full">
+                                            // No value - Simple card with bounce animation
+                                            <div className="bounce-hover bg-white rounded-lg shadow-md border border-gray-200 h-full flex items-center justify-center p-6">
                                                 <div
-                                                    className="text-default text-gray-600 leading-relaxed"
+                                                    className="text-default text-gray-600 leading-relaxed text-center"
                                                     dangerouslySetInnerHTML={{ __html: kpi.label }}
                                                 />
                                             </div>
