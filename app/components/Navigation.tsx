@@ -6,9 +6,10 @@ import { useState, useEffect } from 'react';
 
 interface NavigationProps {
     currentPage?: string;
+    onDemoClick?: () => void;
 }
 
-export default function Navigation({ currentPage }: NavigationProps) {
+export default function Navigation({ currentPage, onDemoClick }: NavigationProps) {
     const [isScrolled, setIsScrolled] = useState(false);
     const [showProductsPanel, setShowProductsPanel] = useState(false);
     const [hideTimeout, setHideTimeout] = useState<NodeJS.Timeout | null>(null);
@@ -118,7 +119,10 @@ export default function Navigation({ currentPage }: NavigationProps) {
                     <div className="flex items-center justify-end space-x-4">
                         {/* <Link href="/" className="text-black relative inline-block hover:before:animate-highlight-nav cursor-pointer px-2">Login</Link> */}
                         {/* <Link href="/" className="text-black relative inline-block hover:before:animate-highlight-nav cursor-pointer px-2">Free Trial</Link> */}
-                        <button className="bg-primary text-white px-4 py-2 hover:bg-primary/90 transition-colors cursor-pointer">
+                        <button
+                            onClick={onDemoClick}
+                            className="bg-primary text-white px-4 py-2 hover:bg-primary/90 transition-colors cursor-pointer"
+                        >
                             Get A Demo
                         </button>
                     </div>

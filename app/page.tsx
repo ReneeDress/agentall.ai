@@ -8,10 +8,12 @@ import Carousel from './components/Carousel';
 import HeroCarouselItem from './components/HeroCarouselItem';
 import GradientDivider from './components/GradientDivider';
 import TransformAnimation from './components/TransformAnimation';
+import DemoForm from './components/DemoForm';
 import { IMAGES } from './utils/images';
 
 export default function Home() {
   const [uxActiveIndex, setUxActiveIndex] = useState(0);
+  const [isDemoFormOpen, setIsDemoFormOpen] = useState(false);
   // Carousel data for Hero section
   const heroCarouselItems = [
     {
@@ -63,7 +65,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen h-screen">
-      <Navigation />
+      <Navigation onDemoClick={() => setIsDemoFormOpen(true)} />
 
       {/* Hero Section */}
       <section className="min-h-screen lg:min-h-0 lg:h-auto lg:max-h-5xl flex flex-col justify-between">
@@ -89,7 +91,10 @@ export default function Home() {
               {/* <button className="border border-black px-6 py-4 hover:bg-black hover:text-white transition-colors cursor-pointer">
                 Start Free Trial
               </button> */}
-              <button className="bg-primary text-white px-6 py-4 hover:bg-primary/90 transition-colors cursor-pointer">
+              <button
+                onClick={() => setIsDemoFormOpen(true)}
+                className="bg-primary text-white px-6 py-4 hover:bg-primary/90 transition-colors cursor-pointer"
+              >
                 Get A Demo
               </button>
             </div>
@@ -421,6 +426,12 @@ export default function Home() {
       <GradientDivider />
 
       <Footer />
+
+      {/* Demo Form Modal */}
+      <DemoForm
+        isOpen={isDemoFormOpen}
+        onClose={() => setIsDemoFormOpen(false)}
+      />
     </div>
   );
 }

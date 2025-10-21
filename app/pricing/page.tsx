@@ -1,10 +1,16 @@
+'use client';
+
+import { useState } from 'react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
+import DemoForm from '../components/DemoForm';
 
 export default function Pricing() {
+    const [isDemoFormOpen, setIsDemoFormOpen] = useState(false);
+
     return (
         <div className="min-h-screen bg-white">
-            <Navigation currentPage="pricing" />
+            <Navigation currentPage="pricing" onDemoClick={() => setIsDemoFormOpen(true)} />
 
             {/* Hero Section */}
             <section className="min-h-screen flex items-center justify-center pt-0 relative bg-white">
@@ -129,6 +135,12 @@ export default function Pricing() {
             </section>
 
             <Footer />
+
+            {/* Demo Form Modal */}
+            <DemoForm
+                isOpen={isDemoFormOpen}
+                onClose={() => setIsDemoFormOpen(false)}
+            />
         </div>
     );
 }

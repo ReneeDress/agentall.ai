@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Navigation from '../../components/Navigation';
 import Footer from '../../components/Footer';
+import DemoForm from '../../components/DemoForm';
 
 // Pie Chart Data
 const PIE_CHART_DATA = [
@@ -398,12 +399,13 @@ function PieChart() {
 
 export default function AgenticAIProduct() {
     const [activeTab, setActiveTab] = useState('process-automation');
+    const [isDemoFormOpen, setIsDemoFormOpen] = useState(false);
 
     const activeTabData = TABS_DATA.find(tab => tab.id === activeTab);
 
     return (
         <div className="min-h-screen">
-            <Navigation />
+            <Navigation onDemoClick={() => setIsDemoFormOpen(true)} />
 
             {/* Hero Section */}
             <section className="min-h-screen lg:min-h-0 lg:h-auto lg:max-h-5xl flex flex-col justify-between">
@@ -610,6 +612,12 @@ export default function AgenticAIProduct() {
             </section>
 
             <Footer />
+
+            {/* Demo Form Modal */}
+            <DemoForm
+                isOpen={isDemoFormOpen}
+                onClose={() => setIsDemoFormOpen(false)}
+            />
         </div>
     );
 }
