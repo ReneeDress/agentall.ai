@@ -99,14 +99,25 @@ const TABS_DATA = [
         title: 'Process Automation',
         video: '/images/ux-video-2.mov',
         kpis: [
-            { label: 'Efficiency Gain', value: '80%' },
-            { label: 'Error Reduction', value: '95%' }
+            {
+                label: 'Significant <strong>multiline, complex order processing efficiency gains</strong>', value: null
+            },
+            {
+                label: 'Increase in efficiency by more than 10 times compared to labor',
+                value: ['1-2 Min', '10x Up'],
+                color: '#10b981'
+            },
+            {
+                label: 'Individual sales staff can save about <strong>450 hours</strong> per year (<em>56 person days</em>)',
+                value: ['450', 'Hours'],
+                color: '#f59e0b'
+            },
+
         ],
         highlights: [
-            'End-to-end process automation',
-            'Intelligent exception handling',
-            'Cross-system data synchronization',
-            'Adaptive workflow engine'
+            'Auto-parsing improves accuracy and avoids manual errors.',
+            'No training required to process  various document format, reducing maintenance costs.',
+            'Role based authorization control ensures security and reliability',
         ]
     },
     {
@@ -114,14 +125,19 @@ const TABS_DATA = [
         title: 'Nature Language Query',
         video: '/images/ux-video-2.mov',
         kpis: [
-            { label: 'Query Response', value: '<2s' },
-            { label: 'Accuracy Rate', value: '98%' }
+            {
+                label: 'Significant efficiency gains in <strong>underlying reporting queries</strong>', value: null
+            },
+            {
+                label: 'Word query takes only 30 seconds<br />99%+ efficiency improvement compared to traditional manual writing', value: ['30 s', '99 % Up'], color: '#06b6d4'
+            },
+            { label: 'Daily use by multiple departments, saving <strong>17,420 hours</strong> per year (<em>2178 person days</em>)', value: ['17,420', 'Hours'], color: '#8b5cf6' }
         ],
         highlights: [
-            'Natural language understanding',
-            'Multi-dimensional data analysis',
-            'Context-aware querying',
-            'Intelligent recommendations'
+            'AI Agent delivers reports in 20–35s vs. 2–4h manually, freeing implementation resources.',
+            'No SQL / HANA knowledge needed—business users query data via natural language.',
+            'Generate insights, visuals and recommendations real - time effortlessly',
+            'Boost data usage and empower businesses to make faster  decisions and respond smarter'
         ]
     },
     {
@@ -129,8 +145,8 @@ const TABS_DATA = [
         title: 'Enterprise Knowledge Management',
         video: '/images/ux-video-2.mov',
         kpis: [
-            { label: 'Knowledge Reuse', value: '3x' },
-            { label: 'Learning Time', value: '-60%' }
+            { label: 'Knowledge Reuse', value: '3x', color: '#f97316' },
+            { label: 'Learning Time', value: '-60%', color: '#ec4899' }
         ],
         highlights: [
             'Enterprise knowledge graph',
@@ -144,8 +160,8 @@ const TABS_DATA = [
         title: 'WhatsApp Integration',
         video: '/images/ux-video-2.mov',
         kpis: [
-            { label: 'Customer Satisfaction', value: '4.8/5' },
-            { label: 'Response Speed', value: 'Instant' }
+            { label: 'Customer Satisfaction', value: '4.8/5', color: '#10b981' },
+            { label: 'Response Speed', value: 'Instant', color: '#f59e0b' }
         ],
         highlights: [
             'Seamless multi-channel integration',
@@ -228,19 +244,67 @@ function PieChart() {
                                 }}
                             />
                             {/* Label text */}
-
-                            <text
-                                x={labelX}
-                                y={labelY - 15}
-                                textAnchor="middle"
-                                dominantBaseline="middle"
-                                fill="#262052"
-                                fontSize="14"
-                                fontWeight="bold"
-                                className="pointer-events-none"
-                            >
-                                {slice.label}
-                            </text>
+                            {slice.label.split(' ').length > 2 ? (
+                                // Two-line text for longer labels
+                                <>
+                                    <text
+                                        x={labelX}
+                                        y={labelY + 50}
+                                        textAnchor="middle"
+                                        dominantBaseline="middle"
+                                        fill="#262052"
+                                        fontSize="16"
+                                        fontWeight="bold"
+                                        className="pointer-events-none"
+                                        opacity={hoveredSlice === null ? 1 : isHovered ? 1 : 0.5}
+                                        style={{
+                                            transform: isHovered ? 'scale(1.1)' : 'scale(1)',
+                                            transformOrigin: `${labelX}px ${labelY + 50}px`,
+                                            transition: 'all 0.3s ease'
+                                        }}
+                                    >
+                                        {slice.label.split(' ').slice(0, Math.ceil(slice.label.split(' ').length / 2)).join(' ')}
+                                    </text>
+                                    <text
+                                        x={labelX}
+                                        y={labelY + 70}
+                                        textAnchor="middle"
+                                        dominantBaseline="middle"
+                                        fill="#262052"
+                                        fontSize="16"
+                                        fontWeight="bold"
+                                        className="pointer-events-none"
+                                        opacity={hoveredSlice === null ? 1 : isHovered ? 1 : 0.5}
+                                        style={{
+                                            transform: isHovered ? 'scale(1.1)' : 'scale(1)',
+                                            transformOrigin: `${labelX}px ${labelY + 70}px`,
+                                            transition: 'all 0.3s ease'
+                                        }}
+                                    >
+                                        {slice.label.split(' ').slice(Math.ceil(slice.label.split(' ').length / 2)).join(' ')}
+                                    </text>
+                                </>
+                            ) : (
+                                // Single line text for shorter labels
+                                <text
+                                    x={labelX}
+                                    y={labelY + 60}
+                                    textAnchor="middle"
+                                    dominantBaseline="middle"
+                                    fill="#262052"
+                                    fontSize="16"
+                                    fontWeight="bold"
+                                    className="pointer-events-none"
+                                    opacity={hoveredSlice === null ? 1 : isHovered ? 1 : 0.5}
+                                    style={{
+                                        transform: isHovered ? 'scale(1.1)' : 'scale(1)',
+                                        transformOrigin: `${labelX}px ${labelY + 60}px`,
+                                        transition: 'all 0.3s ease'
+                                    }}
+                                >
+                                    {slice.label}
+                                </text>
+                            )}
                         </g>
                     );
                 })}
@@ -275,17 +339,20 @@ function PieChart() {
                 const labelRadius = 235;
                 const labelX = 400 + labelRadius * Math.cos(labelRad);
                 const labelY = 400 + labelRadius * Math.sin(labelRad);
+                const isHovered = hoveredSlice === slice.id;
 
                 return (
                     <div
                         key={`image-${slice.id}`}
                         className="absolute pointer-events-none"
                         style={{
-                            left: `${labelX - 20}px`,
-                            top: `${labelY + 10}px`,
-                            width: '40px',
-                            height: '40px',
-                            transform: 'translate(-50%, -50%)'
+                            left: `${labelX}px`,
+                            top: `${labelY}px`,
+                            width: '80px',
+                            height: '80px',
+                            transform: `translate(-50%, -50%) ${isHovered ? 'scale(1.2)' : 'scale(1)'}`,
+                            transition: 'transform 0.3s ease',
+                            opacity: hoveredSlice === null ? 1 : isHovered ? 1 : 0.5
                         }}
                     >
                         <img
@@ -389,45 +456,30 @@ export default function AgenticAIProduct() {
 
                     {/* Tab content */}
                     {activeTabData && (
-                        <div className="grid lg:grid-cols-2 gap-12 items-start">
-                            {/* Left side: Video */}
-                            <div className="relative aspect-video bg-gray-100 rounded-lg overflow-hidden shadow-xl">
-                                <video
-                                    key={activeTab}
-                                    className="w-full h-full object-cover"
-                                    autoPlay
-                                    loop
-                                    muted
-                                    playsInline
-                                >
-                                    <source src={activeTabData.video} type="video/mp4" />
-                                    Your browser does not support video playback
-                                </video>
-                            </div>
-
-                            {/* Right side: Metrics and highlights */}
-                            <div className="space-y-8">
-                                {/* KPI Metrics */}
-                                <div className="grid grid-cols-2 gap-6">
-                                    {activeTabData.kpis.map((kpi, idx) => (
-                                        <div
-                                            key={idx}
-                                            className="bg-white p-6 rounded-lg shadow-md border border-gray-200 text-center"
-                                        >
-                                            <div className="text-4xl lg:text-5xl font-serif-display text-primary mb-2">
-                                                {kpi.value}
-                                            </div>
-                                            <div className="text-sm text-gray-600">{kpi.label}</div>
-                                        </div>
-                                    ))}
+                        <div className="space-y-12">
+                            {/* First row: Video and Value Highlights */}
+                            <div className="grid lg:grid-cols-2 gap-8 items-center">
+                                {/* Left side: Video */}
+                                <div className="relative aspect-video bg-gray-100 rounded-lg overflow-hidden shadow-xl">
+                                    <video
+                                        key={activeTab}
+                                        className="w-full h-full object-cover"
+                                        autoPlay
+                                        loop
+                                        muted
+                                        playsInline
+                                    >
+                                        <source src={activeTabData.video} type="video/mp4" />
+                                        Your browser does not support video playback
+                                    </video>
                                 </div>
 
-                                {/* Value Highlights */}
-                                <div className="bg-white p-8 rounded-lg shadow-md border border-gray-200">
+                                {/* Right side: Value Highlights */}
+                                <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
                                     <h3 className="text-2xl font-serif-display text-foreground mb-6">
-                                        Key Benefits
+                                        Value Highlights
                                     </h3>
-                                    <ul className="space-y-4">
+                                    <ul className="space-y-4 ">
                                         {activeTabData.highlights.map((highlight, idx) => (
                                             <li key={idx} className="flex items-start text-gray-700">
                                                 <span className="mr-3 mt-1.5 w-2 h-2 bg-primary rounded-full flex-shrink-0"></span>
@@ -436,6 +488,56 @@ export default function AgenticAIProduct() {
                                         ))}
                                     </ul>
                                 </div>
+                            </div>
+
+                            {/* Second row: KPI Metrics */}
+                            <div className="grid grid-cols-3 gap-6">
+                                {activeTabData.kpis.map((kpi, idx) => (
+                                    <div
+                                        key={idx}
+                                        className="bg-white py-4 px-6 rounded-lg shadow-md border border-gray-200"
+                                    >
+                                        {kpi.value ? (
+                                            // Has data metric - show both metric and description
+                                            <div className="flex items-center justify-between h-full">
+                                                {/* Left side: Big data metric */}
+                                                <div className="flex-shrink-0">
+                                                    <div
+                                                        className="text-4xl lg:text-5xl font-serif-display text-center"
+                                                        style={{ color: kpi.color || '#6b5be1' }}
+                                                    >
+                                                        {Array.isArray(kpi.value) ? (
+                                                            <div className="space-y-1">
+                                                                {kpi.value.map((item, idx) => (
+                                                                    <div key={idx} className="text-3xl lg:text-4xl">
+                                                                        {item}
+                                                                    </div>
+                                                                ))}
+                                                            </div>
+                                                        ) : (
+                                                            kpi.value
+                                                        )}
+                                                    </div>
+                                                </div>
+                                                {/* Right side: Description */}
+                                                <div className="flex-1 ml-6">
+                                                    <div
+                                                        className="text-default text-gray-600 leading-relaxed"
+                                                        dangerouslySetInnerHTML={{ __html: kpi.label }}
+                                                    />
+                                                </div>
+                                            </div>
+                                        ) : (
+                                            // No data metric - show only description
+                                            <div className="flex items-center h-full">
+                                                <div
+                                                    className="text-default text-gray-600 leading-relaxed"
+                                                    dangerouslySetInnerHTML={{ __html: kpi.label }}
+                                                />
+                                            </div>
+                                        )}
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     )}
