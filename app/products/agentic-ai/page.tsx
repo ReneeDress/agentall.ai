@@ -358,10 +358,9 @@ export default function AgenticAIProduct() {
                     </div>
 
                     {/* Pie chart section */}
-                    <div className="flex flex-col items-center space-y-8">
-                        <h2 className="section-title text-center text-foreground">
-                            Built-in Process Automation<br />
-                            Capabilities and Beyond
+                    <div className="flex flex-col items-center space-y-8 pt-8">
+                        <h2 className="section-title-small text-center text-foreground">
+                            Built-in Process Automation Capabilities and Beyond
                         </h2>
 
                         <PieChart />
