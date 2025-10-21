@@ -56,6 +56,12 @@ export default function TransformAnimation({ className = "" }: TransformAnimatio
                         aspectRatio: '1402/120'
                     }}
                 />
+                {/* 添加居中的文字 */}
+                <div className="absolute inset-0 flex items-center justify-center pt-4">
+                    <h2 className="text-white text-2xl font-bold text-center">
+                        Enterprise AI Agent Build Platform
+                    </h2>
+                </div>
             </div>
 
             {/* Layer 1 - 597x297, 位置: x:52, y:0 */}
@@ -128,6 +134,33 @@ export default function TransformAnimation({ className = "" }: TransformAnimatio
                     height={357}
                     className="w-full h-full object-cover"
                 />
+                {/* Curved texts along the outer edge of Layer 3 */}
+                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 716 357" style={{ pointerEvents: 'none' }}>
+                    <defs>
+                        {/* Path for the outer arc of the semi-circle */}
+                        <path id="outerArc" d="M 30 357 A 305 305 0 0 1 686 357" fill="none" stroke="none" />
+                    </defs>
+
+                    {/* Text 1: Ecosystem Solutions */}
+                    <text fill="white" fontSize="16" fontWeight="600" textAnchor="middle">
+                        <textPath href="#outerArc" startOffset="10%">Ecosystem Solutions</textPath>
+                    </text>
+
+                    {/* Text 2: Integrated, Intelligent and Extensible */}
+                    <text fill="white" fontSize="16" fontWeight="600" textAnchor="middle">
+                        <textPath href="#outerArc" startOffset="40%">Integrated, Intelligent and Extensible</textPath>
+                    </text>
+
+                    {/* Text 3: Business Intelligence */}
+                    <text fill="white" fontSize="16" fontWeight="600" textAnchor="middle">
+                        <textPath href="#outerArc" startOffset="65%">Business Intelligence</textPath>
+                    </text>
+
+                    {/* Text 4: Choose Your Own LLM */}
+                    <text fill="white" fontSize="16" fontWeight="600" textAnchor="middle">
+                        <textPath href="#outerArc" startOffset="90%">Choose Your Own LLM</textPath>
+                    </text>
+                </svg>
             </div>
 
             {/* Layer 4 - 415x207, 位置: x:143, y:98 */}
@@ -152,6 +185,17 @@ export default function TransformAnimation({ className = "" }: TransformAnimatio
                     height={311}
                     className="w-full h-full object-cover"
                 />
+                {/* Agentic AI Layer text */}
+                <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 text-white text-sm font-semibold">
+                    Agentic AI Layer
+                </div>
+
+                {/* Upper fan-shaped texts */}
+                <div className="absolute text-white text-sm font-semibold whitespace-nowrap" style={{ left: '15%', top: '60%', transform: 'translateX(-50%)' }}>Sales Agent</div>
+                <div className="absolute text-white text-sm font-semibold whitespace-nowrap" style={{ left: '35%', top: '50%', transform: 'translateX(-50%)' }}>Purchasing Agent</div>
+                <div className="absolute text-white text-sm font-semibold whitespace-nowrap" style={{ left: '50%', top: '45%', transform: 'translateX(-50%)' }}>Finance Agent</div>
+                <div className="absolute text-white text-sm font-semibold whitespace-nowrap" style={{ left: '65%', top: '50%', transform: 'translateX(-50%)' }}>Inventory Agent</div>
+                <div className="absolute text-white text-sm font-semibold whitespace-nowrap" style={{ left: '85%', top: '60%', transform: 'translateX(-50%)' }}>Production Agent</div>
             </div>
 
             {/* Layer 5 - 140x67, 位置: x:281, y:238 */}
@@ -176,6 +220,12 @@ export default function TransformAnimation({ className = "" }: TransformAnimatio
                     height={101}
                     className="w-full h-full object-cover"
                 />
+                {/* 添加居中的文字 */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-white text-sm font-semibold text-center">
+                        SAP Business One
+                    </span>
+                </div>
             </div>
 
             {/* Layer 6 - 674x272, 位置: x:0, y:0 */}
