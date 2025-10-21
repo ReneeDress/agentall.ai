@@ -81,6 +81,93 @@ export default function TransformAnimation({ className = "" }: TransformAnimatio
                         <stop offset="100%" stopColor="#262052" />
                     </linearGradient>
 
+                    {/* Hover gradients */}
+                    <linearGradient id="layer1HoverGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#8b7cf1" />
+                        <stop offset="50%" stopColor="#8b7cf1" />
+                        <stop offset="100%" stopColor="#8b7cf1" />
+                    </linearGradient>
+
+                    <linearGradient id="layer2HoverGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#c4b5f0" />
+                        <stop offset="50%" stopColor="#c4b5f0" />
+                        <stop offset="100%" stopColor="#c4b5f0" />
+                    </linearGradient>
+
+                    <linearGradient id="layer3HoverGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#fb923c" />
+                        <stop offset="50%" stopColor="#fb923c" />
+                        <stop offset="100%" stopColor="#fb923c" />
+                    </linearGradient>
+
+                    <radialGradient id="layer4HoverGradient" cx="50%" cy="30%" r="70%">
+                        <stop offset="0%" stopColor="#fbb6e9" />
+                        <stop offset="50%" stopColor="#fbb6e9" />
+                        <stop offset="100%" stopColor="#fb923c" />
+                    </radialGradient>
+
+                    <radialGradient id="layer5HoverGradient" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stopColor="#8b7cf1" />
+                        <stop offset="50%" stopColor="#8b7cf1" />
+                        <stop offset="100%" stopColor="#a78bfa" />
+                    </radialGradient>
+
+                    {/* CSS Animations */}
+                    <style>
+                        {`
+                            .layer-animation {
+                                animation: flyIn 1s ease-out forwards;
+                                opacity: 0;
+                                transform: translateY(-100px);
+                            }
+                            
+                            .layer1-animation {
+                                animation-delay: 0.8s;
+                            }
+                            
+                            .layer2-animation {
+                                animation-delay: 1.0s;
+                            }
+                            
+                            .layer3-animation {
+                                animation-delay: 1.2s;
+                            }
+                            
+                            .layer4-animation {
+                                animation-delay: 1.4s;
+                            }
+                            
+                            .layer5-animation {
+                                animation-delay: 1.6s;
+                            }
+                            
+                            @keyframes flyIn {
+                                to {
+                                    opacity: 1;
+                                    transform: translateY(0);
+                                }
+                            }
+                            
+                            .layer-hover {
+                                transition: all 0.3s ease;
+                                cursor: pointer;
+                            }
+                            
+                            .layer-hover:hover {
+                                transform: scale(1.05);
+                                filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+                            }
+                            
+                            .text-hover {
+                                transition: fill 0.3s ease;
+                            }
+                            
+                            .text-hover:hover {
+                                fill: #fef08a;
+                            }
+                        `}
+                    </style>
+
                     {/* Clip paths */}
                     <clipPath id="layer1Clip">
                         <rect x="0" y="0" width="1050" height="520" />
@@ -117,103 +204,101 @@ export default function TransformAnimation({ className = "" }: TransformAnimatio
                 </text>
 
                 {/* Layer 1 - Blue */}
-                <g className={`transition-all duration-1000 ease-out transform ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`} style={{ animationDelay: '0.5s' }}>
+                <g className={`layer-animation layer1-animation layer-hover ${isVisible ? '' : ''}`}>
                     <circle cx="525" cy="500" r="420" fill="url(#layer1Gradient)" clipPath="url(#layer1Clip)" />
-                    <text fill="white" fontSize="16" fontWeight="600" textAnchor="middle">
+                    <text fill="white" fontSize="16" fontWeight="600" textAnchor="middle" className="text-hover">
                         <textPath href="#layer1TextArc" startOffset="50%">Copilot for SAP Business One</textPath>
                     </text>
                 </g>
 
                 {/* Layer 2 - Green */}
-                <g className={`transition-all duration-1000 ease-out transform ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`} style={{ animationDelay: '0.7s' }}>
+                <g className={`layer-animation layer2-animation layer-hover`}>
                     <circle cx="525" cy="510" r="370" fill="url(#layer2Gradient)" clipPath="url(#layer2Clip)" />
-                    <text fill="white" fontSize="16" fontWeight="600" textAnchor="middle">
+                    <text fill="white" fontSize="16" fontWeight="600" textAnchor="middle" className="text-hover">
                         <textPath href="#layer2TextArc" startOffset="8%">Agent Customization</textPath>
                     </text>
-                    <text fill="white" fontSize="16" fontWeight="600" textAnchor="middle">
+                    <text fill="white" fontSize="16" fontWeight="600" textAnchor="middle" className="text-hover">
                         <textPath href="#layer2TextArc" startOffset="28%">MCP Integration</textPath>
                     </text>
-                    <text fill="white" fontSize="16" fontWeight="600" textAnchor="middle">
+                    <text fill="white" fontSize="16" fontWeight="600" textAnchor="middle" className="text-hover">
                         <textPath href="#layer2TextArc" startOffset="48%">Document Extraction</textPath>
                     </text>
-                    <text fill="white" fontSize="16" fontWeight="600" textAnchor="middle">
+                    <text fill="white" fontSize="16" fontWeight="600" textAnchor="middle" className="text-hover">
                         <textPath href="#layer2TextArc" startOffset="68%">Nature Language Query</textPath>
                     </text>
-                    <text fill="white" fontSize="16" fontWeight="600" textAnchor="middle">
+                    <text fill="white" fontSize="16" fontWeight="600" textAnchor="middle" className="text-hover">
                         <textPath href="#layer2TextArc" startOffset="90%">Enterprise Knowledge Base</textPath>
                     </text>
                 </g>
 
                 {/* Layer 3 - Purple */}
-                <g className={`transition-all duration-1000 ease-out transform ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`} style={{ animationDelay: '0.9s' }}>
+                <g className={`layer-animation layer3-animation layer-hover`}>
                     <circle cx="525" cy="515" r="305" fill="url(#layer3Gradient)" clipPath="url(#layer3Clip)" />
 
                     {/* Curved texts */}
-                    <text fill="white" fontSize="15" fontWeight="600" textAnchor="middle">
+                    <text fill="white" fontSize="15" fontWeight="600" textAnchor="middle" className="text-hover">
                         <textPath href="#layer3TextArc" startOffset="9%">Ecosystem Solutions</textPath>
                     </text>
-                    <text fill="white" fontSize="24" fontWeight="600" textAnchor="middle">
+                    <text fill="white" fontSize="24" fontWeight="600" textAnchor="middle" className="text-hover">
                         <textPath href="#layer3TextArc" startOffset="20.5%">·</textPath>
                     </text>
-                    <text fill="white" fontSize="15" fontWeight="600" textAnchor="middle">
+                    <text fill="white" fontSize="15" fontWeight="600" textAnchor="middle" className="text-hover">
                         <textPath href="#layer3TextArc" startOffset="39%">Integrated, Intelligent and Extensible</textPath>
                     </text>
-                    <text fill="white" fontSize="24" fontWeight="600" textAnchor="middle">
+                    <text fill="white" fontSize="24" fontWeight="600" textAnchor="middle" className="text-hover">
                         <textPath href="#layer3TextArc" startOffset="57%">·</textPath>
                     </text>
-                    <text fill="white" fontSize="15" fontWeight="600" textAnchor="middle">
+                    <text fill="white" fontSize="15" fontWeight="600" textAnchor="middle" className="text-hover">
                         <textPath href="#layer3TextArc" startOffset="68%">Business Intelligence</textPath>
                     </text>
-                    <text fill="white" fontSize="24" fontWeight="600" textAnchor="middle">
+                    <text fill="white" fontSize="24" fontWeight="600" textAnchor="middle" className="text-hover">
                         <textPath href="#layer3TextArc" startOffset="79.5%">·</textPath>
                     </text>
-                    <text fill="white" fontSize="15" fontWeight="600" textAnchor="middle">
+                    <text fill="white" fontSize="15" fontWeight="600" textAnchor="middle" className="text-hover">
                         <textPath href="#layer3TextArc" startOffset="91%">Choose Your Own LLM</textPath>
                     </text>
                 </g>
 
                 {/* Layer 4 - Red */}
-                <g className={`transition-all duration-1000 ease-out transform ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`} style={{ animationDelay: '1.1s' }}>
+                <g className={`layer-animation layer4-animation layer-hover`}>
                     <circle cx="525" cy="510" r="240" fill="url(#layer4Gradient)" clipPath="url(#layer4Clip)" />
 
-                    <path d="M 390 540 A 135 135 0 0 1 660 540" stroke="#f6845480" strokeWidth="1" fill="none" />
-
+                    <path d="M 390 540 A 135 135 0 0 1 660 540" stroke="#f6845480" strokeWidth="1" fill="none" className="text-hover" />
 
                     {/* Agentic AI Layer text */}
-                    <text x="525" y="435" fill="white" fontSize="14" fontWeight="600" textAnchor="middle">
+                    <text x="525" y="435" fill="white" fontSize="14" fontWeight="600" textAnchor="middle" className="text-hover">
                         Agentic AI Layer
                     </text>
 
-
                     {/* Upper fan-shaped texts with line breaks */}
-                    <text x="350" y="470" fill="white" fontSize="14" fontWeight="600" textAnchor="middle">
+                    <text x="350" y="470" fill="white" fontSize="14" fontWeight="600" textAnchor="middle" className="text-hover">
                         <tspan x="350" dy="0">Sales</tspan>
                         <tspan x="350" dy="16">Agent</tspan>
                     </text>
-                    <text x="400" y="380" fill="white" fontSize="14" fontWeight="600" textAnchor="middle">
+                    <text x="400" y="380" fill="white" fontSize="14" fontWeight="600" textAnchor="middle" className="text-hover">
                         <tspan x="400" dy="0">Purchasing</tspan>
                         <tspan x="400" dy="16">Agent</tspan>
                     </text>
-                    <text x="525" y="325" fill="white" fontSize="14" fontWeight="600" textAnchor="middle">
+                    <text x="525" y="325" fill="white" fontSize="14" fontWeight="600" textAnchor="middle" className="text-hover">
                         <tspan x="525" dy="0">Finance</tspan>
                         <tspan x="525" dy="16">Agent</tspan>
                     </text>
-                    <text x="650" y="380" fill="white" fontSize="14" fontWeight="600" textAnchor="middle">
+                    <text x="650" y="380" fill="white" fontSize="14" fontWeight="600" textAnchor="middle" className="text-hover">
                         <tspan x="650" dy="0">Inventory</tspan>
                         <tspan x="650" dy="16">Agent</tspan>
                     </text>
-                    <text x="700" y="470" fill="white" fontSize="14" fontWeight="600" textAnchor="middle">
+                    <text x="700" y="470" fill="white" fontSize="14" fontWeight="600" textAnchor="middle" className="text-hover">
                         <tspan x="700" dy="0">Production</tspan>
                         <tspan x="700" dy="16">Agent</tspan>
                     </text>
                 </g>
 
                 {/* Layer 5 - Orange */}
-                <g className={`transition-all duration-1000 ease-out transform ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`} style={{ animationDelay: '1.3s' }}>
+                <g className={`layer-animation layer5-animation layer-hover`}>
                     <circle cx="525" cy="540" r="95" fill="url(#layer5Gradient)" clipPath="url(#layer5Clip)" />
 
                     {/* SAP Business One text */}
-                    <text x="525" y="520" fill="white" fontSize="16" fontWeight="600" textAnchor="middle">
+                    <text x="525" y="520" fill="white" fontSize="16" fontWeight="600" textAnchor="middle" className="text-hover">
                         SAP Business One
                     </text>
                 </g>
