@@ -25,7 +25,7 @@ export default function Home() {
           isActive={true}
           animationDelay={0}
           cardPosition={{ x: -150, y: 100, anchor: 'center' }}
-          subtitlePosition={{ x: 200, y: -50, anchor: 'center' }}
+          subtitlePosition={{ x: 220, y: -50, anchor: 'center' }}
         />
       )
     },
@@ -40,7 +40,7 @@ export default function Home() {
           isActive={false}
           animationDelay={200}
           cardPosition={{ x: 150, y: 100, anchor: 'center' }}
-          subtitlePosition={{ x: -300, y: -80, anchor: 'center' }}
+          subtitlePosition={{ x: -250, y: -80, anchor: 'center' }}
         />
       )
     },
@@ -55,7 +55,7 @@ export default function Home() {
           isActive={false}
           animationDelay={400}
           cardPosition={{ x: -200, y: 100, anchor: 'center' }}
-          subtitlePosition={{ x: 180, y: 50, anchor: 'center' }}
+          subtitlePosition={{ x: 250, y: -50, anchor: 'center' }}
         />
       )
     }
