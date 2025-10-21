@@ -475,7 +475,7 @@ export default function AgenticAIProduct() {
                                 </div>
 
                                 {/* Right side: Value Highlights */}
-                                <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
+                                <div className="bg-white p-6 card-shadow-white">
                                     <h3 className="text-2xl font-serif-display text-foreground mb-6">
                                         Value Highlights
                                     </h3>
@@ -483,7 +483,7 @@ export default function AgenticAIProduct() {
                                         {activeTabData.highlights.map((highlight, idx) => (
                                             <li key={idx} className="flex items-start text-gray-700">
                                                 <span className="mr-3 mt-1.5 w-2 h-2 bg-primary rounded-full flex-shrink-0"></span>
-                                                <span className="text-lg">{highlight}</span>
+                                                <span className="text-default highlight-hover cursor-pointer transition-all duration-300">{highlight}</span>
                                             </li>
                                         ))}
                                     </ul>
@@ -502,16 +502,16 @@ export default function AgenticAIProduct() {
                                             <div className="group perspective-1000 h-full">
                                                 <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
                                                     {/* Front side - Data metric */}
-                                                    <div className="absolute inset-0 w-full h-full backface-hidden bg-white rounded-lg shadow-md border border-gray-200 flex items-center justify-center">
+                                                    <div className="absolute inset-0 w-full h-full backface-hidden bg-white card-shadow-white flex items-center justify-center">
                                                         <div className="text-center">
                                                             <div
-                                                                className="text-4xl lg:text-5xl font-serif-display"
+                                                                className="text-5xl lg:text-6xl font-serif-display"
                                                                 style={{ color: kpi.color || '#6b5be1' }}
                                                             >
                                                                 {Array.isArray(kpi.value) ? (
                                                                     <div className="space-y-2">
                                                                         {kpi.value.map((item, itemIdx) => (
-                                                                            <div key={itemIdx} className="text-3xl lg:text-4xl">
+                                                                            <div key={itemIdx} className="text-4xl lg:text-5xl">
                                                                                 {item}
                                                                             </div>
                                                                         ))}
@@ -524,9 +524,9 @@ export default function AgenticAIProduct() {
                                                     </div>
 
                                                     {/* Back side - Description */}
-                                                    <div className="absolute inset-0 w-full h-full backface-hidden bg-white rounded-lg shadow-md border border-gray-200 rotate-y-180 flex items-center justify-center p-6">
+                                                    <div className="absolute inset-0 w-full h-full backface-hidden bg-white card-shadow-white rotate-y-180 flex items-center justify-center p-6">
                                                         <div
-                                                            className="text-default text-gray-600 leading-relaxed text-center"
+                                                            className="text-lg text-gray-600 leading-relaxed text-center"
                                                             dangerouslySetInnerHTML={{ __html: kpi.label }}
                                                         />
                                                     </div>
@@ -534,9 +534,9 @@ export default function AgenticAIProduct() {
                                             </div>
                                         ) : (
                                             // No value - Simple card with bounce animation
-                                            <div className="bounce-hover bg-white rounded-lg shadow-md border border-gray-200 h-full flex items-center justify-center p-6">
+                                            <div className="bounce-hover bg-white card-shadow-white h-full flex items-center justify-center p-6">
                                                 <div
-                                                    className="text-default text-gray-600 leading-relaxed text-center"
+                                                    className="text-lg text-gray-600 leading-relaxed text-center"
                                                     dangerouslySetInnerHTML={{ __html: kpi.label }}
                                                 />
                                             </div>
@@ -546,6 +546,66 @@ export default function AgenticAIProduct() {
                             </div>
                         </div>
                     )}
+                </div>
+            </section>
+
+            {/* Security Section */}
+            <section className="py-20 px-8 bg-white/50">
+                <div className="max-w-7xl mx-auto">
+                    <h3 className="section-title font-serif-display text-foreground mb-12 text-center">
+                        Safe Enough, Secure Your Business.
+                    </h3>
+
+                    {/* 3 columns with rectangular cards - Security features */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {/* Card 1: Secure & Compliant */}
+                        <div className="bg-white card-shadow-white p-8">
+                            <h4 className="text-4xl font-serif-display text-foreground mb-8 leading-tight">
+                                Secure &<br /> Compliant
+                            </h4>
+                            <div className="space-y-4 text-left">
+                                <p className="text-lg text-gray-600">
+                                    Your data stays within SAP Business One
+                                </p>
+                                <p className="text-lg text-gray-600">
+                                    Role based authorization control
+                                </p>
+                                <p className="text-lg text-gray-600">
+                                    Data Privacy Protection Compliance
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Card 2: Accurate & Reliable */}
+                        <div className="bg-white card-shadow-white p-8">
+                            <h4 className="text-4xl font-serif-display text-foreground mb-8 leading-tight">
+                                Accurate &<br /> Reliable
+                            </h4>
+                            <div className="space-y-4 text-left">
+                                <p className="text-lg text-gray-600">
+                                    Connect to on-premise or Cloud SAP Business One Database
+                                </p>
+                                <p className="text-lg text-gray-600">
+                                    Choose your preferrable LLM
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Card 3: Flexible and Extensible */}
+                        <div className="bg-white card-shadow-white p-8">
+                            <h4 className="text-4xl font-serif-display text-foreground mb-8 leading-tight">
+                                Flexible &<br />Extensible
+                            </h4>
+                            <div className="space-y-4 text-left">
+                                <p className="text-lg text-gray-600">
+                                    Out-of-box adoption
+                                </p>
+                                <p className="text-lg text-gray-600">
+                                    Customize and integrate with add-ons or 3rd party application with Enterprise AI Agent Build Platform
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
