@@ -95,11 +95,11 @@ ${formData.firstName} ${formData.lastName}
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[10000] flex items-center justify-center p-4">
-            <div className="bg-white card-shadow-white rounded-lg max-w-lg w-full max-h-[90vh] flex flex-col">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[10000] flex items-center justify-center p-2 lg:p-4">
+            <div className="bg-white card-shadow-white max-w-lg w-full max-h-[90vh] flex flex-col">
                 {/* Header - 固定 */}
                 <div className="flex items-center justify-between p-6 border-b border-gray-200 flex-shrink-0">
-                    <h2 className="text-2xl font-serif-display text-foreground">
+                    <h2 className="text-xl lg:text-2xl font-serif-display text-foreground">
                         Get a Demo
                     </h2>
                     <button
@@ -114,7 +114,7 @@ ${formData.firstName} ${formData.lastName}
 
                 {/* Form - 可滚动 */}
                 <div className="flex-1 overflow-y-auto">
-                    <form id="demo-form" onSubmit={handleSubmit} className="p-6 space-y-6">
+                    <form id="demo-form" onSubmit={handleSubmit} className="p-4 lg:p-6 space-y-4 lg:space-y-6">
                         {/* Business Email */}
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -128,7 +128,7 @@ ${formData.firstName} ${formData.lastName}
                                 value={formData.businessEmail}
                                 onChange={(e) => handleInputChange('businessEmail', e.target.value)}
                                 placeholder="Enter your work email"
-                                className={`w-full px-4 py-3 border rounded-lg transition-colors ${errors.businessEmail
+                                className={`w-full px-3 py-2.5 lg:px-4 lg:py-3 border transition-colors ${errors.businessEmail
                                     ? 'border-red-500 focus:border-red-500'
                                     : 'border-gray-300 focus:border-primary'
                                     } focus:outline-none focus:ring-2 focus:ring-primary/20`}
@@ -139,7 +139,7 @@ ${formData.firstName} ${formData.lastName}
                         </div>
 
                         {/* First Name and Last Name */}
-                        <div className="grid grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
                                     First Name *
@@ -149,7 +149,7 @@ ${formData.firstName} ${formData.lastName}
                                     value={formData.firstName}
                                     onChange={(e) => handleInputChange('firstName', e.target.value)}
                                     placeholder="Enter your first name"
-                                    className={`w-full px-4 py-3 border rounded-lg transition-colors ${errors.firstName
+                                    className={`w-full px-3 py-2.5 lg:px-4 lg:py-3 border transition-colors ${errors.firstName
                                         ? 'border-red-500 focus:border-red-500'
                                         : 'border-gray-300 focus:border-primary'
                                         } focus:outline-none focus:ring-2 focus:ring-primary/20`}
@@ -167,7 +167,7 @@ ${formData.firstName} ${formData.lastName}
                                     value={formData.lastName}
                                     onChange={(e) => handleInputChange('lastName', e.target.value)}
                                     placeholder="Enter your last name"
-                                    className={`w-full px-4 py-3 border rounded-lg transition-colors ${errors.lastName
+                                    className={`w-full px-3 py-2.5 lg:px-4 lg:py-3 border transition-colors ${errors.lastName
                                         ? 'border-red-500 focus:border-red-500'
                                         : 'border-gray-300 focus:border-primary'
                                         } focus:outline-none focus:ring-2 focus:ring-primary/20`}
@@ -188,7 +188,7 @@ ${formData.firstName} ${formData.lastName}
                                 value={formData.companyName}
                                 onChange={(e) => handleInputChange('companyName', e.target.value)}
                                 placeholder="Enter your company's name"
-                                className={`w-full px-4 py-3 border rounded-lg transition-colors ${errors.companyName
+                                className={`w-full px-3 py-2.5 lg:px-4 lg:py-3 border transition-colors ${errors.companyName
                                     ? 'border-red-500 focus:border-red-500'
                                     : 'border-gray-300 focus:border-primary'
                                     } focus:outline-none focus:ring-2 focus:ring-primary/20`}
@@ -206,7 +206,7 @@ ${formData.firstName} ${formData.lastName}
                             <select
                                 value={formData.sapUsers}
                                 onChange={(e) => handleInputChange('sapUsers', e.target.value)}
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+                                className="w-full px-4 py-3 border border-gray-300 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
                             >
                                 <option value="">Select SAP Business One users</option>
                                 <option value="<10">&lt;10</option>
@@ -225,7 +225,7 @@ ${formData.firstName} ${formData.lastName}
                                 value={formData.partnerName}
                                 onChange={(e) => handleInputChange('partnerName', e.target.value)}
                                 placeholder="Enter your partner name"
-                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+                                className="w-full px-4 py-3 border border-gray-300 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
                             />
                         </div>
 
@@ -251,7 +251,7 @@ ${formData.firstName} ${formData.lastName}
                     <button
                         type="submit"
                         form="demo-form"
-                        className="w-full bg-primary text-white py-3 px-6 rounded-lg font-medium hover:bg-primary/90 transition-colors"
+                        className="w-full bg-primary text-white py-2.5 lg:py-3 px-6 font-medium hover:bg-primary/90 transition-colors"
                     >
                         Get a Demo
                     </button>

@@ -446,9 +446,9 @@ export default function AgenticAIProduct() {
                             <button
                                 key={tab.id}
                                 onClick={() => setActiveTab(tab.id)}
-                                className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${activeTab === tab.id
-                                    ? 'bg-primary text-white shadow-lg scale-105'
-                                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
+                                className={`px-6 py-3 font-medium transition-all duration-300 ease-in-out ${activeTab === tab.id
+                                    ? 'bg-primary text-white shadow-lg transform scale-105'
+                                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200 hover:shadow-md hover:scale-102'
                                     }`}
                             >
                                 {tab.title}
