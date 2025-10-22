@@ -402,6 +402,7 @@ export default function AgenticAIProduct() {
     const [isDemoFormOpen, setIsDemoFormOpen] = useState(false);
 
     const activeTabData = TABS_DATA.find(tab => tab.id === activeTab);
+    const activeTabIndex = TABS_DATA.findIndex(tab => tab.id === activeTab);
 
     return (
         <div className="min-h-screen">
@@ -441,19 +442,47 @@ export default function AgenticAIProduct() {
             <section className="py-20 px-8 bg-white/50">
                 <div className="max-w-7xl mx-auto">
                     {/* Tab navigation */}
-                    <div className="flex flex-wrap justify-center gap-4 mb-12">
-                        {TABS_DATA.map(tab => (
-                            <button
-                                key={tab.id}
-                                onClick={() => setActiveTab(tab.id)}
-                                className={`px-6 py-3 font-medium transition-all duration-300 ease-in-out ${activeTab === tab.id
-                                    ? 'bg-primary text-white shadow-lg transform scale-105'
-                                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200 hover:shadow-md hover:scale-102'
-                                    }`}
-                            >
-                                {tab.title}
-                            </button>
-                        ))}
+                    <div className="flex justify-center mb-12">
+                        <div className="relative flex flex-col lg:flex-row bg-white border border-gray-200 p-2 w-full max-w-6xl">
+                            {/* 滑动色块 - 桌面端 */}
+                            <div
+                                className="hidden lg:block absolute top-2 bottom-2 transition-all duration-300 ease-out animate-gradient"
+                                style={{
+                                    left: `calc(${activeTabIndex * 25}% + 8px)`,
+                                    width: 'calc(25% - 16px)',
+                                    background: 'linear-gradient(45deg, rgba(45, 27, 105, 0.8), rgba(76, 29, 149, 0.8), rgba(124, 58, 237, 0.6), rgba(124, 58, 237, 0.6), rgba(76, 29, 149, 0.8), rgba(45, 27, 105, 0.8))',
+                                    backgroundSize: '400% 400%'
+                                }}
+                            />
+                            {/* 滑动色块 - 移动端 */}
+                            <div
+                                className="lg:hidden absolute left-2 right-2 transition-all duration-300 ease-out animate-gradient"
+                                style={{
+                                    top: `calc(${activeTabIndex * 25}% + 8px)`,
+                                    height: 'calc(25% - 16px)',
+                                    background: 'linear-gradient(45deg, rgba(45, 27, 105, 0.8), rgba(76, 29, 149, 0.8), rgba(124, 58, 237, 0.6), rgba(124, 58, 237, 0.6), rgba(76, 29, 149, 0.8), rgba(45, 27, 105, 0.8))',
+                                    backgroundSize: '400% 400%'
+                                }}
+                            />
+                            {/* Tab 按钮 */}
+                            {TABS_DATA.map((tab, index) => (
+                                <button
+                                    key={tab.id}
+                                    onClick={() => setActiveTab(tab.id)}
+                                    className={`relative z-10 px-4 lg:px-6 py-3 transition-colors duration-300 ${activeTab === tab.id ? 'text-white font-bold' : 'text-gray-700 font-medium hover:bg-purple-100'
+                                        }`}
+                                    style={{
+                                        width: '100%',
+                                        flexBasis: '25%',
+                                        minWidth: '0',
+                                        maxWidth: '25%',
+                                        flex: '0 0 25%'
+                                    }}
+                                >
+                                    {tab.title}
+                                </button>
+                            ))}
+                        </div>
                     </div>
 
                     {/* Tab content */}

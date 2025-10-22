@@ -480,7 +480,7 @@ footer {
 }
 
 .animate-gradient {
-  animation: gradient ease infinite;
+  animation: gradient-shift 15s ease-in-out infinite;
 }
 
 /* 粉色高亮效果 */
