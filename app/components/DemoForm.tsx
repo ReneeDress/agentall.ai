@@ -230,7 +230,7 @@ ${formData.firstName} ${formData.lastName}
 
                     {/* Legal Disclaimer */}
                     <p className="text-xs text-gray-600">
-                        By submitting this form, you agree to AgentAll AI's{' '}
+                        By submitting this form, you agree to AgentAll AI&apos;s{' '}
                         <a href="#" className="text-primary underline hover:text-primary/80">
                             Terms of Service
                         </a>{' '}
