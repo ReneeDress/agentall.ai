@@ -96,9 +96,9 @@ ${formData.firstName} ${formData.lastName}
 
     return (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[10000] flex items-center justify-center p-4">
-            <div className="bg-white card-shadow-white rounded-lg max-w-lg w-full max-h-[90vh] overflow-y-auto">
-                {/* Header */}
-                <div className="flex items-center justify-between p-6 border-b border-gray-200">
+            <div className="bg-white card-shadow-white rounded-lg max-w-lg w-full max-h-[90vh] flex flex-col">
+                {/* Header - 固定 */}
+                <div className="flex items-center justify-between p-6 border-b border-gray-200 flex-shrink-0">
                     <h2 className="text-2xl font-serif-display text-foreground">
                         Get a Demo
                     </h2>
@@ -112,124 +112,130 @@ ${formData.firstName} ${formData.lastName}
                     </button>
                 </div>
 
-                {/* Form */}
-                <form onSubmit={handleSubmit} className="p-6 space-y-6">
-                    {/* Business Email */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Business Email *
-                        </label>
-                        <p className="text-xs text-gray-500 mb-2">
-                            Please use a business email to be connected with our sales team
-                        </p>
-                        <input
-                            type="email"
-                            value={formData.businessEmail}
-                            onChange={(e) => handleInputChange('businessEmail', e.target.value)}
-                            placeholder="Enter your work email"
-                            className={`w-full px-4 py-3 border rounded-lg transition-colors ${errors.businessEmail
-                                ? 'border-red-500 focus:border-red-500'
-                                : 'border-gray-300 focus:border-primary'
-                                } focus:outline-none focus:ring-2 focus:ring-primary/20`}
-                        />
-                        {errors.businessEmail && (
-                            <p className="text-red-500 text-sm mt-1">{errors.businessEmail}</p>
-                        )}
-                    </div>
-
-                    {/* First Name and Last Name */}
-                    <div className="grid grid-cols-2 gap-4">
+                {/* Form - 可滚动 */}
+                <div className="flex-1 overflow-y-auto">
+                    <form id="demo-form" onSubmit={handleSubmit} className="p-6 space-y-6">
+                        {/* Business Email */}
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2">
-                                First Name *
+                                Business Email *
                             </label>
+                            <p className="text-xs text-gray-500 mb-2">
+                                Please use a business email to be connected with our sales team
+                            </p>
                             <input
-                                type="text"
-                                value={formData.firstName}
-                                onChange={(e) => handleInputChange('firstName', e.target.value)}
-                                placeholder="Enter your first name"
-                                className={`w-full px-4 py-3 border rounded-lg transition-colors ${errors.firstName
+                                type="email"
+                                value={formData.businessEmail}
+                                onChange={(e) => handleInputChange('businessEmail', e.target.value)}
+                                placeholder="Enter your work email"
+                                className={`w-full px-4 py-3 border rounded-lg transition-colors ${errors.businessEmail
                                     ? 'border-red-500 focus:border-red-500'
                                     : 'border-gray-300 focus:border-primary'
                                     } focus:outline-none focus:ring-2 focus:ring-primary/20`}
                             />
-                            {errors.firstName && (
-                                <p className="text-red-500 text-sm mt-1">{errors.firstName}</p>
+                            {errors.businessEmail && (
+                                <p className="text-red-500 text-sm mt-1">{errors.businessEmail}</p>
                             )}
                         </div>
+
+                        {/* First Name and Last Name */}
+                        <div className="grid grid-cols-2 gap-4">
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                                    First Name *
+                                </label>
+                                <input
+                                    type="text"
+                                    value={formData.firstName}
+                                    onChange={(e) => handleInputChange('firstName', e.target.value)}
+                                    placeholder="Enter your first name"
+                                    className={`w-full px-4 py-3 border rounded-lg transition-colors ${errors.firstName
+                                        ? 'border-red-500 focus:border-red-500'
+                                        : 'border-gray-300 focus:border-primary'
+                                        } focus:outline-none focus:ring-2 focus:ring-primary/20`}
+                                />
+                                {errors.firstName && (
+                                    <p className="text-red-500 text-sm mt-1">{errors.firstName}</p>
+                                )}
+                            </div>
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">
+                                    Last Name *
+                                </label>
+                                <input
+                                    type="text"
+                                    value={formData.lastName}
+                                    onChange={(e) => handleInputChange('lastName', e.target.value)}
+                                    placeholder="Enter your last name"
+                                    className={`w-full px-4 py-3 border rounded-lg transition-colors ${errors.lastName
+                                        ? 'border-red-500 focus:border-red-500'
+                                        : 'border-gray-300 focus:border-primary'
+                                        } focus:outline-none focus:ring-2 focus:ring-primary/20`}
+                                />
+                                {errors.lastName && (
+                                    <p className="text-red-500 text-sm mt-1">{errors.lastName}</p>
+                                )}
+                            </div>
+                        </div>
+
+                        {/* Company Name */}
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2">
-                                Last Name *
+                                Company Name *
                             </label>
                             <input
                                 type="text"
-                                value={formData.lastName}
-                                onChange={(e) => handleInputChange('lastName', e.target.value)}
-                                placeholder="Enter your last name"
-                                className={`w-full px-4 py-3 border rounded-lg transition-colors ${errors.lastName
+                                value={formData.companyName}
+                                onChange={(e) => handleInputChange('companyName', e.target.value)}
+                                placeholder="Enter your company's name"
+                                className={`w-full px-4 py-3 border rounded-lg transition-colors ${errors.companyName
                                     ? 'border-red-500 focus:border-red-500'
                                     : 'border-gray-300 focus:border-primary'
                                     } focus:outline-none focus:ring-2 focus:ring-primary/20`}
                             />
-                            {errors.lastName && (
-                                <p className="text-red-500 text-sm mt-1">{errors.lastName}</p>
+                            {errors.companyName && (
+                                <p className="text-red-500 text-sm mt-1">{errors.companyName}</p>
                             )}
                         </div>
-                    </div>
 
-                    {/* Company Name */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Company Name *
-                        </label>
-                        <input
-                            type="text"
-                            value={formData.companyName}
-                            onChange={(e) => handleInputChange('companyName', e.target.value)}
-                            placeholder="Enter your company's name"
-                            className={`w-full px-4 py-3 border rounded-lg transition-colors ${errors.companyName
-                                ? 'border-red-500 focus:border-red-500'
-                                : 'border-gray-300 focus:border-primary'
-                                } focus:outline-none focus:ring-2 focus:ring-primary/20`}
-                        />
-                        {errors.companyName && (
-                            <p className="text-red-500 text-sm mt-1">{errors.companyName}</p>
-                        )}
-                    </div>
+                        {/* SAP Business One Users */}
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                SAP Business One Users (Optional)
+                            </label>
+                            <select
+                                value={formData.sapUsers}
+                                onChange={(e) => handleInputChange('sapUsers', e.target.value)}
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+                            >
+                                <option value="">Select SAP Business One users</option>
+                                <option value="<10">&lt;10</option>
+                                <option value="10-50">10-50</option>
+                                <option value=">50">&gt;50</option>
+                            </select>
+                        </div>
 
-                    {/* SAP Business One Users */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            SAP Business One Users (Optional)
-                        </label>
-                        <select
-                            value={formData.sapUsers}
-                            onChange={(e) => handleInputChange('sapUsers', e.target.value)}
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
-                        >
-                            <option value="">Select SAP Business One users</option>
-                            <option value="<10">&lt;10</option>
-                            <option value="10-50">10-50</option>
-                            <option value=">50">&gt;50</option>
-                        </select>
-                    </div>
+                        {/* Partner Name */}
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                Your SAP Business One Partner Name (Optional)
+                            </label>
+                            <input
+                                type="text"
+                                value={formData.partnerName}
+                                onChange={(e) => handleInputChange('partnerName', e.target.value)}
+                                placeholder="Enter your partner name"
+                                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+                            />
+                        </div>
 
-                    {/* Partner Name */}
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Your SAP Business One Partner Name (Optional)
-                        </label>
-                        <input
-                            type="text"
-                            value={formData.partnerName}
-                            onChange={(e) => handleInputChange('partnerName', e.target.value)}
-                            placeholder="Enter your partner name"
-                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
-                        />
-                    </div>
+                    </form>
+                </div>
 
+                {/* Footer - 固定 */}
+                <div className="p-6 border-t border-gray-200 flex-shrink-0">
                     {/* Legal Disclaimer */}
-                    <p className="text-xs text-gray-600">
+                    <p className="text-xs text-gray-600 mb-4">
                         By submitting this form, you agree to AgentAll AI&apos;s{' '}
                         <a href="#" className="text-primary underline hover:text-primary/80">
                             Terms of Service
@@ -244,24 +250,12 @@ ${formData.firstName} ${formData.lastName}
                     {/* Submit Button */}
                     <button
                         type="submit"
+                        form="demo-form"
                         className="w-full bg-primary text-white py-3 px-6 rounded-lg font-medium hover:bg-primary/90 transition-colors"
                     >
                         Get a Demo
                     </button>
-                </form>
-
-                {/* Footer */}
-                {/* <div className="p-6 border-t border-gray-200 text-center">
-                    <p className="text-sm text-gray-600 mb-2">
-                        Ready to get started with AgentAll AI?
-                    </p>
-                    <a
-                        href="#"
-                        className="text-primary font-medium hover:text-primary/80 transition-colors"
-                    >
-                        Start Free Trial →
-                    </a>
-                </div> */}
+                </div>
             </div>
         </div>
     );
