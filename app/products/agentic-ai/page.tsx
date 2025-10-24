@@ -4,15 +4,24 @@ import { useState } from 'react';
 import Navigation from '../../components/Navigation';
 import Footer from '../../components/Footer';
 import DemoForm from '../../components/DemoForm';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faHandshake,
+    faComments,
+    faChartBar,
+    faFileAlt,
+    faClipboard,
+    faCalendarAlt
+} from '@fortawesome/free-regular-svg-icons';
 
 // Pie Chart Data
 const PIE_CHART_DATA = [
     {
         id: 1,
         label: 'Sales Order Processing',
-        percentage: 15,
+        percentage: 14.29,
         color: '#6b5be1',
-        image: '/agentall.ai/images/agentic-ai/sales-automation.png',
+        icon: faFileAlt,
         bullets: [
             'Automated sales order creation',
             'Intelligent pricing calculation',
@@ -22,9 +31,9 @@ const PIE_CHART_DATA = [
     {
         id: 2,
         label: 'Purchase Management',
-        percentage: 14,
+        percentage: 14.29,
         color: '#ec4899',
-        image: '/agentall.ai/images/agentic-ai/purchaseing-automation.png',
+        icon: faHandshake,
         bullets: [
             'Automatic vendor matching',
             'Purchase request approval',
@@ -34,9 +43,9 @@ const PIE_CHART_DATA = [
     {
         id: 3,
         label: 'Inventory Control',
-        percentage: 15,
+        percentage: 14.29,
         color: '#f97316',
-        image: '/agentall.ai/images/agentic-ai/inventory-automation.png',
+        icon: faClipboard,
         bullets: [
             'Smart inventory alerts',
             'Automated stock counting',
@@ -46,9 +55,9 @@ const PIE_CHART_DATA = [
     {
         id: 4,
         label: 'Financial Reporting',
-        percentage: 14,
+        percentage: 14.29,
         color: '#8b5cf6',
-        image: '/agentall.ai/images/agentic-ai/finance-automation.png',
+        icon: faChartBar,
         bullets: [
             'Automated financial statements',
             'Cost center analysis',
@@ -58,9 +67,9 @@ const PIE_CHART_DATA = [
     {
         id: 5,
         label: 'Production Planning',
-        percentage: 14,
+        percentage: 14.29,
         color: '#10b981',
-        image: '/agentall.ai/images/agentic-ai/document-processing.png',
+        icon: faCalendarAlt,
         bullets: [
             'Automated MRP calculation',
             'Capacity optimization',
@@ -70,9 +79,9 @@ const PIE_CHART_DATA = [
     {
         id: 6,
         label: 'Customer Service',
-        percentage: 14,
+        percentage: 14.29,
         color: '#06b6d4',
-        image: '/agentall.ai/images/agentic-ai/knowledge-management.png',
+        icon: faComments,
         bullets: [
             '24/7 intelligent customer service',
             'Automatic ticket assignment',
@@ -82,9 +91,9 @@ const PIE_CHART_DATA = [
     {
         id: 7,
         label: 'Analytics & Insights',
-        percentage: 14,
+        percentage: 14.29,
         color: '#f59e0b',
-        image: '/agentall.ai/images/agentic-ai/query-and-insights.png',
+        icon: faChartBar,
         bullets: [
             'Real-time KPI monitoring',
             'Predictive analytics',
@@ -179,10 +188,10 @@ function PieChart() {
 
     // Calculate trapezoid slice path
     const createTrapezoidSlicePath = (startAngle: number, endAngle: number) => {
-        const centerX = 400;
-        const centerY = 400;
-        const innerRadius = 120; // Inner radius (center circle radius + gap)
-        const outerRadius = 350; // Outer radius
+        const centerX = 360;
+        const centerY = 360;
+        const innerRadius = 108; // Inner radius (center circle radius + gap)
+        const outerRadius = 315; // Outer radius
 
         const startRad = (startAngle - 90) * Math.PI / 180;
         const endRad = (endAngle - 90) * Math.PI / 180;
@@ -208,119 +217,207 @@ function PieChart() {
 
     return (
         <div className="relative flex items-center justify-center">
-            <svg width="800" height="800" viewBox="0 0 800 800" className="transform transition-transform duration-300">
-                {PIE_CHART_DATA.map((slice) => {
-                    const gapAngle = 2; // 2 degrees gap between slices
-                    const totalGaps = PIE_CHART_DATA.length * gapAngle * 2; // Total gap space needed
-                    const availableAngle = 360 - totalGaps; // Available angle for slices
-                    const startAngle = currentAngle + gapAngle;
-                    const sliceAngle = (slice.percentage / 100) * availableAngle;
-                    const endAngle = startAngle + sliceAngle;
-                    currentAngle = endAngle + gapAngle;
+            <div className="flex items-center gap-12">
+                {/* Left side: Pie Chart */}
+                <div className="flex-shrink-0">
+                    <svg width="720" height="720" viewBox="0 0 720 720" className="transform transition-transform duration-300">
+                        {PIE_CHART_DATA.map((slice) => {
+                            const gapAngle = 2; // 2 degrees gap between slices
+                            const totalGaps = PIE_CHART_DATA.length * gapAngle * 2; // Total gap space needed
+                            const availableAngle = 360 - totalGaps; // Available angle for slices
+                            const startAngle = currentAngle + gapAngle;
+                            const sliceAngle = (slice.percentage / 100) * availableAngle;
+                            const endAngle = startAngle + sliceAngle;
+                            currentAngle = endAngle + gapAngle;
 
-                    const path = createTrapezoidSlicePath(startAngle, endAngle);
-                    const isHovered = hoveredSlice === slice.id;
+                            const path = createTrapezoidSlicePath(startAngle, endAngle);
+                            const isHovered = hoveredSlice === slice.id;
 
-                    // Calculate label position (middle of trapezoid)
-                    const labelAngle = (startAngle + endAngle) / 2;
-                    const labelRad = (labelAngle - 90) * Math.PI / 180;
-                    const labelRadius = 235; // Position between inner and outer radius
-                    const labelX = 400 + labelRadius * Math.cos(labelRad);
-                    const labelY = 400 + labelRadius * Math.sin(labelRad);
+                            // Calculate label position (middle of trapezoid)
+                            const labelAngle = (startAngle + endAngle) / 2;
+                            const labelRad = (labelAngle - 90) * Math.PI / 180;
+                            const baseLabelRadius = 212; // Position between inner and outer radius
+                            // Special positioning for Production Planning and Inventory Control
+                            const adjustedBaseRadius = (slice.id === 3 || slice.id === 5) ? baseLabelRadius + 15 : baseLabelRadius;
+                            const labelRadius = isHovered ? adjustedBaseRadius * 1.05 : adjustedBaseRadius; // Move outward when hovered
+                            const labelX = 360 + labelRadius * Math.cos(labelRad);
+                            const labelY = 360 + labelRadius * Math.sin(labelRad);
 
-                    return (
-                        <g key={slice.id}>
-                            <path
-                                d={path}
-                                fill="transparent"
-                                stroke={slice.color}
-                                strokeWidth="3"
-                                opacity={hoveredSlice === null ? 0.8 : isHovered ? 1 : 0.3}
-                                className="transition-all duration-300 cursor-pointer"
-                                onMouseEnter={() => setHoveredSlice(slice.id)}
-                                onMouseLeave={() => setHoveredSlice(null)}
-                                style={{
-                                    transform: isHovered ? 'scale(1.05)' : 'scale(1)',
-                                    transformOrigin: '400px 400px'
-                                }}
-                            />
-                            {/* Label text */}
-                            {slice.label.split(' ').length > 2 ? (
-                                // Two-line text for longer labels
-                                <>
-                                    <text
-                                        x={labelX}
-                                        y={labelY + 50}
-                                        textAnchor="middle"
-                                        dominantBaseline="middle"
-                                        fill="#262052"
-                                        fontSize="16"
-                                        fontWeight="bold"
-                                        className="pointer-events-none"
-                                        opacity={hoveredSlice === null ? 1 : isHovered ? 1 : 0.5}
+                            return (
+                                <g key={slice.id}>
+                                    <path
+                                        d={path}
+                                        fill="transparent"
+                                        stroke={slice.color}
+                                        strokeWidth="3"
+                                        opacity={hoveredSlice === null ? 0.8 : isHovered ? 1 : 0.3}
+                                        className="transition-all duration-300 cursor-pointer"
+                                        onMouseEnter={() => setHoveredSlice(slice.id)}
+                                        onMouseLeave={() => setHoveredSlice(null)}
                                         style={{
-                                            transform: isHovered ? 'scale(1.1)' : 'scale(1)',
-                                            transformOrigin: `${labelX}px ${labelY + 50}px`,
-                                            transition: 'all 0.3s ease'
+                                            transform: isHovered ? 'scale(1.05)' : 'scale(1)',
+                                            transformOrigin: '360px 360px'
                                         }}
-                                    >
-                                        {slice.label.split(' ').slice(0, Math.ceil(slice.label.split(' ').length / 2)).join(' ')}
-                                    </text>
-                                    <text
-                                        x={labelX}
-                                        y={labelY + 70}
-                                        textAnchor="middle"
-                                        dominantBaseline="middle"
-                                        fill="#262052"
-                                        fontSize="16"
-                                        fontWeight="bold"
-                                        className="pointer-events-none"
-                                        opacity={hoveredSlice === null ? 1 : isHovered ? 1 : 0.5}
-                                        style={{
-                                            transform: isHovered ? 'scale(1.1)' : 'scale(1)',
-                                            transformOrigin: `${labelX}px ${labelY + 70}px`,
-                                            transition: 'all 0.3s ease'
-                                        }}
-                                    >
-                                        {slice.label.split(' ').slice(Math.ceil(slice.label.split(' ').length / 2)).join(' ')}
-                                    </text>
-                                </>
-                            ) : (
-                                // Single line text for shorter labels
-                                <text
-                                    x={labelX}
-                                    y={labelY + 60}
-                                    textAnchor="middle"
-                                    dominantBaseline="middle"
-                                    fill="#262052"
-                                    fontSize="16"
-                                    fontWeight="bold"
-                                    className="pointer-events-none"
-                                    opacity={hoveredSlice === null ? 1 : isHovered ? 1 : 0.5}
-                                    style={{
-                                        transform: isHovered ? 'scale(1.1)' : 'scale(1)',
-                                        transformOrigin: `${labelX}px ${labelY + 60}px`,
-                                        transition: 'all 0.3s ease'
-                                    }}
-                                >
-                                    {slice.label}
-                                </text>
-                            )}
-                        </g>
-                    );
-                })}
+                                    />
+                                    {/* Label text */}
+                                    {slice.label === 'Sales Order Processing' || slice.label === 'Analytics & Insights' || slice.label === 'Production Planning' || slice.label === 'Inventory Control' ? (
+                                        // Two-line text for specific labels
+                                        <>
+                                            <text
+                                                x={labelX}
+                                                y={labelY + 35}
+                                                textAnchor="middle"
+                                                dominantBaseline="middle"
+                                                fill="#262052"
+                                                fontSize="16"
+                                                fontWeight="bold"
+                                                className="pointer-events-none"
+                                                opacity={hoveredSlice === null ? 1 : isHovered ? 1 : 0.5}
+                                                style={{
+                                                    transform: isHovered ? 'scale(1.1)' : 'scale(1)',
+                                                    transformOrigin: `${labelX}px ${labelY + 35}px`,
+                                                    transition: 'all 0.3s ease'
+                                                }}
+                                            >
+                                                {slice.label === 'Sales Order Processing' ? 'Sales Order' :
+                                                    slice.label === 'Analytics & Insights' ? 'Analytics &' :
+                                                        slice.label === 'Production Planning' ? 'Production' :
+                                                            'Inventory'}
+                                            </text>
+                                            <text
+                                                x={labelX}
+                                                y={labelY + 55}
+                                                textAnchor="middle"
+                                                dominantBaseline="middle"
+                                                fill="#262052"
+                                                fontSize="16"
+                                                fontWeight="bold"
+                                                className="pointer-events-none"
+                                                opacity={hoveredSlice === null ? 1 : isHovered ? 1 : 0.5}
+                                                style={{
+                                                    transform: isHovered ? 'scale(1.1)' : 'scale(1)',
+                                                    transformOrigin: `${labelX}px ${labelY + 55}px`,
+                                                    transition: 'all 0.3s ease'
+                                                }}
+                                            >
+                                                {slice.label === 'Sales Order Processing' ? 'Processing' :
+                                                    slice.label === 'Analytics & Insights' ? 'Insights' :
+                                                        slice.label === 'Production Planning' ? 'Planning' :
+                                                            'Control'}
+                                            </text>
+                                        </>
+                                    ) : (
+                                        // Single line text for shorter labels
+                                        <text
+                                            x={labelX}
+                                            y={labelY + 45}
+                                            textAnchor="middle"
+                                            dominantBaseline="middle"
+                                            fill="#262052"
+                                            fontSize="16"
+                                            fontWeight="bold"
+                                            className="pointer-events-none"
+                                            opacity={hoveredSlice === null ? 1 : isHovered ? 1 : 0.5}
+                                            style={{
+                                                transform: isHovered ? 'scale(1.1)' : 'scale(1)',
+                                                transformOrigin: `${labelX}px ${labelY + 45}px`,
+                                                transition: 'all 0.3s ease'
+                                            }}
+                                        >
+                                            {slice.label}
+                                        </text>
+                                    )}
+                                </g>
+                            );
+                        })}
 
-                {/* Center circle */}
-                <circle
-                    cx="400"
-                    cy="400"
-                    r="100"
-                    fill="#6b5be1"
-                    className="pointer-events-none"
-                />
-            </svg>
+                        {/* Center circle */}
+                        <circle
+                            cx="360"
+                            cy="360"
+                            r="90"
+                            fill="#6b5be1"
+                            className="pointer-events-none"
+                        />
 
-            {/* Images positioned absolutely over SVG */}
+                        {/* Center text */}
+                        <text
+                            x="360"
+                            y="342"
+                            textAnchor="middle"
+                            dominantBaseline="middle"
+                            fill="white"
+                            fontSize="16"
+                            fontWeight="bold"
+                            className="pointer-events-none"
+                        >
+                            Agentic AI
+                        </text>
+                        <text
+                            x="360"
+                            y="360"
+                            textAnchor="middle"
+                            dominantBaseline="middle"
+                            fill="white"
+                            fontSize="16"
+                            fontWeight="600"
+                            className="pointer-events-none"
+                        >
+                            For SAP
+                        </text>
+                        <text
+                            x="360"
+                            y="378"
+                            textAnchor="middle"
+                            dominantBaseline="middle"
+                            fill="white"
+                            fontSize="16"
+                            fontWeight="600"
+                            className="pointer-events-none"
+                        >
+                            Business One
+                        </text>
+                    </svg>
+                </div>
+
+                {/* Right side: Hover Content */}
+                <div className="flex-shrink-0 w-96">
+                    {hoveredSlice !== null ? (
+                        <div className="bg-white/95 backdrop-blur-sm p-6 shadow-xl border border-gray-200 animate-in fade-in slide-in-from-left-2 duration-200">
+                            {(() => {
+                                const slice = PIE_CHART_DATA.find(s => s.id === hoveredSlice);
+                                if (!slice) return null;
+                                return (
+                                    <>
+                                        <h4 className="section-title font-semibold mb-3" style={{ color: slice.color }}>
+                                            {slice.label}
+                                        </h4>
+                                        <ul className="space-y-2">
+                                            {slice.bullets.map((bullet, idx) => (
+                                                <li key={idx} className="flex items-start text-base text-gray-700">
+                                                    <span className="mr-2 mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: slice.color }}></span>
+                                                    <span>{bullet}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </>
+                                );
+                            })()}
+                        </div>
+                    ) : (
+                        <div className="bg-white/95 backdrop-blur-sm p-6 shadow-xl border border-gray-200">
+                            <h4 className="section-title font-semibold mb-3 text-gray-500">
+                                Hover over a slice
+                            </h4>
+                            <p className="text-base text-gray-600">
+                                Move your mouse over any slice to see detailed information about that business process.
+                            </p>
+                        </div>
+                    )}
+                </div>
+            </div>
+
+            {/* Icons positioned absolutely over SVG */}
             {PIE_CHART_DATA.map((slice) => {
                 const gapAngle = 2;
                 const totalGaps = PIE_CHART_DATA.length * gapAngle * 2;
@@ -337,18 +434,21 @@ function PieChart() {
                 const endAngle = startAngle + sliceAngle;
                 const labelAngle = (startAngle + endAngle) / 2;
                 const labelRad = (labelAngle - 90) * Math.PI / 180;
-                const labelRadius = 235;
-                const labelX = 400 + labelRadius * Math.cos(labelRad);
-                const labelY = 400 + labelRadius * Math.sin(labelRad);
                 const isHovered = hoveredSlice === slice.id;
+                const baseLabelRadius = 212;
+                // Special positioning for Production Planning and Inventory Control
+                const adjustedBaseRadius = (slice.id === 3 || slice.id === 5) ? baseLabelRadius + 15 : baseLabelRadius;
+                const labelRadius = isHovered ? adjustedBaseRadius * 1.05 : adjustedBaseRadius; // Move outward when hovered
+                const labelX = 360 + labelRadius * Math.cos(labelRad);
+                const labelY = 360 + labelRadius * Math.sin(labelRad);
 
                 return (
                     <div
-                        key={`image-${slice.id}`}
+                        key={`icon-${slice.id}`}
                         className="absolute pointer-events-none"
                         style={{
                             left: `${labelX}px`,
-                            top: `${labelY}px`,
+                            top: `${labelY - 20}px`,
                             width: '80px',
                             height: '80px',
                             transform: `translate(-50%, -50%) ${isHovered ? 'scale(1.2)' : 'scale(1)'}`,
@@ -356,43 +456,16 @@ function PieChart() {
                             opacity: hoveredSlice === null ? 1 : isHovered ? 1 : 0.5
                         }}
                     >
-                        <img
-                            src={slice.image}
-                            alt={slice.label}
-                            className="w-full h-full object-contain"
-                            onError={(e) => {
-                                console.log('Image failed to load:', slice.image);
-                                e.currentTarget.style.display = 'none';
-                            }}
+                        <FontAwesomeIcon
+                            icon={slice.icon}
+                            size="3x"
+                            style={{ color: slice.color }}
+                            className="w-full h-full"
                         />
                     </div>
                 );
             })}
 
-            {/* Hover tooltip */}
-            {hoveredSlice !== null && (
-                <div className="absolute left-full ml-8 bg-white/95 backdrop-blur-sm p-6 rounded-lg shadow-xl border border-gray-200 min-w-[280px] animate-in fade-in slide-in-from-left-2 duration-200">
-                    {(() => {
-                        const slice = PIE_CHART_DATA.find(s => s.id === hoveredSlice);
-                        if (!slice) return null;
-                        return (
-                            <>
-                                <h4 className="text-lg font-semibold mb-3" style={{ color: slice.color }}>
-                                    {slice.label}
-                                </h4>
-                                <ul className="space-y-2">
-                                    {slice.bullets.map((bullet, idx) => (
-                                        <li key={idx} className="flex items-start text-sm text-gray-700">
-                                            <span className="mr-2 mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: slice.color }}></span>
-                                            <span>{bullet}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </>
-                        );
-                    })()}
-                </div>
-            )}
         </div>
     );
 }
@@ -414,7 +487,7 @@ export default function AgenticAIProduct() {
                     <div className="max-w-7xl mx-auto px-8 pt-16 text-center space-y-6">
                         <div className="flex justify-center">
                             <div className="text-sm text-primary uppercase tracking-wider font-bold">
-                                Product
+                                Agentic AI for SAP Business One
                             </div>
                         </div>
                         <h1 className="hero-title gradient-text">
@@ -429,9 +502,9 @@ export default function AgenticAIProduct() {
 
                     {/* Pie chart section */}
                     <div className="flex flex-col items-center space-y-8 pt-8">
-                        <h2 className="section-title-small text-center text-foreground">
+                        {/* <h2 className="section-title-small text-center text-foreground">
                             Built-in Process Automation Capabilities and Beyond
-                        </h2>
+                        </h2> */}
 
                         <PieChart />
                     </div>
@@ -465,7 +538,7 @@ export default function AgenticAIProduct() {
                                 }}
                             />
                             {/* Tab 按钮 */}
-                            {TABS_DATA.map((tab, index) => (
+                            {TABS_DATA.map((tab) => (
                                 <button
                                     key={tab.id}
                                     onClick={() => setActiveTab(tab.id)}
@@ -584,7 +657,7 @@ export default function AgenticAIProduct() {
             <section className="py-20 px-8 bg-white/50">
                 <div className="max-w-7xl mx-auto">
                     <h3 className="section-title font-serif-display text-foreground mb-12 text-center">
-                        Safe Enough, Secure Your Business.
+                        Safe, Compliant, Secure Your Business.
                     </h3>
 
                     {/* 3 columns with rectangular cards - Security features */}
