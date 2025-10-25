@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Navigation from '../../components/Navigation';
 import Footer from '../../components/Footer';
 import DemoForm from '../../components/DemoForm';
@@ -105,9 +105,15 @@ const PIE_CHART_DATA = [
 // Tabs Data
 const TABS_DATA = [
     {
-        id: 'process-automation',
-        title: 'Process Automation',
+        id: 'document-extraction',
+        title: 'Document Extraction',
         video: '/images/ux-video-2.mov',
+        features: [
+            'Extraction of data in any Language from any document format: PDF, excel, image, scanned paper etc',
+            'Automatic mapping and document creation in SAP Business One: sales order, goods receipt, supplier invoice etc',
+            'Able to handle complex files even beyond DTW limits',
+            'Able to flexibly configure mapping rules and adapt for various document formats'
+        ],
         kpis: [
             {
                 label: 'Significant <strong>multiline, complex order processing efficiency gains</strong>', value: null
@@ -126,14 +132,18 @@ const TABS_DATA = [
         ],
         highlights: [
             'Auto-parsing improves accuracy and avoids manual errors.',
-            'No training required to process  various document format, reducing maintenance costs.',
-            'Role based authorization control ensures security and reliability',
+            'No training required to process various document format, reducing maintenance costs.',
         ]
     },
     {
         id: 'nlq',
-        title: 'Nature Language Query',
+        title: 'ChatBI',
         video: '/images/ux-video-2.mov',
+        features: [
+            'AI Agent creates reports with visualization dynamically in 20–35s vs. 2–4h manually, freeing implementation resources',
+            'No SQL/HANA knowledge needed—business users query data via natural language',
+            'Reasoning and deep research to provide insights, root cause analysis and recommendation plans from business data'
+        ],
         kpis: [
             {
                 label: 'Significant efficiency gains in <strong>underlying reporting queries</strong>', value: null
@@ -144,40 +154,75 @@ const TABS_DATA = [
             { label: 'Daily use by multiple departments, saving <strong>17,420 hours</strong> per year (<em>2178 person days</em>)', value: ['17,420', 'Hours'], color: '#8b5cf6' }
         ],
         highlights: [
-            'AI Agent delivers reports in 20–35s vs. 2–4h manually, freeing implementation resources.',
-            'No SQL / HANA knowledge needed—business users query data via natural language.',
-            'Generate insights, visuals and recommendations real - time effortlessly',
-            'Boost data usage and empower businesses to make faster  decisions and respond smarter'
+            'Query your business data anywhere anytime for better transparency and control',
+            'Make impact with your business data and let it flow to become growth driver',
         ]
     },
     {
         id: 'ekm',
         title: 'Enterprise Knowledge Management',
-        video: '/images/ux-video-2.mov',
+        features: [
+            'Extraction of Data in Any Language from Any Document Format: PDF, excel, image, scanned paper etc',
+            'Automatic Mapping and Creation of Structured Document in SAP Business One: sales order, goods receipt, supplier invoice etc',
+            'Able to handle complex files even beyond DTW limits',
+            'Able to flexibly configure mapping rules and adapt for various document format'
+        ],
         kpis: [
             { label: 'Knowledge Reuse', value: '3x', color: '#f97316' },
             { label: 'Learning Time', value: '-60%', color: '#ec4899' }
         ],
         highlights: [
-            'Enterprise knowledge graph',
-            'Intelligent knowledge retrieval',
-            'Version control management',
-            'Role-based access control'
+            'Auto-parsing improves accuracy and avoids manual errors.',
+            'No training required to process various document format, reducing maintenance costs.',
         ]
     },
     {
         id: 'whatsapp',
         title: 'WhatsApp Integration',
         video: '/images/ux-video-2.mov',
+        features: [
+            'AI agents as contacts allowing nature language interaction',
+            'Process automation and ChatBI functionalities supported',
+            'Identity recognition and role-based access control to ensure security'
+        ],
         kpis: [
             { label: 'Customer Satisfaction', value: '4.8/5', color: '#10b981' },
             { label: 'Response Speed', value: 'Instant', color: '#f59e0b' }
         ],
         highlights: [
-            'Seamless multi-channel integration',
-            'Real-time message synchronization',
-            'Intelligent conversation management',
-            'Business process triggering'
+            'Harmonize user experience on demand to make life easier for business users',
+            'Accelerated response to customer needs and improve customer satisfaction',
+        ]
+    },
+    {
+        id: 'process-automation',
+        title: 'Process Automation',
+        video: '/images/ux-video-2.mov',
+        features: [
+            '7x24 monitoring of business data and proactively push notification or trigger actions automatically',
+            'Automatic 360 deep research into business data to recommend optimizing plans',
+            'Role based authorization control and data access to ensure security',
+            'Flexible customization of agents and workflow to adapt for your own needs'
+        ],
+        kpis: [
+            {
+                label: 'Significant <strong>multiline, complex order processing efficiency gains</strong>', value: null
+            },
+            {
+                label: 'Increase in efficiency by more than 10 times compared to labor',
+                value: ['1-2 Min', '10x Up'],
+                color: '#10b981'
+            },
+            {
+                label: 'Individual sales staff can save about <strong>450 hours</strong> per year (<em>56 person days</em>)',
+                value: ['450', 'Hours'],
+                color: '#f59e0b'
+            },
+
+        ],
+        highlights: [
+            'Automated business process to release employees from repetitive manual transactions and gain productivity',
+            'Best practice based deep research to optimize business performance like never before',
         ]
     }
 ];
@@ -185,6 +230,26 @@ const TABS_DATA = [
 // Pie Chart Component
 function PieChart() {
     const [hoveredSlice, setHoveredSlice] = useState<number | null>(null);
+    const [currentAutoSlice, setCurrentAutoSlice] = useState<number>(1);
+
+    // Auto rotation effect
+    React.useEffect(() => {
+        if (hoveredSlice === null) {
+            const interval = setInterval(() => {
+                setCurrentAutoSlice(prev => prev >= PIE_CHART_DATA.length ? 1 : prev + 1);
+            }, 2000); // Change every 2 seconds
+
+            return () => clearInterval(interval);
+        }
+    }, [hoveredSlice]);
+
+    // 将 hex 颜色转换为 rgba
+    const hexToRgba = (hex: string, alpha: number) => {
+        const r = parseInt(hex.slice(1, 3), 16);
+        const g = parseInt(hex.slice(3, 5), 16);
+        const b = parseInt(hex.slice(5, 7), 16);
+        return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+    };
 
     // Calculate trapezoid slice path
     const createTrapezoidSlicePath = (startAngle: number, endAngle: number) => {
@@ -232,14 +297,17 @@ function PieChart() {
 
                             const path = createTrapezoidSlicePath(startAngle, endAngle);
                             const isHovered = hoveredSlice === slice.id;
+                            const isAutoHighlighted = hoveredSlice === null && currentAutoSlice === slice.id;
 
                             // Calculate label position (middle of trapezoid)
                             const labelAngle = (startAngle + endAngle) / 2;
-                            const labelRad = (labelAngle - 90) * Math.PI / 180;
+                            // Special angle adjustment for Sales Order Processing to move left
+                            const adjustedLabelAngle = slice.id === 1 ? labelAngle - 5 : labelAngle;
+                            const labelRad = (adjustedLabelAngle - 90) * Math.PI / 180;
                             const baseLabelRadius = 212; // Position between inner and outer radius
                             // Special positioning for Production Planning and Inventory Control
                             const adjustedBaseRadius = (slice.id === 3 || slice.id === 5) ? baseLabelRadius + 15 : baseLabelRadius;
-                            const labelRadius = isHovered ? adjustedBaseRadius * 1.05 : adjustedBaseRadius; // Move outward when hovered
+                            const labelRadius = (isHovered || isAutoHighlighted) ? adjustedBaseRadius * 1.05 : adjustedBaseRadius; // Move outward when hovered or auto highlighted
                             const labelX = 360 + labelRadius * Math.cos(labelRad);
                             const labelY = 360 + labelRadius * Math.sin(labelRad);
 
@@ -247,20 +315,20 @@ function PieChart() {
                                 <g key={slice.id}>
                                     <path
                                         d={path}
-                                        fill="transparent"
-                                        stroke={slice.color}
+                                        fill={isHovered || isAutoHighlighted ? hexToRgba(slice.color, 0.2) : "rgba(255, 255, 255, 0.3)"}
+                                        stroke={isHovered || isAutoHighlighted ? slice.color : "#9ca3af"}
                                         strokeWidth="3"
-                                        opacity={hoveredSlice === null ? 0.8 : isHovered ? 1 : 0.3}
+                                        opacity={1}
                                         className="transition-all duration-300 cursor-pointer"
                                         onMouseEnter={() => setHoveredSlice(slice.id)}
                                         onMouseLeave={() => setHoveredSlice(null)}
                                         style={{
-                                            transform: isHovered ? 'scale(1.05)' : 'scale(1)',
+                                            transform: (isHovered || isAutoHighlighted) ? 'scale(1.05)' : 'scale(1)',
                                             transformOrigin: '360px 360px'
                                         }}
                                     />
                                     {/* Label text */}
-                                    {slice.label === 'Sales Order Processing' || slice.label === 'Analytics & Insights' || slice.label === 'Production Planning' || slice.label === 'Inventory Control' ? (
+                                    {slice.label === 'Sales Order Processing' || slice.label === 'Analytics & Insights' || slice.label === 'Production Planning' || slice.label === 'Inventory Control' || slice.label === 'Purchase Management' || slice.label === 'Customer Service' ? (
                                         // Two-line text for specific labels
                                         <>
                                             <text
@@ -272,9 +340,9 @@ function PieChart() {
                                                 fontSize="16"
                                                 fontWeight="bold"
                                                 className="pointer-events-none"
-                                                opacity={hoveredSlice === null ? 1 : isHovered ? 1 : 0.5}
+                                                opacity={hoveredSlice === null ? (isAutoHighlighted ? 1 : 0.5) : isHovered ? 1 : 0.5}
                                                 style={{
-                                                    transform: isHovered ? 'scale(1.1)' : 'scale(1)',
+                                                    transform: (isHovered || isAutoHighlighted) ? 'scale(1.1)' : 'scale(1)',
                                                     transformOrigin: `${labelX}px ${labelY + 35}px`,
                                                     transition: 'all 0.3s ease'
                                                 }}
@@ -282,7 +350,9 @@ function PieChart() {
                                                 {slice.label === 'Sales Order Processing' ? 'Sales Order' :
                                                     slice.label === 'Analytics & Insights' ? 'Analytics &' :
                                                         slice.label === 'Production Planning' ? 'Production' :
-                                                            'Inventory'}
+                                                            slice.label === 'Inventory Control' ? 'Inventory' :
+                                                                slice.label === 'Purchase Management' ? 'Purchase' :
+                                                                    'Customer'}
                                             </text>
                                             <text
                                                 x={labelX}
@@ -293,9 +363,9 @@ function PieChart() {
                                                 fontSize="16"
                                                 fontWeight="bold"
                                                 className="pointer-events-none"
-                                                opacity={hoveredSlice === null ? 1 : isHovered ? 1 : 0.5}
+                                                opacity={hoveredSlice === null ? (isAutoHighlighted ? 1 : 0.5) : isHovered ? 1 : 0.5}
                                                 style={{
-                                                    transform: isHovered ? 'scale(1.1)' : 'scale(1)',
+                                                    transform: (isHovered || isAutoHighlighted) ? 'scale(1.1)' : 'scale(1)',
                                                     transformOrigin: `${labelX}px ${labelY + 55}px`,
                                                     transition: 'all 0.3s ease'
                                                 }}
@@ -303,7 +373,9 @@ function PieChart() {
                                                 {slice.label === 'Sales Order Processing' ? 'Processing' :
                                                     slice.label === 'Analytics & Insights' ? 'Insights' :
                                                         slice.label === 'Production Planning' ? 'Planning' :
-                                                            'Control'}
+                                                            slice.label === 'Inventory Control' ? 'Control' :
+                                                                slice.label === 'Purchase Management' ? 'Management' :
+                                                                    'Service'}
                                             </text>
                                         </>
                                     ) : (
@@ -317,9 +389,9 @@ function PieChart() {
                                             fontSize="16"
                                             fontWeight="bold"
                                             className="pointer-events-none"
-                                            opacity={hoveredSlice === null ? 1 : isHovered ? 1 : 0.5}
+                                            opacity={hoveredSlice === null ? (isAutoHighlighted ? 1 : 0.5) : isHovered ? 1 : 0.5}
                                             style={{
-                                                transform: isHovered ? 'scale(1.1)' : 'scale(1)',
+                                                transform: (isHovered || isAutoHighlighted) ? 'scale(1.1)' : 'scale(1)',
                                                 transformOrigin: `${labelX}px ${labelY + 45}px`,
                                                 transition: 'all 0.3s ease'
                                             }}
@@ -382,38 +454,31 @@ function PieChart() {
 
                 {/* Right side: Hover Content */}
                 <div className="flex-shrink-0 w-96">
-                    {hoveredSlice !== null ? (
-                        <div className="bg-white/95 backdrop-blur-sm p-6 shadow-xl border border-gray-200 animate-in fade-in slide-in-from-left-2 duration-200">
-                            {(() => {
-                                const slice = PIE_CHART_DATA.find(s => s.id === hoveredSlice);
-                                if (!slice) return null;
-                                return (
-                                    <>
-                                        <h4 className="section-title font-semibold mb-3" style={{ color: slice.color }}>
-                                            {slice.label}
-                                        </h4>
-                                        <ul className="space-y-2">
-                                            {slice.bullets.map((bullet, idx) => (
-                                                <li key={idx} className="flex items-start text-base text-gray-700">
-                                                    <span className="mr-2 mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: slice.color }}></span>
-                                                    <span>{bullet}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </>
-                                );
-                            })()}
-                        </div>
-                    ) : (
-                        <div className="bg-white/95 backdrop-blur-sm p-6 shadow-xl border border-gray-200">
-                            <h4 className="section-title font-semibold mb-3 text-gray-500">
-                                Hover over a slice
-                            </h4>
-                            <p className="text-base text-gray-600">
-                                Move your mouse over any slice to see detailed information about that business process.
-                            </p>
-                        </div>
-                    )}
+                    <div className="bg-white card-shadow-white p-6 animate-in fade-in slide-in-from-left-2 duration-200">
+                        {(() => {
+                            const displaySlice = hoveredSlice !== null
+                                ? PIE_CHART_DATA.find(s => s.id === hoveredSlice)
+                                : PIE_CHART_DATA.find(s => s.id === currentAutoSlice);
+
+                            if (!displaySlice) return null;
+
+                            return (
+                                <>
+                                    <h4 className="section-title font-semibold mb-3" style={{ color: displaySlice.color }}>
+                                        {displaySlice.label}
+                                    </h4>
+                                    <ul className="space-y-2">
+                                        {displaySlice.bullets.map((bullet, idx) => (
+                                            <li key={idx} className="flex items-start text-base text-gray-700">
+                                                <span className="mr-2 mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: displaySlice.color }}></span>
+                                                <span>{bullet}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </>
+                            );
+                        })()}
+                    </div>
                 </div>
             </div>
 
@@ -433,12 +498,15 @@ function PieChart() {
                 const sliceAngle = (slice.percentage / 100) * availableAngle;
                 const endAngle = startAngle + sliceAngle;
                 const labelAngle = (startAngle + endAngle) / 2;
-                const labelRad = (labelAngle - 90) * Math.PI / 180;
+                // Special angle adjustment for Sales Order Processing to move left
+                const adjustedLabelAngle = slice.id === 1 ? labelAngle - 5 : labelAngle;
+                const labelRad = (adjustedLabelAngle - 90) * Math.PI / 180;
                 const isHovered = hoveredSlice === slice.id;
+                const isAutoHighlighted = hoveredSlice === null && currentAutoSlice === slice.id;
                 const baseLabelRadius = 212;
                 // Special positioning for Production Planning and Inventory Control
                 const adjustedBaseRadius = (slice.id === 3 || slice.id === 5) ? baseLabelRadius + 15 : baseLabelRadius;
-                const labelRadius = isHovered ? adjustedBaseRadius * 1.05 : adjustedBaseRadius; // Move outward when hovered
+                const labelRadius = (isHovered || isAutoHighlighted) ? adjustedBaseRadius * 1.05 : adjustedBaseRadius; // Move outward when hovered or auto highlighted
                 const labelX = 360 + labelRadius * Math.cos(labelRad);
                 const labelY = 360 + labelRadius * Math.sin(labelRad);
 
@@ -451,15 +519,15 @@ function PieChart() {
                             top: `${labelY - 20}px`,
                             width: '80px',
                             height: '80px',
-                            transform: `translate(-50%, -50%) ${isHovered ? 'scale(1.2)' : 'scale(1)'}`,
+                            transform: `translate(-50%, -50%) ${(isHovered || isAutoHighlighted) ? 'scale(1.2)' : 'scale(1)'}`,
                             transition: 'transform 0.3s ease',
-                            opacity: hoveredSlice === null ? 1 : isHovered ? 1 : 0.5
+                            opacity: hoveredSlice === null ? (isAutoHighlighted ? 1 : 0.5) : isHovered ? 1 : 0.5
                         }}
                     >
                         <FontAwesomeIcon
                             icon={slice.icon}
                             size="3x"
-                            style={{ color: slice.color }}
+                            style={{ color: isHovered || isAutoHighlighted ? slice.color : "#9ca3af" }}
                             className="w-full h-full"
                         />
                     </div>
@@ -471,7 +539,7 @@ function PieChart() {
 }
 
 export default function AgenticAIProduct() {
-    const [activeTab, setActiveTab] = useState('process-automation');
+    const [activeTab, setActiveTab] = useState('document-extraction');
     const [isDemoFormOpen, setIsDemoFormOpen] = useState(false);
 
     const activeTabData = TABS_DATA.find(tab => tab.id === activeTab);
@@ -521,8 +589,8 @@ export default function AgenticAIProduct() {
                             <div
                                 className="hidden lg:block absolute top-2 bottom-2 transition-all duration-300 ease-out animate-gradient"
                                 style={{
-                                    left: `calc(${activeTabIndex * 25}% + 8px)`,
-                                    width: 'calc(25% - 16px)',
+                                    left: `calc(${activeTabIndex * 20}% + 8px)`,
+                                    width: 'calc(20% - 16px)',
                                     background: 'linear-gradient(45deg, rgba(45, 27, 105, 0.8), rgba(76, 29, 149, 0.8), rgba(124, 58, 237, 0.6), rgba(124, 58, 237, 0.6), rgba(76, 29, 149, 0.8), rgba(45, 27, 105, 0.8))',
                                     backgroundSize: '400% 400%'
                                 }}
@@ -531,8 +599,8 @@ export default function AgenticAIProduct() {
                             <div
                                 className="lg:hidden absolute left-2 right-2 transition-all duration-300 ease-out animate-gradient"
                                 style={{
-                                    top: `calc(${activeTabIndex * 25}% + 8px)`,
-                                    height: 'calc(25% - 16px)',
+                                    top: `calc(${activeTabIndex * 20}% + 8px)`,
+                                    height: 'calc(20% - 16px)',
                                     background: 'linear-gradient(45deg, rgba(45, 27, 105, 0.8), rgba(76, 29, 149, 0.8), rgba(124, 58, 237, 0.6), rgba(124, 58, 237, 0.6), rgba(76, 29, 149, 0.8), rgba(45, 27, 105, 0.8))',
                                     backgroundSize: '400% 400%'
                                 }}
@@ -546,10 +614,10 @@ export default function AgenticAIProduct() {
                                         }`}
                                     style={{
                                         width: '100%',
-                                        flexBasis: '25%',
+                                        flexBasis: '20%',
                                         minWidth: '0',
-                                        maxWidth: '25%',
-                                        flex: '0 0 25%'
+                                        maxWidth: '20%',
+                                        flex: '0 0 20%'
                                     }}
                                 >
                                     {tab.title}
@@ -562,35 +630,53 @@ export default function AgenticAIProduct() {
                     {activeTabData && (
                         <div className="space-y-12">
                             {/* First row: Video and Value Highlights */}
-                            <div className="grid lg:grid-cols-2 gap-8 items-center">
-                                {/* Left side: Video */}
-                                <div className="relative aspect-video bg-gray-100 rounded-lg overflow-hidden shadow-xl">
-                                    <video
-                                        key={activeTab}
-                                        className="w-full h-full object-cover"
-                                        autoPlay
-                                        loop
-                                        muted
-                                        playsInline
-                                    >
-                                        <source src={activeTabData.video} type="video/mp4" />
-                                        Your browser does not support video playback
-                                    </video>
-                                </div>
+                            <div className={`grid gap-8 items-start ${activeTabData.video ? 'lg:grid-cols-2' : 'lg:grid-cols-1'}`}>
+                                {/* Left side: Video - only show if video exists */}
+                                {activeTabData.video && (
+                                    <div className="relative aspect-video bg-gray-100 rounded-lg overflow-hidden shadow-xl">
+                                        <video
+                                            key={activeTab}
+                                            className="w-full h-full object-cover"
+                                            autoPlay
+                                            loop
+                                            muted
+                                            playsInline
+                                        >
+                                            <source src={activeTabData.video} type="video/mp4" />
+                                            Your browser does not support video playback
+                                        </video>
+                                    </div>
+                                )}
 
-                                {/* Right side: Value Highlights */}
-                                <div className="bg-white p-6 card-shadow-white">
-                                    <h3 className="text-2xl font-serif-display text-foreground mb-6">
-                                        Value Highlights
-                                    </h3>
-                                    <ul className="space-y-4 ">
-                                        {activeTabData.highlights.map((highlight, idx) => (
-                                            <li key={idx} className="flex items-start text-gray-700">
-                                                <span className="mr-3 mt-1.5 w-2 h-2 bg-primary rounded-full flex-shrink-0"></span>
-                                                <span className="text-default highlight-hover cursor-pointer transition-all duration-300">{highlight}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
+                                {/* Right side: Feature Highlights + Value Highlights */}
+                                <div className="space-y-6">
+                                    {/* Feature Highlights Card */}
+                                    <div className="bg-white p-6 card-shadow-white">
+                                        <h3 className="text-2xl font-serif-display text-foreground mb-6">
+                                            Feature Highlights
+                                        </h3>
+                                        <div className="flex flex-col gap-2 text-left items-start">
+                                            {activeTabData.features.map((feature, idx) => (
+                                                <div key={idx} className="text-lg text-black relative inline-block hover:text-xl hover:before:animate-highlight-1 cursor-pointer transition-all duration-300" style={{ zIndex: 1 }}>
+                                                    {feature}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    {/* Value Highlights Card */}
+                                    <div className="bg-white p-6 card-shadow-white">
+                                        <h3 className="text-2xl font-serif-display text-foreground mb-6">
+                                            Value Highlights
+                                        </h3>
+                                        <div className="flex flex-col gap-2">
+                                            {activeTabData.highlights.map((highlight, idx) => (
+                                                <div key={idx} className="text-lg text-black relative inline-block hover:text-xl hover:before:animate-highlight-1 cursor-pointer transition-all duration-300" style={{ zIndex: 1 }}>
+                                                    {highlight}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 

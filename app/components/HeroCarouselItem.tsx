@@ -2,11 +2,13 @@
 
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import AnimatedMetric from './AnimatedMetric';
 
 interface HeroCarouselItemProps {
     image: string;
     title: string;
     subtitle?: string;
+    metricValue?: string;  // 新增：数值字段，如 "10X", "+50%", "+10%"
     description?: string;
     fullWidth?: boolean;
     isActive?: boolean;
@@ -27,6 +29,7 @@ export default function HeroCarouselItem({
     image,
     title,
     subtitle,
+    metricValue,
     description,
     fullWidth = false,
     isActive = false,
@@ -38,6 +41,7 @@ export default function HeroCarouselItem({
     const [shouldAnimateTitle, setShouldAnimateTitle] = useState(false);
     const [shouldAnimateSubtitle, setShouldAnimateSubtitle] = useState(false);
     const imageClass = fullWidth ? "w-full h-auto object-cover" : "rounded-lg w-auto h-106 mx-auto object-cover";
+
 
     useEffect(() => {
         if (isActive) {
@@ -118,11 +122,6 @@ export default function HeroCarouselItem({
                     })
                 }}
             >
-                {/* 装饰点 - 静态显示，跟随卡片一起动画 */}
-                <div className="flex items-center space-x-2 mb-2">
-                    <div className="w-3 h-3 bg-primary rounded-full"></div>
-                </div>
-
                 {/* 标题 - 带放大缩小动画 */}
                 <h3 className={`text-lg lg:text-3xl font-serif-display text-black whitespace-pre-line ${shouldAnimateTitle ? 'animate-pulse-once' : ''}`}>
                     {title}
@@ -173,9 +172,20 @@ export default function HeroCarouselItem({
                         })
                     }}
                 >
-                    <h4 className={`text-xl font-medium text-foreground/80 whitespace-nowrap transition-all duration-500 ${shouldAnimateSubtitle ? 'animate-subtitle-emphasis' : ''}`}>
-                        {subtitle}
-                    </h4>
+                    <div className="flex flex-col items-start gap-2">
+                        {/* 数值显示 - 大号粗体 */}
+                        {metricValue && (
+                            <AnimatedMetric
+                                value={metricValue}
+                                isActive={isVisible && shouldAnimateSubtitle}
+                            />
+                        )}
+
+                        {/* Subtitle文字 */}
+                        <h4 className={`text-xl font-medium text-foreground/80 whitespace-nowrap transition-all duration-500 font-serif-display ${shouldAnimateSubtitle ? 'animate-subtitle-emphasis' : ''}`}>
+                            {subtitle}
+                        </h4>
+                    </div>
                 </div>
             )}
         </div>
