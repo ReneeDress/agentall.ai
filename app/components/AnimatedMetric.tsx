@@ -9,25 +9,20 @@ interface AnimatedMetricProps {
 }
 
 export default function AnimatedMetric({ value, isActive, className = '' }: AnimatedMetricProps) {
-    const [displayValue, setDisplayValue] = useState(0);
     const numericValue = parseInt(value.replace(/[^0-9]/g, ''));
+    const [displayValue, setDisplayValue] = useState(0);
 
     useEffect(() => {
         if (!isActive) {
-            // 不活跃时保持当前值，不重置
-            return;
-        }
-
-        // 如果已经在目标值，直接显示
-        if (displayValue === numericValue) {
+            // 不活跃时保持当前值
             return;
         }
 
         // 开始增长动画
-        const duration = 1500;
-        const steps = 60;
+        const duration = numericValue * 50;
+        const steps = numericValue;
         const increment = numericValue / steps;
-        let current = displayValue; // 从当前值开始，而不是0
+        let current = 1;
 
         const timer = setInterval(() => {
             current += increment;
@@ -40,7 +35,7 @@ export default function AnimatedMetric({ value, isActive, className = '' }: Anim
         }, duration / steps);
 
         return () => clearInterval(timer);
-    }, [isActive, numericValue, displayValue]);
+    }, [isActive, numericValue]);
 
     // 格式化显示（添加X、%、+等符号）
     const formatValue = () => {

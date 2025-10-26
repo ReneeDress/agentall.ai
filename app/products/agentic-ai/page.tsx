@@ -14,6 +14,15 @@ import {
     faClipboard,
     faCalendarAlt
 } from '@fortawesome/free-regular-svg-icons';
+import {
+    faWarehouse,
+    faFileLines,
+    faSearch,
+    faBrain,
+    faFileInvoice,
+    faEnvelope,
+    faReceipt
+} from '@fortawesome/free-solid-svg-icons';
 import { getImagePath } from '@/app/utils/images';
 import Image from 'next/image';
 
@@ -21,86 +30,89 @@ import Image from 'next/image';
 const PIE_CHART_DATA = [
     {
         id: 1,
-        label: 'Sales Order Processing',
+        label: 'Sales Automation',
         percentage: 14.29,
         color: '#6b5be1',
-        icon: faFileAlt,
+        icon: faReceipt,
         bullets: [
-            'Automated sales order creation',
-            'Intelligent pricing calculation',
-            'Real-time inventory verification'
+            'Customer Email Monitoring',
+            'Sales Order Creation and Update',
+            'Sales Order Approval'
         ]
     },
     {
         id: 2,
-        label: 'Purchase Management',
+        label: 'Inventory Automation',
         percentage: 14.29,
         color: '#ec4899',
-        icon: faHandshake,
+        icon: faWarehouse,
         bullets: [
-            'Automatic vendor matching',
-            'Purchase request approval',
-            'Order tracking management'
+            'Goods Issue Planning and Pick Lists Creation',
+            'Creation of Outbound Delivery',
+            'Creation of Goods Receipt',
+            'Goods Receipt Monitoring and Reminding'
         ]
     },
     {
         id: 3,
-        label: 'Inventory Control',
+        label: 'Query & Insights',
         percentage: 14.29,
         color: '#f97316',
-        icon: faClipboard,
+        icon: faSearch,
         bullets: [
-            'Smart inventory alerts',
-            'Automated stock counting',
-            'Batch traceability'
+            'Nature Language Query of Data and Transactions',
+            'Dynamic Report and Dashboard Creation',
+            'Graphic Visualization Creation',
+            'Data Insights and Recommendations'
         ]
     },
     {
         id: 4,
-        label: 'Financial Reporting',
+        label: 'Document Processing',
         percentage: 14.29,
         color: '#8b5cf6',
-        icon: faChartBar,
+        icon: faFileLines,
         bullets: [
-            'Automated financial statements',
-            'Cost center analysis',
-            'Budget comparison'
+            'Unstructured Document (PDF, Image, DOC, XLS etc.) Extraction',
+            'Data Mapping and Validation',
+            'Creation of Business Transactions'
         ]
     },
     {
         id: 5,
-        label: 'Production Planning',
+        label: 'Knowledge Management',
         percentage: 14.29,
         color: '#10b981',
-        icon: faCalendarAlt,
+        icon: faBrain,
         bullets: [
-            'Automated MRP calculation',
-            'Capacity optimization',
-            'Intelligent work order scheduling'
+            'Enterprise Knowledge Management',
+            'Nature Language Query and Retrieval of Knowledge Documents'
         ]
     },
     {
         id: 6,
-        label: 'Customer Service',
+        label: 'Finance Automation',
         percentage: 14.29,
         color: '#06b6d4',
-        icon: faComments,
+        icon: faFileInvoice,
         bullets: [
-            '24/7 intelligent customer service',
-            'Automatic ticket assignment',
-            'Service quality tracking'
+            'E-invoice Integration',
+            'Supplier Invoice Processing',
+            'Customer Invoice Processing',
+            'PO/GR/IN Reconciliation'
         ]
     },
     {
         id: 7,
-        label: 'Analytics & Insights',
+        label: 'Purchasing Automation',
         percentage: 14.29,
         color: '#f59e0b',
-        icon: faChartBar,
+        icon: faHandshake,
         bullets: [
-            'Real-time KPI monitoring',
-            'Predictive analytics',
-            'Business intelligence reporting'
+            'Supplier Email Monitoring',
+            'Purchase Order Creation and Update',
+            'Purchase Requisition Creation and Update',
+            'Supplier Analysis and Recommendation'
         ]
     }
 ];
@@ -354,7 +366,7 @@ function PieChart() {
                                         }}
                                     />
                                     {/* Label text */}
-                                    {slice.label === 'Sales Order Processing' || slice.label === 'Analytics & Insights' || slice.label === 'Production Planning' || slice.label === 'Inventory Control' || slice.label === 'Purchase Management' || slice.label === 'Customer Service' ? (
+                                    {slice.label === 'Sales Automation' || slice.label === 'Query & Insights' || slice.label === 'Document Processing' || slice.label === 'Knowledge Management' || slice.label === 'Finance Automation' || slice.label === 'Purchasing Automation' || slice.label === 'Inventory Automation' ? (
                                         // Two-line text for specific labels
                                         <>
                                             <text
@@ -373,12 +385,13 @@ function PieChart() {
                                                     transition: 'all 0.3s ease'
                                                 }}
                                             >
-                                                {slice.label === 'Sales Order Processing' ? 'Sales Order' :
-                                                    slice.label === 'Analytics & Insights' ? 'Analytics &' :
-                                                        slice.label === 'Production Planning' ? 'Production' :
-                                                            slice.label === 'Inventory Control' ? 'Inventory' :
-                                                                slice.label === 'Purchase Management' ? 'Purchase' :
-                                                                    'Customer'}
+                                                {slice.label === 'Sales Automation' ? 'Sales' :
+                                                    slice.label === 'Query & Insights' ? 'Query &' :
+                                                        slice.label === 'Document Processing' ? 'Document' :
+                                                            slice.label === 'Knowledge Management' ? 'Knowledge' :
+                                                                slice.label === 'Finance Automation' ? 'Finance' :
+                                                                    slice.label === 'Purchasing Automation' ? 'Purchasing' :
+                                                                        'Inventory'}
                                             </text>
                                             <text
                                                 x={labelX}
@@ -396,12 +409,13 @@ function PieChart() {
                                                     transition: 'all 0.3s ease'
                                                 }}
                                             >
-                                                {slice.label === 'Sales Order Processing' ? 'Processing' :
-                                                    slice.label === 'Analytics & Insights' ? 'Insights' :
-                                                        slice.label === 'Production Planning' ? 'Planning' :
-                                                            slice.label === 'Inventory Control' ? 'Control' :
-                                                                slice.label === 'Purchase Management' ? 'Management' :
-                                                                    'Service'}
+                                                {slice.label === 'Sales Automation' ? 'Automation' :
+                                                    slice.label === 'Query & Insights' ? 'Insights' :
+                                                        slice.label === 'Document Processing' ? 'Processing' :
+                                                            slice.label === 'Knowledge Management' ? 'Management' :
+                                                                slice.label === 'Finance Automation' ? 'Automation' :
+                                                                    slice.label === 'Purchasing Automation' ? 'Automation' :
+                                                                        'Automation'}
                                             </text>
                                         </>
                                     ) : (
@@ -495,9 +509,9 @@ function PieChart() {
                                     </h4>
                                     <ul className="space-y-2">
                                         {displaySlice.bullets.map((bullet, idx) => (
-                                            <li key={idx} className="flex items-start text-base text-gray-700">
+                                            <li key={idx} className="flex items-start text-base text-gray-700 break-words">
                                                 <span className="mr-2 mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: displaySlice.color }}></span>
-                                                <span>{bullet}</span>
+                                                <span className="break-words">{bullet}</span>
                                             </li>
                                         ))}
                                     </ul>

@@ -177,7 +177,7 @@ export default function HeroCarouselItem({
                         {metricValue && (
                             <AnimatedMetric
                                 value={metricValue}
-                                isActive={isVisible && shouldAnimateSubtitle}
+                                isActive={shouldAnimateSubtitle}
                             />
                         )}
 

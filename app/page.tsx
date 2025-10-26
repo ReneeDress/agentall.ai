@@ -28,7 +28,7 @@ export default function Home() {
           isActive={true}
           animationDelay={0}
           cardPosition={{ x: -150, y: 100, anchor: 'center' }}
-          subtitlePosition={{ x: 220, y: -50, anchor: 'center' }}
+          subtitlePosition={{ x: 260, y: -50, anchor: 'center' }}
         />
       )
     },
