@@ -116,9 +116,10 @@ export default function TransformAnimation({ className = "" }: TransformAnimatio
                     <style>
                         {`
                             .layer-animation {
-                                animation: flyIn 1s ease-out forwards;
+                                animation: flyIn 2.5s ease-out forwards;
                                 opacity: 0;
-                                transform: translateY(-100px);
+                                transform-origin: center center;
+                                transform: translateY(-200px) scale(0.8);
                             }
                             
                             .layer1-animation {
@@ -126,25 +127,25 @@ export default function TransformAnimation({ className = "" }: TransformAnimatio
                             }
                             
                             .layer2-animation {
-                                animation-delay: 1.0s;
+                                animation-delay: 1.5s;
                             }
                             
                             .layer3-animation {
-                                animation-delay: 1.2s;
+                                animation-delay: 2.2s;
                             }
                             
                             .layer4-animation {
-                                animation-delay: 1.4s;
+                                animation-delay: 2.9s;
                             }
                             
                             .layer5-animation {
-                                animation-delay: 1.6s;
+                                animation-delay: 3.6s;
                             }
                             
                             @keyframes flyIn {
                                 to {
                                     opacity: 1;
-                                    transform: translateY(0);
+                                    transform: translateY(0) scale(1.0);
                                 }
                             }
                             
