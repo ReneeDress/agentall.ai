@@ -156,64 +156,18 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="w-full lg:flex-1 flex flex-col items-center space-y-4 lg:space-y-6">
-              <Carousel
-                items={[
-                  {
-                    id: 'digital-workers-1',
-                    content: (
-                      <div className="relative w-full h-full flex items-center justify-center">
-                        <Image
-                          src={IMAGES.DIGITAL_WORKERS_1}
-                          alt="Digital Workers Dashboard 1"
-                          width={0}
-                          height={0}
-                          sizes="100vw"
-                          className="rounded-lg h-full w-auto object-contain"
-                        />
-                      </div>
-                    )
-                  },
-                  {
-                    id: 'digital-workers-2',
-                    content: (
-                      <div className="relative w-full h-full flex items-center justify-center">
-                        <Image
-                          src={IMAGES.DIGITAL_WORKERS_2}
-                          alt="Digital Workers Dashboard 2"
-                          width={0}
-                          height={0}
-                          sizes="100vw"
-                          className="rounded-lg h-full w-auto object-contain"
-                        />
-                      </div>
-                    )
-                  },
-                  {
-                    id: 'digital-workers-3',
-                    content: (
-                      <div className="relative w-full h-full flex items-center justify-center">
-                        <Image
-                          src={IMAGES.DIGITAL_WORKERS_3}
-                          alt="Digital Workers Dashboard 3"
-                          width={0}
-                          height={0}
-                          sizes="100vw"
-                          className="rounded-lg h-full w-auto object-contain"
-                        />
-                      </div>
-                    )
-                  }
-                ]}
-                autoPlay={true}
-                autoPlayInterval={4000}
-                showNavigation={false}
-                showDots={false}
-                showProgressBar={true}
-                fullWidth={true}
-                infiniteScroll={false}
-                height="h-80 lg:h-140"
-              />
+            <div className="w-full lg:flex-1 flex flex-col items-center space-y-4 lg:space-y-6 p-6">
+              <video
+                src={IMAGES.DIGITAL_WORKERS_VIDEO}
+                autoPlay
+                loop
+                muted
+                playsInline
+                controls
+                className="card-shadow flex-1"
+              >
+                Your browser does not support the video tag.
+              </video>
               <span className="relative inline-block break-words lg:whitespace-nowrap group-hover:before:animate-highlight-1">Harness Power of AI for SAP Business One with built-in Agentic Layer</span>
 
             </div>
@@ -310,14 +264,16 @@ export default function Home() {
                       id: 'ux-1',
                       content: (
                         <div className="relative w-full h-full flex items-center justify-center">
-                          <Image
-                            src={IMAGES.UX_IMAGE_1}
-                            alt="User Experience Interface 1"
-                            width={0}
-                            height={0}
-                            sizes="100vw"
-                            className="rounded-2xl h-[722px] w-auto object-contain"
-                          />
+                          <video
+                            src={IMAGES.UX_VIDEO_1}
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            className="rounded-2xl h-[800px] w-auto object-contain"
+                          >
+                            Your browser does not support the video tag.
+                          </video>
                         </div>
                       )
                     },
@@ -326,7 +282,7 @@ export default function Home() {
                       content: (
                         <div className="relative w-full h-full flex items-center justify-center">
                           <video
-                            src={IMAGES.UX_VIDEO}
+                            src={IMAGES.UX_VIDEO_2}
                             autoPlay
                             loop
                             muted
@@ -355,7 +311,7 @@ export default function Home() {
                     }
                   ]}
                   autoPlay={true}
-                  autoPlayInterval={6000}
+                  autoPlayInterval={8000}
                   showNavigation={false}
                   showDots={false}
                   showProgressBar={true}
