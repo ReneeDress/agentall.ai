@@ -1,10 +1,16 @@
+'use client';
+
+import { useState } from 'react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
+import DemoForm from '../components/DemoForm';
 
 export default function Pricing() {
+    const [isDemoFormOpen, setIsDemoFormOpen] = useState(false);
+
     return (
         <div className="min-h-screen bg-white">
-            <Navigation currentPage="pricing" />
+            <Navigation currentPage="pricing" onDemoClick={() => setIsDemoFormOpen(true)} />
 
             {/* Hero Section */}
             <section className="min-h-screen flex items-center justify-center pt-0 relative bg-white">
@@ -32,7 +38,7 @@ export default function Pricing() {
                             <div className="bg-white/80 backdrop-blur-sm p-6 lg:p-8 border border-pink-300/30 card-shadow-small transition-all duration-500 hover:bg-white/90 hover:scale-105 hover:shadow-2xl hover:shadow-pink-500/20 cursor-pointer group">
                                 <div className="flex flex-col lg:flex-row justify-between items-end gap-4">
                                     <div className="space-y-4">
-                                        <h3 className="text-2xl lg:text-4xl font-serif-display text-black">
+                                        <h3 className="text-lg text-black">
                                             10 users,<br />
                                             10 million tokens,<br />
                                             <span className="text-pink-500">12 months</span>
@@ -108,9 +114,9 @@ export default function Pricing() {
                             <div className="bg-white/80 backdrop-blur-sm p-6 lg:p-8 border border-orange-300/30 card-shadow-small transition-all duration-500 hover:bg-white/90 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/20 cursor-pointer group">
                                 <div className="flex flex-col lg:flex-row justify-between items-end gap-4">
                                     <div className="space-y-4">
-                                        <h3 className="text-2xl lg:text-4xl font-serif-display text-black">
+                                        <h3 className="text-lg text-black">
                                             user and agent<br />
-                                            <span className="text-xl text-gray-600 mt-[16px]"># limit to B1 agent subscription</span><br />
+                                            <span className="text-sm text-gray-600 mt-[16px]"># limit to B1 agent subscription</span><br />
                                             <span className="text-orange-500">12 months</span>
                                         </h3>
                                         <p className="text-lg text-black">B1 Agent Subscription</p>
@@ -129,6 +135,12 @@ export default function Pricing() {
             </section>
 
             <Footer />
+
+            {/* Demo Form Modal */}
+            <DemoForm
+                isOpen={isDemoFormOpen}
+                onClose={() => setIsDemoFormOpen(false)}
+            />
         </div>
     );
 }

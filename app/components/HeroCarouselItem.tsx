@@ -36,6 +36,7 @@ export default function HeroCarouselItem({
 }: HeroCarouselItemProps) {
     const [isVisible, setIsVisible] = useState(false);
     const [shouldAnimateTitle, setShouldAnimateTitle] = useState(false);
+    const [shouldAnimateSubtitle, setShouldAnimateSubtitle] = useState(false);
     const imageClass = fullWidth ? "w-full h-auto object-cover" : "rounded-lg w-auto h-106 mx-auto object-cover";
 
     useEffect(() => {
@@ -43,6 +44,7 @@ export default function HeroCarouselItem({
             // 重置状态
             setIsVisible(false);
             setShouldAnimateTitle(false);
+            setShouldAnimateSubtitle(false);
 
             // 延迟显示，创建分阶段动画效果
             const timer = setTimeout(() => {
@@ -55,13 +57,21 @@ export default function HeroCarouselItem({
                 setShouldAnimateTitle(true);
             }, animationDelay + 1300);
 
+            // 在 subtitle 完全显示后触发强调动画
+            // subtitle 延迟 = animationDelay + 500ms + transitionDuration(1000ms)
+            const subtitleAnimationTimer = setTimeout(() => {
+                setShouldAnimateSubtitle(true);
+            }, animationDelay + 1500);
+
             return () => {
                 clearTimeout(timer);
                 clearTimeout(titleAnimationTimer);
+                clearTimeout(subtitleAnimationTimer);
             };
         } else {
             setIsVisible(false);
             setShouldAnimateTitle(false);
+            setShouldAnimateSubtitle(false);
         }
     }, [isActive, animationDelay]);
 
@@ -77,7 +87,7 @@ export default function HeroCarouselItem({
                     : 'opacity-0 translate-x-8'
                     }`}
             />
-            <div className={`absolute bg-white/50 backdrop-blur-sm rounded-lg p-4 dashed-border max-w-md w-sm transition-all duration-1000 ease-out ${isVisible
+            <div className={`absolute bg-white/50 backdrop-blur-sm rounded-lg p-3 lg:p-4 dashed-border max-w-xs lg:max-w-md w-sm transition-all duration-1000 ease-out ${isVisible
                 ? 'opacity-100 translate-x-0'
                 : 'opacity-0 translate-x-12'
                 }`}
@@ -114,7 +124,7 @@ export default function HeroCarouselItem({
                 </div>
 
                 {/* 标题 - 带放大缩小动画 */}
-                <h3 className={`text-3xl font-serif-display text-black whitespace-pre-line ${shouldAnimateTitle ? 'animate-pulse-once' : ''}`}>
+                <h3 className={`text-lg lg:text-3xl font-serif-display text-black whitespace-pre-line ${shouldAnimateTitle ? 'animate-pulse-once' : ''}`}>
                     {title}
                 </h3>
 
@@ -128,7 +138,7 @@ export default function HeroCarouselItem({
 
             {/* 副标题 - 相对于外部容器独立定位，作为次级信息展示 */}
             {subtitle && (
-                <div className={`absolute transition-all duration-1000 ease-out ${isVisible
+                <div className={`absolute hidden lg:block transition-all duration-1000 ease-out ${isVisible
                     ? 'opacity-100 translate-x-0'
                     : 'opacity-0 translate-x-12'
                     }`}
@@ -163,7 +173,7 @@ export default function HeroCarouselItem({
                         })
                     }}
                 >
-                    <h4 className="text-xl font-medium text-foreground/80 whitespace-nowrap">
+                    <h4 className={`text-xl font-medium text-foreground/80 whitespace-nowrap transition-all duration-500 ${shouldAnimateSubtitle ? 'animate-subtitle-emphasis' : ''}`}>
                         {subtitle}
                     </h4>
                 </div>
