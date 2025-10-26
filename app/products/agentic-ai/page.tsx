@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Navigation from '../../components/Navigation';
 import Footer from '../../components/Footer';
 import DemoForm from '../../components/DemoForm';
+import GradientDivider from '../../components/GradientDivider';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faHandshake,
@@ -13,6 +14,8 @@ import {
     faClipboard,
     faCalendarAlt
 } from '@fortawesome/free-regular-svg-icons';
+import { getImagePath } from '@/app/utils/images';
+import Image from 'next/image';
 
 // Pie Chart Data
 const PIE_CHART_DATA = [
@@ -107,26 +110,27 @@ const TABS_DATA = [
     {
         id: 'document-extraction',
         title: 'Document Extraction',
-        video: '/images/ux-video-2.mov',
+        video: '/videos/1_Process_Automation.mp4',
+        layout: 'vertical',
         features: [
-            'Extraction of data in any Language from any document format: PDF, excel, image, scanned paper etc',
-            'Automatic mapping and document creation in SAP Business One: sales order, goods receipt, supplier invoice etc',
-            'Able to handle complex files even beyond DTW limits',
-            'Able to flexibly configure mapping rules and adapt for various document formats'
+            'Extraction of data in <strong>any Language</strong> from <strong>any document format</strong>: PDF, excel, image, scanned paper etc',
+            '<strong>Automatic mapping</strong> and <strong>document creation</strong> in SAP Business One: sales order, goods receipt, supplier invoice etc',
+            'Able to <strong>handle complex files</strong> even beyond DTW limits',
+            'Able to <strong>flexibly configure mapping rules</strong> and adapt for various document formats'
         ],
         kpis: [
             {
-                label: 'Significant <strong>multiline, complex order processing efficiency gains</strong>', value: null
+                label: ['Harmonize User Experience', 'Improve Customer Satisfaction'], value: null
             },
             {
-                label: 'Increase in efficiency by more than 10 times compared to labor',
-                value: ['1-2 Min', '10x Up'],
-                color: '#10b981'
+                label: '<strong>1 to 2 minutes</strong> for automatic document resolution',
+                value: ['1-2', 'Minute'],
+                color: '#6b5be1'
             },
             {
-                label: 'Individual sales staff can save about <strong>450 hours</strong> per year (<em>56 person days</em>)',
-                value: ['450', 'Hours'],
-                color: '#f59e0b'
+                label: 'Increase in efficiency by more than <strong>10 times</strong> compared to manual efforts',
+                value: ['10x', 'Up'],
+                color: '#6b5be1'
             },
 
         ],
@@ -136,22 +140,62 @@ const TABS_DATA = [
         ]
     },
     {
-        id: 'nlq',
-        title: 'ChatBI',
-        video: '/images/ux-video-2.mov',
+        id: 'process-automation',
+        title: 'Process Automation',
+        video: '/videos/2_1_Analytics&Recommendation.mp4',
+        layout: 'vertical',
         features: [
-            'AI Agent creates reports with visualization dynamically in 20–35s vs. 2–4h manually, freeing implementation resources',
-            'No SQL/HANA knowledge needed—business users query data via natural language',
-            'Reasoning and deep research to provide insights, root cause analysis and recommendation plans from business data'
+            '<strong>7x24</strong> monitoring of business data and proactively push notification or <strong>trigger actions automatically</strong>',
+            'Automatic <strong>360 deep research</strong> into business data to recommend optimizing plans',
+            '<strong>Role based authorization control</strong> and data access to ensure security',
+            '<strong>Flexible customization</strong> of agents and workflow to adapt for your own needs'
         ],
         kpis: [
             {
-                label: 'Significant efficiency gains in <strong>underlying reporting queries</strong>', value: null
+                label: ['Productivity Gain', 'Performance Optimization'], value: null
             },
             {
-                label: 'Word query takes only 30 seconds<br />99%+ efficiency improvement compared to traditional manual writing', value: ['30 s', '99 % Up'], color: '#06b6d4'
+                label: 'Manual efforts saved by automatic process triggered by agents',
+                value: ['50%'],
+                color: '#6b5be1'
             },
-            { label: 'Daily use by multiple departments, saving <strong>17,420 hours</strong> per year (<em>2178 person days</em>)', value: ['17,420', 'Hours'], color: '#8b5cf6' }
+            {
+                label: 'Overall performance improvement from data driven decisions recommended by agents',
+                value: ['10%'],
+                color: '#6b5be1'
+            },
+
+        ],
+        highlights: [
+            'Automated business process to release employees from repetitive manual transactions and gain productivity',
+            'Best practice based deep research to optimize business performance like never before',
+        ]
+    },
+    {
+        id: 'nlq',
+        title: 'ChatBI',
+        video: '/videos/2_2_Analytics&Recommendation.mp4',
+        layout: 'vertical',
+        features: [
+            'AI Agent creates reports with visualization dynamically in <strong>20–35s</strong> vs. <strong>2–4h</strong> manually, freeing implementation resources',
+            '<strong>No SQL/HANA knowledge needed</strong>—business users query data via natural language',
+            'Reasoning and deep research to <strong>provide insights, root cause analysis and recommendation plans</strong> from business data'
+        ],
+        kpis: [
+            {
+                label: ['Multiply Effectiveness', 'Time Saving and Cost Reduction'], value: null
+            },
+            {
+                label: 'To generate visualized reports dynamically',
+                value: ['30', 'Seconds'],
+                color: '#6b5be1'
+            },
+            {
+                label: 'Increase in efficiency by more than <strong>10 times</strong> compared to manual efforts',
+                value: ['10x', 'Up'],
+                color: '#6b5be1'
+            },
+
         ],
         highlights: [
             'Query your business data anywhere anytime for better transparency and control',
@@ -159,8 +203,39 @@ const TABS_DATA = [
         ]
     },
     {
+        id: 'whatsapp',
+        title: 'WhatsApp Integration',
+        video: '/videos/5_WhatsApp_Old.mp4',
+        features: [
+            'AI agents as contacts allowing nature language interaction',
+            'Process automation and ChatBI functionalities supported',
+            'Identity recognition and role-based access control to ensure security'
+        ],
+        kpis: [
+            {
+                label: ['Harmonize User Experience', 'Improve Customer Satisfaction'], value: null
+            },
+            {
+                label: '1 to 2 minutes for automatic customer creation from text input',
+                value: ['1-2', 'Minute'],
+                color: '#6b5be1'
+            },
+            {
+                label: 'To query data and generate visualized reports dynamically on mobile',
+                value: ['30', 'Seconds'],
+                color: '#6b5be1'
+            },
+
+        ],
+        highlights: [
+            'Harmonize user experience on demand to make life easier for business users',
+            'Accelerated response to customer needs and improve customer satisfaction',
+        ]
+    },
+    {
         id: 'ekm',
         title: 'Enterprise Knowledge Management',
+        layout: 'vertical',
         features: [
             'Extraction of Data in Any Language from Any Document Format: PDF, excel, image, scanned paper etc',
             'Automatic Mapping and Creation of Structured Document in SAP Business One: sales order, goods receipt, supplier invoice etc',
@@ -174,55 +249,6 @@ const TABS_DATA = [
         highlights: [
             'Auto-parsing improves accuracy and avoids manual errors.',
             'No training required to process various document format, reducing maintenance costs.',
-        ]
-    },
-    {
-        id: 'whatsapp',
-        title: 'WhatsApp Integration',
-        video: '/images/ux-video-2.mov',
-        features: [
-            'AI agents as contacts allowing nature language interaction',
-            'Process automation and ChatBI functionalities supported',
-            'Identity recognition and role-based access control to ensure security'
-        ],
-        kpis: [
-            { label: 'Customer Satisfaction', value: '4.8/5', color: '#10b981' },
-            { label: 'Response Speed', value: 'Instant', color: '#f59e0b' }
-        ],
-        highlights: [
-            'Harmonize user experience on demand to make life easier for business users',
-            'Accelerated response to customer needs and improve customer satisfaction',
-        ]
-    },
-    {
-        id: 'process-automation',
-        title: 'Process Automation',
-        video: '/images/ux-video-2.mov',
-        features: [
-            '7x24 monitoring of business data and proactively push notification or trigger actions automatically',
-            'Automatic 360 deep research into business data to recommend optimizing plans',
-            'Role based authorization control and data access to ensure security',
-            'Flexible customization of agents and workflow to adapt for your own needs'
-        ],
-        kpis: [
-            {
-                label: 'Significant <strong>multiline, complex order processing efficiency gains</strong>', value: null
-            },
-            {
-                label: 'Increase in efficiency by more than 10 times compared to labor',
-                value: ['1-2 Min', '10x Up'],
-                color: '#10b981'
-            },
-            {
-                label: 'Individual sales staff can save about <strong>450 hours</strong> per year (<em>56 person days</em>)',
-                value: ['450', 'Hours'],
-                color: '#f59e0b'
-            },
-
-        ],
-        highlights: [
-            'Automated business process to release employees from repetitive manual transactions and gain productivity',
-            'Best practice based deep research to optimize business performance like never before',
         ]
     }
 ];
@@ -579,8 +605,11 @@ export default function AgenticAIProduct() {
                 </div>
             </section>
 
+            {/* Gradient Divider */}
+            <GradientDivider />
+
             {/* Tabs Section */}
-            <section className="py-20 px-8 bg-white/50">
+            <section className="py-8 px-8 bg-white/50">
                 <div className="max-w-7xl mx-auto">
                     {/* Tab navigation */}
                     <div className="flex justify-center mb-12">
@@ -628,111 +657,179 @@ export default function AgenticAIProduct() {
 
                     {/* Tab content */}
                     {activeTabData && (
-                        <div className="space-y-12">
-                            {/* First row: Video and Value Highlights */}
-                            <div className={`grid gap-8 items-start ${activeTabData.video ? 'lg:grid-cols-2' : 'lg:grid-cols-1'}`}>
-                                {/* Left side: Video - only show if video exists */}
-                                {activeTabData.video && (
-                                    <div className="relative aspect-video bg-gray-100 rounded-lg overflow-hidden shadow-xl">
-                                        <video
-                                            key={activeTab}
-                                            className="w-full h-full object-cover"
-                                            autoPlay
-                                            loop
-                                            muted
-                                            playsInline
-                                        >
-                                            <source src={activeTabData.video} type="video/mp4" />
-                                            Your browser does not support video playback
-                                        </video>
-                                    </div>
-                                )}
-
-                                {/* Right side: Feature Highlights + Value Highlights */}
-                                <div className="space-y-6">
-                                    {/* Feature Highlights Card */}
-                                    <div className="bg-white p-6 card-shadow-white">
-                                        <h3 className="text-2xl font-serif-display text-foreground mb-6">
-                                            Feature Highlights
-                                        </h3>
-                                        <div className="flex flex-col gap-2 text-left items-start">
-                                            {activeTabData.features.map((feature, idx) => (
-                                                <div key={idx} className="text-lg text-black relative inline-block hover:text-xl hover:before:animate-highlight-1 cursor-pointer transition-all duration-300" style={{ zIndex: 1 }}>
-                                                    {feature}
-                                                </div>
-                                            ))}
+                        <div className="space-y-8">
+                            {activeTabData.layout === 'vertical' ? (
+                                <div className={`flex flex-col items-center justify-center gap-8`}>
+                                    {activeTabData.video && (
+                                        <div className="relative max-w-3xl bg-gray-100 overflow-hidden">
+                                            <video
+                                                key={activeTab}
+                                                className="w-full h-full min-h-120 object-contain"
+                                                autoPlay
+                                                loop
+                                                muted
+                                                controls
+                                            >
+                                                <source src={getImagePath(activeTabData.video)} type="video/mp4" />
+                                                Your browser does not support video playback
+                                            </video>
                                         </div>
-                                    </div>
+                                    )}
 
-                                    {/* Value Highlights Card */}
-                                    <div className="bg-white p-6 card-shadow-white">
-                                        <h3 className="text-2xl font-serif-display text-foreground mb-6">
-                                            Value Highlights
-                                        </h3>
-                                        <div className="flex flex-col gap-2">
-                                            {activeTabData.highlights.map((highlight, idx) => (
-                                                <div key={idx} className="text-lg text-black relative inline-block hover:text-xl hover:before:animate-highlight-1 cursor-pointer transition-all duration-300" style={{ zIndex: 1 }}>
-                                                    {highlight}
-                                                </div>
-                                            ))}
+                                    <div className='flex flex-row gap-8 w-full'>
+                                        {/* Feature Highlights Card */}
+                                        <div className="w-full bg-white p-6 card-shadow-white">
+                                            <h3 className="text-2xl font-serif-display text-foreground mb-6">
+                                                Feature Highlights
+                                            </h3>
+                                            <div className="flex flex-col gap-2 text-left items-start">
+                                                {activeTabData.features.map((feature, idx) => (
+                                                    <div key={idx} className="text-lg text-black relative inline-block hover:text-xl hover:before:animate-highlight-1 cursor-pointer transition-all duration-300" style={{ zIndex: 1 }} dangerouslySetInnerHTML={{ __html: feature }} />
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        {/* Value Highlights Card */}
+                                        <div className="w-full bg-white p-6 card-shadow-white">
+                                            <h3 className="text-2xl font-serif-display text-foreground mb-6">
+                                                Value Highlights
+                                            </h3>
+                                            <div className="flex flex-col gap-2">
+                                                {activeTabData.highlights.map((highlight, idx) => (
+                                                    <div key={idx} className="text-lg text-black relative inline-block hover:text-xl hover:before:animate-highlight-1 cursor-pointer transition-all duration-300" style={{ zIndex: 1 }}>
+                                                        {highlight}
+                                                    </div>
+                                                ))}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            ) : (
+                                <div className={`grid gap-8 items-center ${activeTabData.video ? 'lg:grid-cols-2' : 'lg:grid-cols-1'}`}>
+                                    {/* Left side: Video - only show if video exists */}
+                                    {activeTabData.video && (
+                                        <div className="relative overflow-hidden">
+                                            <video
+                                                key={activeTab}
+                                                className="w-full max-w-sm mx-auto h-full object-contain rounded-lg"
+                                                autoPlay
+                                                loop
+                                                muted
+                                                controls
+                                            >
+                                                <source src={getImagePath(activeTabData.video)} type="video/mp4" />
+                                                Your browser does not support video playback
+                                            </video>
+                                        </div>
+                                    )}
+
+                                    {/* Right side: Feature Highlights + Value Highlights */}
+                                    <div className="space-y-6">
+                                        {/* Feature Highlights Card */}
+                                        <div className="bg-white p-6 card-shadow-white">
+                                            <h3 className="text-2xl font-serif-display text-foreground mb-6">
+                                                Feature Highlights
+                                            </h3>
+                                            <div className="flex flex-col gap-2 text-left items-start">
+                                                {activeTabData.features.map((feature, idx) => (
+                                                    <div key={idx} className="text-lg text-black relative inline-block hover:text-xl hover:before:animate-highlight-1 cursor-pointer transition-all duration-300" style={{ zIndex: 1 }} dangerouslySetInnerHTML={{ __html: feature }} />
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        {/* Value Highlights Card */}
+                                        <div className="bg-white p-6 card-shadow-white">
+                                            <h3 className="text-2xl font-serif-display text-foreground mb-6">
+                                                Value Highlights
+                                            </h3>
+                                            <div className="flex flex-col gap-2">
+                                                {activeTabData.highlights.map((highlight, idx) => (
+                                                    <div key={idx} className="text-lg text-black relative inline-block hover:text-xl hover:before:animate-highlight-1 cursor-pointer transition-all duration-300" style={{ zIndex: 1 }}>
+                                                        {highlight}
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
 
                             {/* Second row: KPI Metrics */}
                             <div className="grid grid-cols-3 gap-6">
-                                {activeTabData.kpis.map((kpi, idx) => (
-                                    <div
-                                        key={idx}
-                                        style={{ height: '200px' }}
-                                    >
-                                        {kpi.value ? (
-                                            // Has value - Flip card
-                                            <div className="group perspective-1000 h-full">
-                                                <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
-                                                    {/* Front side - Data metric */}
-                                                    <div className="absolute inset-0 w-full h-full backface-hidden bg-white card-shadow-white flex items-center justify-center">
-                                                        <div className="text-center">
+                                {activeTabData.kpis.map((kpi, idx) => {
+                                    const isLabelArray = Array.isArray(kpi.label);
+
+                                    return (
+                                        <div
+                                            key={idx}
+                                            style={{ height: '200px' }}
+                                        >
+                                            {kpi.value ? (
+                                                // Has value - Flip card
+                                                <div className="group perspective-1000 h-full">
+                                                    <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+                                                        {/* Front side - Data metric */}
+                                                        <div className="absolute inset-0 w-full h-full backface-hidden bg-white card-shadow-white flex items-center justify-center">
+                                                            <div className="text-center">
+                                                                <div
+                                                                    className="text-5xl lg:text-6xl font-serif-display"
+                                                                    style={{ color: kpi.color || '#6b5be1' }}
+                                                                >
+                                                                    {Array.isArray(kpi.value) ? (
+                                                                        <div className="space-y-2">
+                                                                            {kpi.value.map((item, itemIdx) => (
+                                                                                <div key={itemIdx} className="text-4xl lg:text-5xl">
+                                                                                    {item}
+                                                                                </div>
+                                                                            ))}
+                                                                        </div>
+                                                                    ) : (
+                                                                        kpi.value
+                                                                    )}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        {/* Back side - Description */}
+                                                        <div className="absolute inset-0 w-full h-full backface-hidden bg-white card-shadow-white rotate-y-180 flex items-center justify-center p-6">
                                                             <div
-                                                                className="text-5xl lg:text-6xl font-serif-display"
-                                                                style={{ color: kpi.color || '#6b5be1' }}
-                                                            >
-                                                                {Array.isArray(kpi.value) ? (
-                                                                    <div className="space-y-2">
-                                                                        {kpi.value.map((item, itemIdx) => (
-                                                                            <div key={itemIdx} className="text-4xl lg:text-5xl">
-                                                                                {item}
-                                                                            </div>
-                                                                        ))}
-                                                                    </div>
-                                                                ) : (
-                                                                    kpi.value
-                                                                )}
+                                                                className="text-lg text-gray-600 leading-relaxed text-center"
+                                                                dangerouslySetInnerHTML={{ __html: kpi.label }}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            ) : isLabelArray ? (
+                                                // No value but label is array - Flip card with label[0] on front, label[1] on back
+                                                <div className="group perspective-1000 h-full">
+                                                    <div className="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d group-hover:rotate-y-180">
+                                                        {/* Front side - label[0] */}
+                                                        <div className="absolute inset-0 w-full h-full backface-hidden bg-white card-shadow-white flex items-center justify-center p-4">
+                                                            <div className="text-3xl font-serif-display text-gray-600 leading-relaxed text-center">
+                                                                {kpi.label[0]}
+                                                            </div>
+                                                        </div>
+
+                                                        {/* Back side - label[1] */}
+                                                        <div className="absolute inset-0 w-full h-full backface-hidden bg-white card-shadow-white rotate-y-180 flex items-center justify-center p-4">
+                                                            <div className="text-3xl font-serif-display text-gray-600 leading-relaxed text-center">
+                                                                {kpi.label[1]}
                                                             </div>
                                                         </div>
                                                     </div>
-
-                                                    {/* Back side - Description */}
-                                                    <div className="absolute inset-0 w-full h-full backface-hidden bg-white card-shadow-white rotate-y-180 flex items-center justify-center p-6">
-                                                        <div
-                                                            className="text-lg text-gray-600 leading-relaxed text-center"
-                                                            dangerouslySetInnerHTML={{ __html: kpi.label }}
-                                                        />
-                                                    </div>
                                                 </div>
-                                            </div>
-                                        ) : (
-                                            // No value - Simple card with bounce animation
-                                            <div className="bounce-hover bg-white card-shadow-white h-full flex items-center justify-center p-6">
-                                                <div
-                                                    className="text-lg text-gray-600 leading-relaxed text-center"
-                                                    dangerouslySetInnerHTML={{ __html: kpi.label }}
-                                                />
-                                            </div>
-                                        )}
-                                    </div>
-                                ))}
+                                            ) : (
+                                                // No value and label is string - Simple card with bounce animation
+                                                <div className="bounce-hover bg-white card-shadow-white h-full flex items-center justify-center p-4">
+                                                    <div
+                                                        className="text-lg text-gray-600 leading-relaxed text-center"
+                                                        dangerouslySetInnerHTML={{ __html: kpi.label }}
+                                                    />
+                                                </div>
+                                            )}
+                                        </div>
+                                    );
+                                })}
                             </div>
                         </div>
                     )}
@@ -743,56 +840,72 @@ export default function AgenticAIProduct() {
             <section className="py-20 px-8 bg-white/50">
                 <div className="max-w-7xl mx-auto">
                     <h3 className="section-title font-serif-display text-foreground mb-12 text-center">
-                        Safe, Compliant, Secure Your Business.
+                        Safe, Secure, Built for Business.
                     </h3>
 
                     {/* 3 columns with rectangular cards - Security features */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {/* Card 1: Secure & Compliant */}
-                        <div className="bg-white card-shadow-white p-8">
-                            <h4 className="text-4xl font-serif-display text-foreground mb-8 leading-tight">
-                                Secure &<br /> Compliant
-                            </h4>
-                            <div className="space-y-4 text-left">
-                                <p className="text-lg text-gray-600">
-                                    Your data stays within SAP Business One
-                                </p>
-                                <p className="text-lg text-gray-600">
-                                    Role based authorization control
-                                </p>
-                                <p className="text-lg text-gray-600">
-                                    Data Privacy Protection Compliance
-                                </p>
+                        <div className='bg-white card-shadow-white flex flex-col'>
+                            <div className='relative w-full aspect-[67/48]'>
+                                <Image src={getImagePath("/images/agentic-ai/secure.png")} alt="Security" fill />
+                            </div>
+                            <div className="p-8">
+                                <h4 className="text-4xl font-serif-display text-foreground mb-8 leading-tight">
+                                    Secure &<br /> Compliant
+                                </h4>
+                                <div className="space-y-4 text-left">
+                                    <p className="text-lg text-gray-600">
+                                        Your data stays within SAP Business One
+                                    </p>
+                                    <p className="text-lg text-gray-600">
+                                        Role based authorization control
+                                    </p>
+                                    <p className="text-lg text-gray-600">
+                                        Data Privacy Protection Compliance
+                                    </p>
+                                </div>
                             </div>
                         </div>
 
+
                         {/* Card 2: Accurate & Reliable */}
-                        <div className="bg-white card-shadow-white p-8">
-                            <h4 className="text-4xl font-serif-display text-foreground mb-8 leading-tight">
-                                Accurate &<br /> Reliable
-                            </h4>
-                            <div className="space-y-4 text-left">
-                                <p className="text-lg text-gray-600">
-                                    Connect to on-premise or Cloud SAP Business One Database
-                                </p>
-                                <p className="text-lg text-gray-600">
-                                    Choose your preferrable LLM
-                                </p>
+                        <div className='bg-white card-shadow-white flex flex-col'>
+                            <div className='relative w-full aspect-[67/48]'>
+                                <Image src={getImagePath("/images/agentic-ai/accurate.png")} alt="Accurate" fill />
+                            </div>
+                            <div className="p-8">
+                                <h4 className="text-4xl font-serif-display text-foreground mb-8 leading-tight">
+                                    Accurate &<br /> Reliable
+                                </h4>
+                                <div className="space-y-4 text-left">
+                                    <p className="text-lg text-gray-600">
+                                        Connect to on-premise or Cloud SAP Business One Database
+                                    </p>
+                                    <p className="text-lg text-gray-600">
+                                        Choose your preferrable LLM
+                                    </p>
+                                </div>
                             </div>
                         </div>
 
                         {/* Card 3: Flexible and Extensible */}
-                        <div className="bg-white card-shadow-white p-8">
-                            <h4 className="text-4xl font-serif-display text-foreground mb-8 leading-tight">
-                                Flexible &<br />Extensible
-                            </h4>
-                            <div className="space-y-4 text-left">
-                                <p className="text-lg text-gray-600">
-                                    Out-of-box adoption
-                                </p>
-                                <p className="text-lg text-gray-600">
-                                    Customize and integrate with add-ons or 3rd party application with Enterprise AI Agent Build Platform
-                                </p>
+                        <div className='bg-white card-shadow-white flex flex-col'>
+                            <div className='relative w-full aspect-[67/48]'>
+                                <Image src={getImagePath("/images/agentic-ai/extensible.png")} alt="Extensible" fill />
+                            </div>
+                            <div className="bg-white card-shadow-white p-8">
+                                <h4 className="text-4xl font-serif-display text-foreground mb-8 leading-tight">
+                                    Flexible &<br />Extensible
+                                </h4>
+                                <div className="space-y-4 text-left">
+                                    <p className="text-lg text-gray-600">
+                                        Out-of-box adoption
+                                    </p>
+                                    <p className="text-lg text-gray-600">
+                                        Customize and integrate with add-ons or 3rd party application with Enterprise AI Agent Build Platform
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>

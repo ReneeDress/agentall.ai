@@ -182,7 +182,7 @@ export default function HeroCarouselItem({
                         )}
 
                         {/* Subtitle文字 */}
-                        <h4 className={`text-xl font-medium text-foreground/80 whitespace-nowrap transition-all duration-500 font-serif-display ${shouldAnimateSubtitle ? 'animate-subtitle-emphasis' : ''}`}>
+                        <h4 className={`text-2xl font-medium text-foreground/80 whitespace-nowrap transition-all duration-500 font-serif-display ${shouldAnimateSubtitle ? 'animate-subtitle-emphasis' : ''}`}>
                             {subtitle}
                         </h4>
                     </div>
