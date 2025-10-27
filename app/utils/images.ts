@@ -41,4 +41,7 @@ export const IMAGES = {
 
   // Transform image
   TRANSFORM_IMAGE: getImagePath("/images/transform-image.png"),
+
+  // Company video
+  COMPANY_VIDEO: getImagePath("/videos/company.mp4"),
 } as const;

@@ -94,14 +94,14 @@ export default function Navigation({ currentPage, onDemoClick }: NavigationProps
                             )}
                         </div>
                         <Link
-                            href="/"
+                            href="/resources"
                             className={`relative inline-block hover:before:animate-highlight-nav cursor-pointer px-2 ${currentPage === 'resources' ? 'text-primary font-semibold' : 'text-black'
                                 }`}
                         >
                             Resources
                         </Link>
                         <Link
-                            href="/"
+                            href="/company"
                             className={`relative inline-block hover:before:animate-highlight-nav cursor-pointer px-2 ${currentPage === 'company' ? 'text-primary font-semibold' : 'text-black'
                                 }`}
                         >
@@ -154,7 +154,7 @@ export default function Navigation({ currentPage, onDemoClick }: NavigationProps
                         <Link href="/" className="text-xl text-black" onClick={() => setShowMobileMenu(false)}>
                             Resources
                         </Link>
-                        <Link href="/" className="text-xl text-black" onClick={() => setShowMobileMenu(false)}>
+                        <Link href="/company" className="text-xl text-black" onClick={() => setShowMobileMenu(false)}>
                             Company
                         </Link>
                         <Link href="/pricing" className="text-xl text-black" onClick={() => setShowMobileMenu(false)}>

@@ -47,7 +47,7 @@ export default function Footer() {
                     <div className="space-y-4">
                         <h4 className="text-lg font-semibold">Company</h4>
                         <ul className="space-y-2 text-sm text-gray-300">
-                            <li><button className="relative inline-block hover:before:animate-highlight-footer cursor-pointer text-left">About Us</button></li>
+                            <li><a href="/company" className="relative inline-block hover:before:animate-highlight-footer cursor-pointer text-left">About Us</a></li>
                             <li><button className="relative inline-block hover:before:animate-highlight-footer cursor-pointer text-left">Our Mission</button></li>
                             <li><button className="relative inline-block hover:before:animate-highlight-footer cursor-pointer text-left">Our Team</button></li>
                             <li><button className="relative inline-block hover:before:animate-highlight-footer cursor-pointer text-left">The LinkedWorld</button></li>
