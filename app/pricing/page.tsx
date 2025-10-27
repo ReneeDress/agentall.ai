@@ -31,7 +31,7 @@ export default function Pricing() {
                             </h2>
                             <div className="w-30 h-px bg-pink-500 solid-border"></div>
                             <p className="text-lg text-black h-14 flex items-start">
-                                Description
+                                Standard
                             </p>
 
                             {/* Main Pricing Card */}
@@ -43,7 +43,7 @@ export default function Pricing() {
                                             10 million tokens,<br />
                                             <span className="text-pink-500">12 months</span>
                                         </h3>
-                                        <p className="text-lg text-black">B1 Agent Subscription</p>
+                                        {/* <p className="text-lg text-black">B1 Agent Subscription</p> */}
                                     </div>
                                     <div className="text-right w-32">
                                         <div className="text-4xl lg:text-5xl font-serif-display text-pink-500 relative inline-block group-hover:before:animate-highlight-pink-1">3,000</div>
@@ -119,7 +119,7 @@ export default function Pricing() {
                                             <span className="text-sm text-gray-600 mt-[16px]"># limit to B1 agent subscription</span><br />
                                             <span className="text-orange-500">12 months</span>
                                         </h3>
-                                        <p className="text-lg text-black">B1 Agent Subscription</p>
+                                        {/* <p className="text-lg text-black">B1 Agent Subscription</p> */}
                                     </div>
                                     <div className="text-right w-32">
                                         <div className="text-4xl lg:text-5xl font-serif-display text-orange-500 relative inline-block group-hover:before:animate-highlight-orange-1">2,000</div>

@@ -21,13 +21,14 @@ export default function Home() {
       content: (
         <HeroCarouselItem
           image={IMAGES.HERO_1}
-          title="Harness Power of AI for SAP Business One with the Agentic Layer"
+          title="Harness Power of AI for SAP Business One with Built-in Agentic Layer"
           subtitle="Efficiency Improvement"
+          metricValue="10X"
           fullWidth={false}
           isActive={true}
           animationDelay={0}
           cardPosition={{ x: -150, y: 100, anchor: 'center' }}
-          subtitlePosition={{ x: 220, y: -50, anchor: 'center' }}
+          subtitlePosition={{ x: 260, y: -50, anchor: 'center' }}
         />
       )
     },
@@ -38,6 +39,7 @@ export default function Home() {
           image={IMAGES.HERO_2}
           title="Empower SMBs with Digital Workers"
           subtitle="Productivity Gain"
+          metricValue="+50%"
           fullWidth={false}
           isActive={false}
           animationDelay={200}
@@ -51,8 +53,9 @@ export default function Home() {
       content: (
         <HeroCarouselItem
           image={IMAGES.HERO_3}
-          title="Transform the way SMBs Operates"
+          title="Transform the way SMBs Operates to Agentic Enterprise"
           subtitle="Profits Optimization"
+          metricValue="+10%"
           fullWidth={false}
           isActive={false}
           animationDelay={400}
@@ -128,10 +131,10 @@ export default function Home() {
                 <div className="w-3 h-3 bg-primary rounded-full group-hover:scale-125 transition-transform duration-300"></div>
               </div>
               <h2 className="section-title text-foreground">
-                Harness Power of AI for SAP Business One with the Agentic Layer
+                Empower SMBs with Digital Workers
               </h2>
               <p className="text-base lg:text-lg text-foreground/70">
-                best of breed, easily extensible, compliant and secure
+                Flexible and agile, accurate and reliable, simple and intuitive
               </p>
               <div className="flex justify-center">
                 <div className="w-30 h-px bg-primary group-hover:w-60 transition-all duration-500"></div>
@@ -142,77 +145,31 @@ export default function Home() {
           {/* 内容区域 */}
           <div className="flex flex-col lg:flex-row items-center justify-center gap-6 lg:gap-9">
             <div className="w-full lg:flex-1 lg:max-w-lg space-y-4 lg:space-y-6 py-4 lg:py-8">
-              <h3 className="text-xl lg:text-2xl font-serif-display text-foreground">
-                Empower SMBs with Digital Workers
-              </h3>
+              <h2 className="section-title text-foreground">Automate Business Processes</h2>
               <div className="group cursor-pointer">
-                <p className="text-sm lg:text-base text-black leading-relaxed">
-                  <span className="relative inline-block break-words lg:whitespace-nowrap group-hover:before:animate-highlight-1">AI agents as Digital Workers</span><br />
+                <p className="text-lg text-black leading-relaxed">
+                  <span className="relative inline-block break-words lg:whitespace-nowrap group-hover:before:animate-highlight-1">AI agents as role based Digital Workers</span><br />
                   <span className="relative inline-block break-words lg:whitespace-nowrap group-hover:before:animate-highlight-2">monitor business data and performance,</span><br />
                   <span className="relative inline-block break-words lg:whitespace-nowrap group-hover:before:animate-highlight-3">proactively plan and recommend actions, automate business</span><br />
-                  <span className="relative inline-block break-words lg:whitespace-nowrap group-hover:before:animate-highlight-4">processes, engage with human workers, and drive continuous,</span><br />
-                  <span className="relative inline-block break-words lg:whitespace-nowrap group-hover:before:animate-highlight-5">nonstop optimization</span>
+                  <span className="relative inline-block break-words lg:whitespace-nowrap group-hover:before:animate-highlight-4">processes, and engage with human workers to drive performance</span><br />
+                  <span className="relative inline-block break-words lg:whitespace-nowrap group-hover:before:animate-highlight-5">optimization continuously and autonomously</span>
                 </p>
               </div>
             </div>
-            <div className="w-full lg:flex-1 flex flex-col items-center space-y-4 lg:space-y-6">
-              <Carousel
-                items={[
-                  {
-                    id: 'digital-workers-1',
-                    content: (
-                      <div className="relative w-full h-full flex items-center justify-center">
-                        <Image
-                          src={IMAGES.DIGITAL_WORKERS_1}
-                          alt="Digital Workers Dashboard 1"
-                          width={0}
-                          height={0}
-                          sizes="100vw"
-                          className="rounded-lg h-full w-auto object-contain"
-                        />
-                      </div>
-                    )
-                  },
-                  {
-                    id: 'digital-workers-2',
-                    content: (
-                      <div className="relative w-full h-full flex items-center justify-center">
-                        <Image
-                          src={IMAGES.DIGITAL_WORKERS_2}
-                          alt="Digital Workers Dashboard 2"
-                          width={0}
-                          height={0}
-                          sizes="100vw"
-                          className="rounded-lg h-full w-auto object-contain"
-                        />
-                      </div>
-                    )
-                  },
-                  {
-                    id: 'digital-workers-3',
-                    content: (
-                      <div className="relative w-full h-full flex items-center justify-center">
-                        <Image
-                          src={IMAGES.DIGITAL_WORKERS_3}
-                          alt="Digital Workers Dashboard 3"
-                          width={0}
-                          height={0}
-                          sizes="100vw"
-                          className="rounded-lg h-full w-auto object-contain"
-                        />
-                      </div>
-                    )
-                  }
-                ]}
-                autoPlay={true}
-                autoPlayInterval={4000}
-                showNavigation={false}
-                showDots={false}
-                showProgressBar={true}
-                fullWidth={true}
-                infiniteScroll={false}
-                height="h-80 lg:h-140"
-              />
+            <div className="w-full lg:flex-1 flex flex-col items-center space-y-4 lg:space-y-6 p-6">
+              <video
+                src={IMAGES.DIGITAL_WORKERS_VIDEO}
+                autoPlay
+                loop
+                muted
+                playsInline
+                controls
+                className="card-shadow flex-1"
+              >
+                Your browser does not support the video tag.
+              </video>
+              <span className="relative inline-block break-words lg:whitespace-nowrap group-hover:before:animate-highlight-1">Harness Power of AI for SAP Business One with built-in Agentic Layer</span>
+
             </div>
           </div>
         </div>
@@ -222,17 +179,19 @@ export default function Home() {
       <section className="py-8 lg:py-16">
         <div className="max-w-7xl mx-auto px-4 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16">
-            <video
-              src={IMAGES.ANALYTICS_VIDEO}
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="rounded-lg lg:rounded-2xl card-shadow w-full lg:w-auto h-auto max-h-[400px] lg:h-[722px]"
-            >
-              Your browser does not support the video tag.
-            </video>
-            <div className="flex-1 space-y-6 lg:space-y-9 py-4 lg:py-8">
+            <div className="flex-1">
+              <video
+                src={IMAGES.ANALYTICS_VIDEO}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="rounded-lg lg:rounded-2xl card-shadow flex-1"
+              >
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div className="flex-2 space-y-6 lg:space-y-9 py-4 lg:py-8">
               <div className="group cursor-pointer space-y-9">
                 <div className="flex items-center space-x-2">
                   <div className="w-3 h-3 bg-primary rounded-full group-hover:scale-125 transition-transform duration-300"></div>
@@ -305,14 +264,16 @@ export default function Home() {
                       id: 'ux-1',
                       content: (
                         <div className="relative w-full h-full flex items-center justify-center">
-                          <Image
-                            src={IMAGES.UX_IMAGE_1}
-                            alt="User Experience Interface 1"
-                            width={0}
-                            height={0}
-                            sizes="100vw"
-                            className="rounded-2xl h-[722px] w-auto object-contain"
-                          />
+                          <video
+                            src={IMAGES.UX_VIDEO_1}
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            className="rounded-2xl h-[800px] w-auto object-contain"
+                          >
+                            Your browser does not support the video tag.
+                          </video>
                         </div>
                       )
                     },
@@ -321,7 +282,7 @@ export default function Home() {
                       content: (
                         <div className="relative w-full h-full flex items-center justify-center">
                           <video
-                            src={IMAGES.UX_VIDEO}
+                            src={IMAGES.UX_VIDEO_2}
                             autoPlay
                             loop
                             muted
@@ -350,7 +311,7 @@ export default function Home() {
                     }
                   ]}
                   autoPlay={true}
-                  autoPlayInterval={6000}
+                  autoPlayInterval={8000}
                   showNavigation={false}
                   showDots={false}
                   showProgressBar={true}
@@ -374,9 +335,11 @@ export default function Home() {
                 <div className="w-3 h-3 bg-primary rounded-full group-hover:scale-125 transition-transform duration-300"></div>
               </div>
               <h2 className="section-title text-foreground">
-                Transform the way SMBs Operates<br />
-                by Digital Workers
+                Transform the way SMBs Operates to Agentic Enterprise
               </h2>
+              <p className="text-base lg:text-lg text-foreground/70">
+                Business best-practice oriented, easily extensible, complaint and secure
+              </p>
               <div className="flex justify-center">
                 <div className="w-30 h-px bg-primary group-hover:w-60 transition-all duration-500"></div>
               </div>

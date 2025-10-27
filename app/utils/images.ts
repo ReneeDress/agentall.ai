@@ -26,6 +26,7 @@ export const IMAGES = {
   HERO_3: getImagePath("/images/heros/ivana-cajina-_7LbC5J-jw4-unsplash.png"),
 
   // Digital Workers images
+  DIGITAL_WORKERS_VIDEO: getImagePath("/videos/AutomateBusinessProcesses.mov"),
   DIGITAL_WORKERS_1: getImagePath("/images/digital-workers-image-1.png"),
   DIGITAL_WORKERS_2: getImagePath("/images/digital-workers-image-2.png"),
   DIGITAL_WORKERS_3: getImagePath("/images/digital-workers-image-3.png"),
@@ -34,8 +35,8 @@ export const IMAGES = {
   ANALYTICS_VIDEO: getImagePath("/images/Reinvent-Analytics.mov"),
 
   // UX images and video
-  UX_IMAGE_1: getImagePath("/images/ux-image-1.png"),
-  UX_VIDEO: getImagePath("/images/ux-video-2.mov"),
+  UX_VIDEO_1: getImagePath("/images/ux-1.mov"),
+  UX_VIDEO_2: getImagePath("/images/ux-2.mov"),
   UX_IMAGE_3: getImagePath("/images/ux-image-3.png"),
 
   // Transform image
