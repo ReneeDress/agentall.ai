@@ -26,7 +26,7 @@ export const IMAGES = {
   HERO_3: getImagePath("/images/heros/ivana-cajina-_7LbC5J-jw4-unsplash.png"),
 
   // Digital Workers images
-  DIGITAL_WORKERS_VIDEO: getImagePath("/videos/AutomateBusinessProcesses.mov"),
+  DIGITAL_WORKERS_VIDEO: getImagePath("/videos/automate_business.mov"),
   DIGITAL_WORKERS_1: getImagePath("/images/digital-workers-image-1.png"),
   DIGITAL_WORKERS_2: getImagePath("/images/digital-workers-image-2.png"),
   DIGITAL_WORKERS_3: getImagePath("/images/digital-workers-image-3.png"),
@@ -41,4 +41,7 @@ export const IMAGES = {
 
   // Transform image
   TRANSFORM_IMAGE: getImagePath("/images/transform-image.png"),
+
+  // Company video
+  COMPANY_VIDEO: getImagePath("/videos/company.mp4"),
 } as const;

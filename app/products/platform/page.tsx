@@ -28,13 +28,10 @@ export default function PlatformProduct() {
                             Low-code agentic workflow
                             <br />
                             build and customization platform
-                            <br />
-                            infuse AI into SAP Business One,<br />
-                            add-ons and beyond
                         </h1>
-                        {/* <p className="text-lg text-black max-w-3xl mx-auto leading-relaxed">
-                            Role based, seamlessly integrated, out-of-box adoption with enterprise security
-                        </p> */}
+                        <p className="text-lg text-black max-w-3xl mx-auto leading-relaxed">
+                            Infuse AI into SAP Business One, add-ons and beyond
+                        </p>
                     </div>
 
                     {/* Hero Image */}

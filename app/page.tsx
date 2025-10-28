@@ -168,8 +168,10 @@ export default function Home() {
               >
                 Your browser does not support the video tag.
               </video>
-              <span className="relative inline-block break-words lg:whitespace-nowrap group-hover:before:animate-highlight-1">Harness Power of AI for SAP Business One with built-in Agentic Layer</span>
-
+              <div className="flex flex-col gap-2 text-center">
+                <span className="relative text-lg inline-block break-words lg:whitespace-nowrap group-hover:before:animate-highlight-1">Harness Power of AI for SAP Business One with built-in Agentic Layer</span>
+                <span className="relative inline-block break-words lg:whitespace-nowrap group-hover:before:animate-highlight-1">Sales order automation example</span>
+              </div>
             </div>
           </div>
         </div>
@@ -179,7 +181,7 @@ export default function Home() {
       <section className="py-8 lg:py-16">
         <div className="max-w-7xl mx-auto px-4 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16">
-            <div className="flex-1">
+            <div className="w-full flex-1 flex flex-col items-center space-y-4 lg:space-y-6 p-6">
               <video
                 src={IMAGES.ANALYTICS_VIDEO}
                 autoPlay
@@ -190,6 +192,10 @@ export default function Home() {
               >
                 Your browser does not support the video tag.
               </video>
+              <div className="flex flex-col gap-2 text-center">
+                <span className="relative text-lg inline-block break-words lg:whitespace-nowrap group-hover:before:animate-highlight-1">Nature Language Data Query</span>
+                {/* <span className="relative inline-block break-words lg:whitespace-nowrap group-hover:before:animate-highlight-1">Sales order automation example</span> */}
+              </div>
             </div>
             <div className="flex-2 space-y-6 lg:space-y-9 py-4 lg:py-8">
               <div className="group cursor-pointer space-y-9">
