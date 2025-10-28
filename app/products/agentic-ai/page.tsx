@@ -217,7 +217,7 @@ const TABS_DATA = [
     {
         id: 'whatsapp',
         title: 'WhatsApp Integration',
-        video: '/videos/5_WhatsApp_Old.MP4',
+        video: '/videos/5_WhatsApp.mp4',
         features: [
             'AI agents as contacts allowing nature language interaction',
             'Process automation and ChatBI functionalities supported',
