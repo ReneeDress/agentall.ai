@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import Logo from './Logo';
 import { useState, useEffect } from 'react';
+import { useI18n } from '../i18n/I18nContext';
+import { LANGUAGE_NAMES, SUPPORTED_LANGUAGES } from '../i18n/types';
 
 interface NavigationProps {
     currentPage?: string;
@@ -10,6 +12,7 @@ interface NavigationProps {
 }
 
 export default function Navigation({ currentPage, onDemoClick }: NavigationProps) {
+    const { t, language, setLanguage } = useI18n();
     const [isScrolled, setIsScrolled] = useState(false);
     const [showProductsPanel, setShowProductsPanel] = useState(false);
     const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -61,6 +64,16 @@ export default function Navigation({ currentPage, onDemoClick }: NavigationProps
 
                     {/* 中间 - 导航链接 */}
                     <div className="hidden lg:flex items-center justify-center space-x-8">
+                        {/* Home Link */}
+                        <a
+                            href="https://agentall.ai/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={`relative inline-block hover:before:animate-highlight-nav cursor-pointer px-2 ${currentPage === 'home' ? 'text-primary font-semibold' : 'text-black'}`}
+                        >
+                            {t('footer.home')}
+                        </a>
+
                         {/* Products dropdown */}
                         <div
                             className="relative"
@@ -68,7 +81,7 @@ export default function Navigation({ currentPage, onDemoClick }: NavigationProps
                             onMouseLeave={handleMouseLeave}
                         >
                             <div className={`relative inline-block hover:before:animate-highlight-nav cursor-pointer px-2 ${currentPage === 'products' ? 'text-primary font-semibold' : 'text-black'}`}>
-                                Products
+                                {t('nav.products')}
                             </div>
 
                             {/* Dropdown Panel */}
@@ -79,15 +92,15 @@ export default function Navigation({ currentPage, onDemoClick }: NavigationProps
                                             href="/products/agentic-ai"
                                             className="block px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors duration-200"
                                         >
-                                            <div className="font-medium">Agentic AI for SAP Business One</div>
-                                            <div className="text-sm text-gray-500 mt-1">Purpose-built AI automation</div>
+                                            <div className="font-medium">{t('nav.agenticAiTitle')}</div>
+                                            <div className="text-sm text-gray-500 mt-1">{t('nav.agenticAiDesc')}</div>
                                         </Link>
                                         <Link
                                             href="/products/platform"
                                             className="block px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-primary transition-colors duration-200"
                                         >
-                                            <div className="font-medium">AI Agent Build Platform</div>
-                                            <div className="text-sm text-gray-500 mt-1">Enterprise platform solution</div>
+                                            <div className="font-medium">{t('nav.platformTitle')}</div>
+                                            <div className="text-sm text-gray-500 mt-1">{t('nav.platformDesc')}</div>
                                         </Link>
                                     </div>
                                 </div>
@@ -98,47 +111,46 @@ export default function Navigation({ currentPage, onDemoClick }: NavigationProps
                             className={`relative inline-block hover:before:animate-highlight-nav cursor-pointer px-2 ${currentPage === 'resources' ? 'text-primary font-semibold' : 'text-black'
                                 }`}
                         >
-                            Resources
+                            {t('nav.resources')}
                         </Link>
                         <Link
                             href="/company"
                             className={`relative inline-block hover:before:animate-highlight-nav cursor-pointer px-2 ${currentPage === 'company' ? 'text-primary font-semibold' : 'text-black'
                                 }`}
                         >
-                            Company
+                            {t('nav.company')}
                         </Link>
                         <Link
                             href="/pricing"
                             className={`relative inline-block hover:before:animate-highlight-nav cursor-pointer px-2 ${currentPage === 'pricing' ? 'text-primary font-semibold' : 'text-black'
                                 }`}
                         >
-                            Pricing
+                            {t('nav.pricing')}
                         </Link>
                     </div>
 
-                    {/* 右侧 - 登录和按钮 */}
+{/* 右侧 - 登录和按钮 */}
                     <div className="flex items-center justify-end space-x-4">
-                        {/* 移动端汉堡菜单按钮 */}
-                        <button
-                            className="lg:hidden text-black p-2"
-                            onClick={() => setShowMobileMenu(!showMobileMenu)}
-                            aria-label="Toggle menu"
-                        >
-                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                {showMobileMenu ? (
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                ) : (
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                                )}
-                            </svg>
-                        </button>
+                        {/* Language Switcher */}
+                        <div className="relative">
+                            <button
+                                className="text-sm text-gray-600 hover:text-primary px-2 py-1"
+                                onClick={() => {
+                                    const currentIndex = SUPPORTED_LANGUAGES.indexOf(language);
+                                    const nextIndex = (currentIndex + 1) % SUPPORTED_LANGUAGES.length;
+                                    setLanguage(SUPPORTED_LANGUAGES[nextIndex]);
+                                }}
+                            >
+                                {LANGUAGE_NAMES[language]}
+                            </button>
+                        </div>
 
                         {/* Demo 按钮 */}
                         <button
                             onClick={onDemoClick}
                             className="bg-primary text-white px-3 py-2 lg:px-4 lg:py-2 text-sm lg:text-base hover:bg-primary/90 transition-colors cursor-pointer"
                         >
-                            Get A Demo
+                            {t('nav.getDemo')}
                         </button>
                     </div>
                 </div>
@@ -148,17 +160,20 @@ export default function Navigation({ currentPage, onDemoClick }: NavigationProps
             {showMobileMenu && (
                 <div className="fixed inset-0 bg-white z-[9998] lg:hidden pt-20">
                     <div className="flex flex-col items-center space-y-6 p-8">
-                        <Link href="/" className="text-xl text-black" onClick={() => setShowMobileMenu(false)}>
-                            Products
+                        <a href="https://agentall.ai/" target="_blank" rel="noopener noreferrer" className="text-xl text-black" onClick={() => setShowMobileMenu(false)}>
+                            {t('footer.home')}
+                        </a>
+                        <Link href="/products/agentic-ai" className="text-xl text-black" onClick={() => setShowMobileMenu(false)}>
+                            {t('nav.products')}
                         </Link>
-                        <Link href="/" className="text-xl text-black" onClick={() => setShowMobileMenu(false)}>
-                            Resources
+                        <Link href="/resources" className="text-xl text-black" onClick={() => setShowMobileMenu(false)}>
+                            {t('nav.resources')}
                         </Link>
                         <Link href="/company" className="text-xl text-black" onClick={() => setShowMobileMenu(false)}>
-                            Company
+                            {t('nav.company')}
                         </Link>
                         <Link href="/pricing" className="text-xl text-black" onClick={() => setShowMobileMenu(false)}>
-                            Pricing
+                            {t('nav.pricing')}
                         </Link>
                     </div>
                 </div>
